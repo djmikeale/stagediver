@@ -16,20 +16,20 @@
 ## 2. Data Models
 
 ### 2.1 Scraping Data Model
-| Field          | Type     | Required | Description                                    |
-| -------------- | -------- | -------- | ---------------------------------------------- |
-| festival_name  | string   | y        | Reference to parent festival                   |
-| artist_name    | string   | y        | Official artist/band name                      |
-| stage_name     | string   | y        | Performance location                           |
-| start_ts       | datetime | y        | Performance start (ISO 8601)                   |
-| end_ts         | datetime | y        | Performance end (ISO 8601)                     |
-| social_links   | map      | n        | Map of platform name to profile URL            |
-| bio_short      | string   | n        | 1-2 sentence description                       |
-| bio_long       | string   | n        | Full artist biography                          |
-| country_code   | string   | n        | Artist's origin country (ISO 3166-1)          |
-| scrape_url     | string   | n        | URL where data was scraped from               |
-| scrape_ts      | datetime | n        | When the record was last modified             |
-| other_data     | map      | n        | Misc. data for later enrichment               |
+| Field         | Type     | Required | Description                          |
+| ------------- | -------- | -------- | ------------------------------------ |
+| festival_name | string   | y        | Reference to parent festival         |
+| artist_name   | string   | y        | Official artist/band name            |
+| stage_name    | string   | y        | Performance location                 |
+| start_ts      | datetime | y        | Performance start (ISO 8601)         |
+| end_ts        | datetime | y        | Performance end (ISO 8601)           |
+| social_links  | map      | n        | Map of platform name to profile URL  |
+| bio_short     | string   | n        | 1-2 sentence description             |
+| bio_long      | string   | n        | Full artist biography                |
+| country_code  | string   | n        | Artist's origin country (ISO 3166-1) |
+| scrape_url    | string   | n        | URL where data was scraped from      |
+| scrape_ts     | datetime | n        | When the record was last modified    |
+| other_data    | map      | n        | Misc. data for later enrichment      |
 
 ### 2.2 Core Data Models
 
