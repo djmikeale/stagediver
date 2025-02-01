@@ -7,7 +7,7 @@ Contains Pydantic models for:
 - Performance
 """
 from pydantic import BaseModel, Field
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import List, Optional
 
 class Artist(BaseModel):
@@ -39,7 +39,7 @@ class Festival(BaseModel):
 class ScrapedData(BaseModel):
     """Raw data scraped from festival websites"""
     source_url: str
-    scrape_timestamp: datetime = Field(default_factory=lambda: datetime.now(datetime.UTC))
+    scrape_timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
     raw_content: dict
     festival_name: Optional[str] = None
     success: bool = True
