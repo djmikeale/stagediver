@@ -140,7 +140,7 @@
   - Overbooked time periods
 
 ### 5 Calendar Export
-- Export ratings: ❤️,🟢,🟡,🟤,🚫
+- Export ratings: ❤️,🟢,🟡,🤷,🚫
 - Configurable export options:
   - Per-user filtering
   - Include stage information

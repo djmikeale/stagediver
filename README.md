@@ -47,3 +47,8 @@ pip install -r requirements.txt
    - [ ] Support multi-user exports
    - [ ] Test with various calendar clients
    - [ ] apple script to remove old events + import new events
+
+streamlit:
+- create "save string" to save the current state of the app as a string, and "load string" to load the app state from a string. and add as parameter to url
+- add "compare" functionality to compare different festivals
+- add "compare faves" functionality to compare your favorite artists with others' favorite artists

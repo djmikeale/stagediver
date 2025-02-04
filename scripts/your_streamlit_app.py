@@ -1,78 +1,146 @@
 import streamlit as st
+import json
+from pathlib import Path
 from ics import Calendar, Event
-from datetime import datetime
-import pytz
-from stagediver.common.config import LINEUPS_FILE
-from stagediver.common.utils import load_json_file
+from datetime import datetime, timedelta
 
-#todo the streamlit app will have data visualization functionality, user rating functionality, and calendar download functionality.
+# Constants
+RATING_EMOJIS = {
+    "❤️": "Must see",
+    "🟢": "Want to see",
+    "🟡": "Maybe",
+    "🚫": "Skip"
+}
 
-st.title("Roskilde Festival 2025 Calendar")
+def load_lineup_data():
+    """Load the historical lineup data from JSON file"""
+    data_path = Path("data/lineups_historical.json")
+    with open(data_path) as f:
+        return json.load(f)
 
-# Load the lineup data using the utility function
-lineups = load_json_file(LINEUPS_FILE)
+def get_festivals_and_years(data):
+    """Extract unique festival/year combinations"""
+    festivals = {}
+    for artist in data:
+        festival = artist["festival_name"]
+        year = artist["festival_year"]
+        if festival not in festivals:
+            festivals[festival] = set()
+        festivals[festival].add(year)
+    return festivals
 
-# Extract artist names from the first festival (assuming one festival in the JSON)
-festival = lineups[0]
-artists = festival["artists"]
-artist_names = sorted([artist["artist_name"] for artist in artists])
+def get_artists_for_festival_year(data, festival, year):
+    """Get all artists for a specific festival and year"""
+    return [
+        artist for artist in data
+        if artist["festival_name"] == festival
+        and artist["festival_year"] == year
+    ]
 
-# Create tabs for different views
-tab1, tab2 = st.tabs(["Add to Calendar", "View Full Lineup"])
+def create_calendar_export(artists_data, ratings):
+    """Create ICS calendar with rated artists"""
+    cal = Calendar()
 
-with tab1:
-    # Create a dropdown to select an artist
-    selected_artist_name = st.selectbox(
-        "Select a concert to add to your calendar",
-        artist_names
+    # Only include artists with positive ratings
+    valid_ratings = ["❤️", "🟢", "🟡"]
+    rated_artists = [
+        artist for artist in artists_data
+        if ratings.get(artist["artist_name"]) in valid_ratings
+    ]
+
+    for artist in rated_artists:
+        event = Event()
+        event.name = f"{artist['artist_name']} {ratings[artist['artist_name']]}"
+
+        # If we have actual start/end times, use those
+        if artist["start_ts"] and artist["end_ts"]:
+            event.begin = artist["start_ts"]
+            event.end = artist["end_ts"]
+        else:
+            # Placeholder times if not available
+            event.begin = datetime(artist["festival_year"], 7, 1, 12, 0)  # Noon on July 1st
+            event.end = event.begin + timedelta(hours=1)
+
+        event.description = artist.get("bio_short", "")
+        event.location = artist.get("stage_name", "TBA")
+        cal.events.add(event)
+
+    return cal
+
+def main():
+    st.title("Festival Lineup Rater")
+
+    # Load data
+    data = load_lineup_data()
+    festivals = get_festivals_and_years(data)
+
+    # Festival selection
+    festival = st.selectbox(
+        "Select Festival",
+        options=list(festivals.keys())
     )
 
-    # Find the selected artist's data
-    selected_artist = next(
-        (artist for artist in artists if artist["artist_name"] == selected_artist_name),
-        None
+    # Year selection
+    year = st.selectbox(
+        "Select Year",
+        options=sorted(festivals[festival], reverse=True)
     )
 
-    if selected_artist:
-        # Display artist info
-        st.write(f"**Stage:** {selected_artist['stage_name'] or 'TBA'}")
-        st.write(f"**Description:** {selected_artist['bio_short']}")
+    # Get artists for selected festival/year
+    artists = get_artists_for_festival_year(data, festival, year)
 
-        # Create calendar event
-        def create_ics_file(artist):
-            c = Calendar()
-            e = Event()
-            e.name = f"{artist['artist_name']} at {festival['festival_name']}"
-            e.description = artist['bio_short']
+    # Initialize session state for ratings if not exists
+    if "ratings" not in st.session_state:
+        st.session_state.ratings = {}
 
-            # Since we don't have exact times, we'll set it to a placeholder date
-            festival_year = festival['festival_year']
-            e.begin = datetime(festival_year, 7, 1, 12, 0, tzinfo=pytz.UTC)  # Example date
-            e.end = datetime(festival_year, 7, 1, 13, 30, tzinfo=pytz.UTC)   # Example end time
+    st.subheader("Rate Artists")
 
-            if artist['stage_name']:
-                e.location = f"{artist['stage_name']}, {festival['festival_name']}"
-            else:
-                e.location = festival['festival_name']
+    # Display artists in a single column
+    for artist in artists:
+        name = artist["artist_name"]
+        current_rating = st.session_state.ratings.get(name, "")
 
-            c.events.add(e)
-            return c
+        # Artist info
+        st.markdown(f"### {name}")
+        if artist.get("bio_short"):
+            st.markdown(f"*{artist['bio_short']}*")
+        if artist.get("stage_name"):
+            st.markdown(f"**Stage:** {artist['stage_name']}")
 
-        # Generate ICS file when button is clicked
-        if st.download_button(
-            label="Add to Calendar",
-            data=str(create_ics_file(selected_artist)),
-            file_name=f"{selected_artist['artist_name']}_concert.ics",
+        # Rating selection with radio buttons
+        rating = st.radio(
+            f"Rate {name}",
+            options=[""] + list(RATING_EMOJIS.keys()),
+            format_func=lambda x: f"{x} {RATING_EMOJIS.get(x, 'No rating')}" if x else "No rating",
+            horizontal=True,
+            key=f"rate_{name}"
+        )
+
+        if rating:
+            st.session_state.ratings[name] = rating
+
+        st.markdown("---")  # Add separator between artists
+
+    # Export calendar button
+    if st.button("Export Calendar"):
+        cal = create_calendar_export(artists, st.session_state.ratings)
+        st.download_button(
+            label="Download Calendar File",
+            data=str(cal),
+            file_name=f"{festival}_{year}_lineup.ics",
             mime="text/calendar"
-        ):
-            st.success("Calendar file generated! Check your downloads.")
+        )
 
-with tab2:
-    # Display full lineup
-    st.write("### Full Lineup")
-    for artist in sorted(artists, key=lambda x: x['artist_name']):
-        st.write(f"**{artist['artist_name']}**")
-        if artist['stage_name']:
-            st.write(f"*Stage:* {artist['stage_name']}")
-        st.write(artist['bio_short'])
-        st.write("---")
+    # Display current ratings summary
+    st.subheader("Your Ratings Summary")
+    for emoji, label in RATING_EMOJIS.items():
+        rated_artists = [
+            name for name, rating in st.session_state.ratings.items()
+            if rating == emoji
+        ]
+        if rated_artists:
+            st.markdown(f"**{emoji} {label}:**")
+            st.markdown("- " + "\n- ".join(rated_artists))
+
+if __name__ == "__main__":
+    main()
