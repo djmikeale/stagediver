@@ -7,23 +7,18 @@ Contains:
 - Raw data validation
 """
 
-import json
 import os
-from datetime import datetime, timezone
+from datetime import datetime
 from typing import List, Dict, Optional, Type
 
 from stagediver.models import ScrapedData
-from stagediver.config import LINEUPS_FILE
+from stagediver.common.config import LINEUPS_FILE
+from stagediver.common.utils import load_json_file, save_json_file
 
 def load_existing_lineups() -> List[Dict]:
     """Load existing lineup data with integrity check."""
-    if not os.path.exists(LINEUPS_FILE):
-        os.makedirs(os.path.dirname(LINEUPS_FILE), exist_ok=True)
-        return []
-
     try:
-        with open(LINEUPS_FILE, 'r', encoding='utf-8') as f:
-            data = json.load(f)
+        data = load_json_file(LINEUPS_FILE)
 
         # Basic integrity checks
         if not isinstance(data, list):
@@ -40,7 +35,9 @@ def load_existing_lineups() -> List[Dict]:
 
         return data
 
-    except (json.JSONDecodeError, ValueError) as e:
+    except FileNotFoundError:
+        return []
+    except ValueError as e:
         print(f"Error loading existing lineup data: {e}")
         backup_file = f"{LINEUPS_FILE}.bak"
         if os.path.exists(LINEUPS_FILE):
@@ -49,22 +46,8 @@ def load_existing_lineups() -> List[Dict]:
         return []
 
 def save_lineups(lineups: List[Dict]):
-    """Save lineup data with error handling."""
-    temp_file = f"{LINEUPS_FILE}.tmp"
-
-    try:
-        # Write to temporary file first
-        with open(temp_file, 'w', encoding='utf-8') as f:
-            json.dump(lineups, f, indent=2, ensure_ascii=False)
-
-        # If successful, rename to actual file
-        os.replace(temp_file, LINEUPS_FILE)
-
-    except Exception as e:
-        print(f"Error saving lineup data: {e}")
-        if os.path.exists(temp_file):
-            os.remove(temp_file)
-        raise
+    """Save lineup data."""
+    save_json_file(lineups, LINEUPS_FILE)
 
 def transform_artist_data(raw_data: dict) -> dict:
     """Transform raw artist data into standardized format."""
@@ -123,8 +106,5 @@ def run_scraper(scraper, sample_size: Optional[int] = None) -> None:
     existing_lineups.append(new_lineup)
 
     # Save to file
-    os.makedirs(os.path.dirname(LINEUPS_FILE), exist_ok=True)
-    with open(LINEUPS_FILE, 'w', encoding='utf-8') as f:
-        json.dump(existing_lineups, f, indent=2)
-
+    save_json_file(existing_lineups, LINEUPS_FILE)
     print(f"Saved {len(new_lineup['artists'])} artists to {LINEUPS_FILE}")

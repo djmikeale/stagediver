@@ -1,16 +1,16 @@
 import streamlit as st
-import json
 from ics import Calendar, Event
 from datetime import datetime
 import pytz
+from stagediver.common.config import LINEUPS_FILE
+from stagediver.common.utils import load_json_file
 
 #todo the streamlit app will have data visualization functionality, user rating functionality, and calendar download functionality.
 
 st.title("Roskilde Festival 2025 Calendar")
 
-# Load the lineup data
-with open("data/lineups.json", "r") as f:
-    lineups = json.load(f)
+# Load the lineup data using the utility function
+lineups = load_json_file(LINEUPS_FILE)
 
 # Extract artist names from the first festival (assuming one festival in the JSON)
 festival = lineups[0]

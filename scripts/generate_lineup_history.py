@@ -3,42 +3,25 @@ Generate type 2 historical data from lineup scrapes.
 Tracks changes to artist data over time and maintains history of changes.
 """
 
-import json
-import os
-from datetime import datetime
 from typing import List, Dict, Any
 from copy import deepcopy
-from stagediver.config import LINEUPS_FILE, HISTORICAL_FILE
+from stagediver.common.config import LINEUPS_FILE, HISTORICAL_FILE
+from stagediver.common.utils import load_json_file, save_json_file
 
 def load_lineups() -> List[Dict]:
     """Load existing lineup data."""
-    if not os.path.exists(LINEUPS_FILE):
-        return []
-
-    with open(LINEUPS_FILE, 'r', encoding='utf-8') as f:
-        return json.load(f)
+    return load_json_file(LINEUPS_FILE)
 
 def load_historical() -> List[Dict]:
     """Load existing historical data."""
-    if not os.path.exists(HISTORICAL_FILE):
+    try:
+        return load_json_file(HISTORICAL_FILE)
+    except FileNotFoundError:
         return []
 
-    with open(HISTORICAL_FILE, 'r', encoding='utf-8') as f:
-        return json.load(f)
-
 def save_historical(data: List[Dict]):
-    """Save historical data with error handling."""
-    os.makedirs(os.path.dirname(HISTORICAL_FILE), exist_ok=True)
-    temp_file = f"{HISTORICAL_FILE}.tmp"
-
-    try:
-        with open(temp_file, 'w', encoding='utf-8') as f:
-            json.dump(data, f, indent=2, ensure_ascii=False)
-        os.replace(temp_file, HISTORICAL_FILE)
-    except Exception as e:
-        if os.path.exists(temp_file):
-            os.remove(temp_file)
-        raise Exception(f"Error saving historical data: {e}")
+    """Save historical data."""
+    save_json_file(data, HISTORICAL_FILE)
 
 def create_historical_key(artist: Dict, festival: str, year: int) -> str:
     """
