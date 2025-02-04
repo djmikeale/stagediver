@@ -14,8 +14,8 @@ class RoskildeFestival2025Scraper:
     """
 
     def __init__(self):
-        self.year = 2025
         self.festival_name = "Roskilde Festival"
+        self.festival_year = 2025
         self.base_url = "https://www.roskilde-festival.dk"
         self.program_url = f"{self.base_url}/program"
         self.session = requests.Session()

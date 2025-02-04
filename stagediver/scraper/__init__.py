@@ -13,8 +13,7 @@ from datetime import datetime, timezone
 from typing import List, Dict, Optional, Type
 
 from stagediver.models import ScrapedData
-
-LINEUPS_FILE = "data/lineups.json"
+from stagediver.config import LINEUPS_FILE
 
 def load_existing_lineups() -> List[Dict]:
     """Load existing lineup data with integrity check."""
@@ -84,43 +83,48 @@ def transform_artist_data(raw_data: dict) -> dict:
         "other_data": raw_data.get("other_data", {})
     }
 
-def run_scraper(scraper_instance: any, sample_size: Optional[int] = None) -> Dict:
-    """
-    Run a festival scraper and return formatted data.
+def run_scraper(scraper, sample_size: Optional[int] = None) -> None:
+    """Run a scraper and save results."""
+    print(f"Running {scraper.__class__.__name__}...")
 
-    Args:
-        scraper_instance: Instance of a festival scraper
-        sample_size: Optional limit on number of artists to scrape
+    # Get lineup data
+    lineup_data = scraper.fetch_lineup(sample_size=sample_size)
 
-    Returns:
-        Dict containing the formatted scrape data
-    """
-    print(f"Starting {scraper_instance.festival_name} scraper...")
-
-    # Load existing data
-    existing_lineups = load_existing_lineups()
-    print(f"Loaded {len(existing_lineups)} existing scrapes")
-
-    # Fetch new data
-    data = scraper_instance.fetch_lineup(sample_size=sample_size)
-    scrape_timestamp = datetime.now(timezone.utc)
-
-    # Create new scrape entry
-    new_scrape = {
-        "festival_name": scraper_instance.festival_name,
-        "scrape_ts": scrape_timestamp.isoformat(),
-        "artists": [
-            transform_artist_data(artist)
-            for artist in data.raw_content["artists"]
-        ]
+    # Convert ScrapedData to dictionary format
+    new_lineup = {
+        "festival_name": lineup_data.festival_name,
+        "festival_year": scraper.festival_year,
+        "scrape_ts": datetime.utcnow().isoformat(),
+        "artists": []
     }
 
-    # Add new scrape to existing data
-    all_lineups = existing_lineups + [new_scrape]
+    # Process each artist from raw content
+    for artist_data in lineup_data.raw_content["artists"]:
+        artist = {
+            "artist_name": artist_data["name"],
+            "stage_name": artist_data.get("stage", ""),
+            "start_ts": None,  # Could parse from performance_date if needed
+            "end_ts": None,
+            "social_links": {
+                "spotify": artist_data.get("spotify_link")
+            } if artist_data.get("spotify_link") else {},
+            "bio_short": artist_data.get("short_description", ""),
+            "bio_long": artist_data.get("long_description", ""),
+            "country_code": None,  # Not available in current scrape
+            "scrape_url": artist_data["url"],
+            "other_data": {}
+        }
+        new_lineup["artists"].append(artist)
 
-    # Save combined data
-    save_lineups(all_lineups)
-    print(f"\nSaved new scrape with {len(new_scrape['artists'])} artists to {LINEUPS_FILE}")
-    print(f"Total scrapes in file: {len(all_lineups)}")
+    # Load existing lineups
+    existing_lineups = load_existing_lineups()
 
-    return new_scrape
+    # Add new lineup to the list
+    existing_lineups.append(new_lineup)
+
+    # Save to file
+    os.makedirs(os.path.dirname(LINEUPS_FILE), exist_ok=True)
+    with open(LINEUPS_FILE, 'w', encoding='utf-8') as f:
+        json.dump(existing_lineups, f, indent=2)
+
+    print(f"Saved {len(new_lineup['artists'])} artists to {LINEUPS_FILE}")
