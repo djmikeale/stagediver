@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 from ics import Calendar, Event
 from datetime import datetime, timedelta
+import re
 
 # Constants
 RATING_EMOJIS = {
@@ -11,6 +12,29 @@ RATING_EMOJIS = {
     "🟡": "Maybe",
     "🚫": "Skip"
 }
+
+ARTISTS_PER_PAGE = 5
+
+def extract_spotify_id(spotify_url):
+    """Extract Spotify artist ID from full URL"""
+    if not spotify_url:
+        return None
+    match = re.search(r'artist/([a-zA-Z0-9]+)', spotify_url)
+    return match.group(1) if match else None
+
+def spotify_embed(artist_id):
+    """Generate Spotify embed HTML for an artist"""
+    return f"""
+        <iframe style="border-radius:12px"
+                src="https://open.spotify.com/embed/artist/{artist_id}?utm_source=generator"
+                width="100%"
+                height="152"
+                frameBorder="0"
+                allowfullscreen=""
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy">
+        </iframe>
+    """
 
 def load_lineup_data():
     """Load the historical lineup data from JSON file"""
@@ -93,10 +117,25 @@ def main():
     if "ratings" not in st.session_state:
         st.session_state.ratings = {}
 
-    st.subheader("Rate Artists")
+    # Pagination
+    total_pages = (len(artists) + ARTISTS_PER_PAGE - 1) // ARTISTS_PER_PAGE
 
-    # Display artists in a single column
-    for artist in artists:
+    col1, col2, col3 = st.columns([2, 3, 2])
+    with col2:
+        page = st.number_input(
+            f"Page (1-{total_pages})",
+            min_value=1,
+            max_value=total_pages,
+            value=1
+        )
+
+    start_idx = (page - 1) * ARTISTS_PER_PAGE
+    end_idx = min(start_idx + ARTISTS_PER_PAGE, len(artists))
+
+    st.subheader(f"Rate Artists (Showing {start_idx + 1}-{end_idx} of {len(artists)})")
+
+    # Display artists for current page
+    for artist in artists[start_idx:end_idx]:
         name = artist["artist_name"]
         current_rating = st.session_state.ratings.get(name, "")
 
@@ -106,6 +145,15 @@ def main():
             st.markdown(f"*{artist['bio_short']}*")
         if artist.get("stage_name"):
             st.markdown(f"**Stage:** {artist['stage_name']}")
+
+        # Spotify embed
+        if artist.get("social_links", {}).get("spotify"):
+            spotify_id = extract_spotify_id(artist["social_links"]["spotify"])
+            if spotify_id:
+                st.components.v1.html(
+                    spotify_embed(spotify_id),
+                    height=170
+                )
 
         # Rating selection with radio buttons
         rating = st.radio(
@@ -120,6 +168,19 @@ def main():
             st.session_state.ratings[name] = rating
 
         st.markdown("---")  # Add separator between artists
+
+    # Navigation buttons
+    col1, col2 = st.columns(2)
+    with col1:
+        if page > 1:
+            if st.button("← Previous Page"):
+                st.session_state.page = page - 1
+                st.experimental_rerun()
+    with col2:
+        if page < total_pages:
+            if st.button("Next Page →"):
+                st.session_state.page = page + 1
+                st.experimental_rerun()
 
     # Export calendar button
     if st.button("Export Calendar"):
