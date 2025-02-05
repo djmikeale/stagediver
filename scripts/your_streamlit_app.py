@@ -166,10 +166,11 @@ def main():
             with cols[col]:
                 button_type = "primary" if current_rating == emoji else "secondary"
                 if st.button(
-                    f"{emoji} \u2002 {label}",
+                    label,
+                    icon=emoji,
                     key=f"rate_{name}_{emoji}",
                     type=button_type,
-                    use_container_width=True
+                    use_container_width=True,
                 ):
                     # If clicking the same rating again, remove it
                     if current_rating == emoji:
@@ -184,24 +185,24 @@ def main():
     col1, col2 = st.columns(2)
     with col1:
         if page > 1:
-            if st.button("← Previous Page", key=f"prev_page_{page}"):
+            if st.button("« previous", key=f"prev_page_{page}"):
                 st.session_state.page -= 1
                 st.rerun()
     with col2:
         if page < total_pages:
-            if st.button("Next Page →", key=f"next_page_{page}"):
+            if st.button("Next »", key=f"next_page_{page}"):
                 st.session_state.page += 1
                 st.rerun()
 
     # Export calendar button
-    if st.button("Export Calendar"):
-        cal = create_calendar_export(artists, st.session_state.ratings)
-        st.download_button(
-            label="Download Calendar File",
-            data=str(cal),
-            file_name=f"{selected_festival}_{selected_year}_lineup.ics",
-            mime="text/calendar"
-        )
+    st.download_button(
+        label="Export",
+        icon="📆",
+        data=str(create_calendar_export(artists, st.session_state.ratings)),
+        file_name=f"{selected_festival}_{selected_year}_lineup.ics",
+        mime="text/calendar",
+        help="Download the calendar file to your device",
+    )
 
     # Display current ratings summary
     st.subheader("Your Ratings Summary")
