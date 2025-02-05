@@ -87,6 +87,50 @@ def create_calendar_export(artists_data, ratings):
 
     return cal
 
+def export_ratings():
+    """Export ratings data as JSON string"""
+    # Initialize categories from RATING_EMOJIS
+    export_data = {
+        label: [] for label in RATING_EMOJIS.values()
+    }
+    export_data["timestamp"] = datetime.now().isoformat()
+
+    # Group artists by rating category
+    for artist, rating in st.session_state.ratings.items():
+        category = RATING_EMOJIS.get(rating)
+        if category:
+            export_data[category].append(artist)
+
+    # Sort artist lists alphabetically
+    for category in RATING_EMOJIS.values():
+        export_data[category].sort()
+
+    return json.dumps(export_data, indent=2)
+
+def import_ratings(json_str):
+    """Import ratings data from JSON string"""
+    try:
+        data = json.loads(json_str)
+
+        # Create reverse mapping (category -> emoji)
+        categories_to_emoji = {v: k for k, v in RATING_EMOJIS.items()}
+
+        # Create new ratings dictionary
+        new_ratings = {}
+        for category, emoji in categories_to_emoji.items():
+            if category in data:
+                for artist in data[category]:
+                    new_ratings[artist] = emoji
+
+        # Check if ratings are different before updating
+        if new_ratings != st.session_state.ratings:
+            st.session_state.ratings = new_ratings
+            return True
+        return False
+
+    except (json.JSONDecodeError, KeyError):
+        return False
+
 def main():
     st.title("Festival Lineup Rater")
 
@@ -170,7 +214,7 @@ def main():
                     icon=emoji,
                     key=f"rate_{name}_{emoji}",
                     type=button_type,
-                    use_container_width=True,
+                    use_container_width=True
                 ):
                     # If clicking the same rating again, remove it
                     if current_rating == emoji:
@@ -194,15 +238,47 @@ def main():
                 st.session_state.page += 1
                 st.rerun()
 
-    # Export calendar button
+    # Save/Load buttons
+    st.markdown("---")
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.download_button(
+            label="Save Progress",
+            icon="💾",
+            data=export_ratings(),
+            file_name="festival_ratings.json",
+            mime="application/json",
+            help="Download your ratings to a file",
+        )
+
+    with col2:
+        uploaded_file = st.file_uploader(
+            "Load Progress",
+            type=["json"],
+            help="Upload a previously saved ratings file",
+            accept_multiple_files=False,
+            key="ratings_upload"
+        )
+        if uploaded_file:
+            content = uploaded_file.read().decode()
+            if import_ratings(content):
+                st.success("Ratings loaded successfully!")
+                st.rerun()
+            else:
+                st.info("Ratings already up to date")
+
+    # Export calendar button (moved after save/load)
     st.download_button(
-        label="Export",
+        label="Export Calendar",
         icon="📆",
         data=str(create_calendar_export(artists, st.session_state.ratings)),
         file_name=f"{selected_festival}_{selected_year}_lineup.ics",
         mime="text/calendar",
-        help="Download the calendar file to your device",
+        help="Download your schedule as a calendar file",
     )
+
+    st.markdown("---")
 
     # Display current ratings summary
     st.subheader("Your Ratings Summary")
