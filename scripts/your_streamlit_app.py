@@ -44,14 +44,10 @@ def load_lineup_data():
 
 def get_festivals_and_years(data):
     """Extract unique festival/year combinations"""
-    festivals = {}
+    festival_years = set()
     for artist in data:
-        festival = artist["festival_name"]
-        year = artist["festival_year"]
-        if festival not in festivals:
-            festivals[festival] = set()
-        festivals[festival].add(year)
-    return festivals
+        festival_years.add((artist["festival_name"], artist["festival_year"]))
+    return sorted(festival_years, key=lambda x: (-x[1], x[0]))  # Sort by year desc, then festival name
 
 def get_artists_for_festival_year(data, festival, year):
     """Get all artists for a specific festival and year"""
@@ -96,22 +92,21 @@ def main():
 
     # Load data
     data = load_lineup_data()
-    festivals = get_festivals_and_years(data)
+    festival_years = get_festivals_and_years(data)
 
-    # Festival selection
-    festival = st.selectbox(
+    # Combined festival and year selection
+    festival_year_options = [f"{festival} ({year})" for festival, year in festival_years]
+    selected_festival_year = st.selectbox(
         "Select Festival",
-        options=list(festivals.keys())
+        options=festival_year_options
     )
 
-    # Year selection
-    year = st.selectbox(
-        "Select Year",
-        options=sorted(festivals[festival], reverse=True)
-    )
+    # Extract festival and year from selection
+    selected_festival, year_str = selected_festival_year.rsplit(" (", 1)
+    selected_year = int(year_str.rstrip(")"))
 
     # Get artists for selected festival/year
-    artists = get_artists_for_festival_year(data, festival, year)
+    artists = get_artists_for_festival_year(data, selected_festival, selected_year)
 
     # Initialize session state for ratings if not exists
     if "ratings" not in st.session_state:
@@ -188,7 +183,7 @@ def main():
         st.download_button(
             label="Download Calendar File",
             data=str(cal),
-            file_name=f"{festival}_{year}_lineup.ics",
+            file_name=f"{selected_festival}_{selected_year}_lineup.ics",
             mime="text/calendar"
         )
 
