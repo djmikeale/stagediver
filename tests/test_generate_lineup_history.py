@@ -15,6 +15,7 @@ def test_historical_data_handling():
         "scrape_ts": ts1,
         "artists": [{
             "artist_name": "Artist 1",
+            "artist_id": "id1",
             "stage_name": "Stage A",
             "bio_short": "Original bio"
         }]
@@ -28,11 +29,13 @@ def test_historical_data_handling():
         "artists": [
             {
                 "artist_name": "Artist 1",
+                "artist_id": "id1",
                 "stage_name": "Stage B",  # Changed
                 "bio_short": "Original bio"
             },
             {
                 "artist_name": "Artist 2",
+                "artist_id": "id2",
                 "stage_name": "Stage C",
                 "bio_short": "New artist"
             }
@@ -42,6 +45,7 @@ def test_historical_data_handling():
     # Existing historical data
     existing_historical = [{
         "artist_name": "Artist 1",
+        "artist_id": "id1",
         "stage_name": "Stage A",
         "bio_short": "Original bio",
         "festival_name": "Test Festival",
@@ -95,10 +99,12 @@ def test_artist_removal():
         "artists": [
             {
                 "artist_name": "Artist 1",
+                "artist_id": "id1",
                 "stage_name": "Stage A"
             },
             {
                 "artist_name": "Artist 2",
+                "artist_id": "id2",
                 "stage_name": "Stage B"
             }
         ]
@@ -111,6 +117,7 @@ def test_artist_removal():
         "scrape_ts": ts2,
         "artists": [{
             "artist_name": "Artist 1",
+            "artist_id": "id1",
             "stage_name": "Stage A"
         }]
     }
@@ -119,6 +126,7 @@ def test_artist_removal():
     existing_historical = [
         {
             "artist_name": "Artist 1",
+            "artist_id": "id1",
             "stage_name": "Stage A",
             "festival_name": "Test Festival",
             "festival_year": 2024,
@@ -128,6 +136,7 @@ def test_artist_removal():
         },
         {
             "artist_name": "Artist 2",
+            "artist_id": "id2",
             "stage_name": "Stage B",
             "festival_name": "Test Festival",
             "festival_year": 2024,

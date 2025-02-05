@@ -4,6 +4,8 @@ Tracks changes to artist data over time and maintains history of changes.
 """
 
 from typing import List, Dict, Any
+import random
+import string
 from copy import deepcopy
 from stagediver.common.config import LINEUPS_FILE, HISTORICAL_FILE
 from stagediver.common.utils import load_json_file, save_json_file
@@ -53,6 +55,37 @@ def has_relevant_changes(current: Dict, previous: Dict) -> bool:
         for field in relevant_fields
     )
 
+def generate_artist_id() -> str:
+    """
+    Generate a random 5-character ID using alphanumeric characters.
+
+    Returns:
+        5-character string using [a-zA-Z0-9]
+    """
+    characters = string.ascii_letters + string.digits
+    return ''.join(random.choices(characters, k=5))
+
+def get_or_create_artist_id(artist_name: str, existing_ids: Dict[str, str]) -> str:
+    """
+    Get existing artist ID or generate a new one if it doesn't exist.
+
+    Args:
+        artist_name: Name of the artist
+        existing_ids: Dictionary mapping artist names to their IDs
+
+    Returns:
+        5-character artist ID
+    """
+    if artist_name in existing_ids:
+        return existing_ids[artist_name]
+
+    # Generate new unique ID
+    while True:
+        new_id = generate_artist_id()
+        if new_id not in existing_ids.values():
+            existing_ids[artist_name] = new_id
+            return new_id
+
 def generate_historical_data(lineups: List[Dict], existing_historical: List[Dict] = None) -> List[Dict]:
     """
     Generate type 2 historical data from lineup scrapes.
@@ -60,8 +93,9 @@ def generate_historical_data(lineups: List[Dict], existing_historical: List[Dict
     """
     historical_records: Dict[str, List[Dict]] = {}
     active_artists: Dict[str, bool] = {}
+    artist_ids: Dict[str, str] = {}  # Map artist names to IDs
 
-    # Load existing historical records into data structure
+    # Load existing historical records and their artist IDs
     if existing_historical:
         for record in existing_historical:
             key = create_historical_key(record, record['festival_name'], record['festival_year'])
@@ -71,6 +105,9 @@ def generate_historical_data(lineups: List[Dict], existing_historical: List[Dict
             historical_records[key].append(deepcopy(record))
             if record['_is_current']:
                 active_artists[key] = True
+            # Store existing artist ID mapping
+            if 'artist_id' in record:
+                artist_ids[record['artist_name']] = record['artist_id']
 
     # Sort lineups by scrape timestamp
     sorted_lineups = sorted(lineups, key=lambda x: x['scrape_ts'])
@@ -82,10 +119,13 @@ def generate_historical_data(lineups: List[Dict], existing_historical: List[Dict
         scrape_ts = lineup['scrape_ts']
 
         # Get current artists in this scrape
-        current_artists = {
-            create_historical_key(artist, festival_name, festival_year): artist
-            for artist in lineup['artists']
-        }
+        current_artists = {}
+        for artist in lineup['artists']:
+            key = create_historical_key(artist, festival_name, festival_year)
+            # Ensure artist has an ID
+            if 'artist_id' not in artist:
+                artist['artist_id'] = get_or_create_artist_id(artist['artist_name'], artist_ids)
+            current_artists[key] = artist
 
         # Check for removed artists
         for key in list(active_artists.keys()):
@@ -120,14 +160,15 @@ def generate_historical_data(lineups: List[Dict], existing_historical: List[Dict
                     latest_record['_valid_to'] = scrape_ts
                     latest_record['_is_current'] = False
 
-                    # Create new record with updated data but preserve valid_from
+                    # Create new record with updated data but preserve valid_from and artist_id
                     new_record = deepcopy(artist)
                     new_record.update({
                         'festival_name': festival_name,
                         'festival_year': festival_year,
                         '_valid_from': latest_record['_valid_from'],  # Use original valid_from
                         '_valid_to': None,
-                        '_is_current': True
+                        '_is_current': True,
+                        'artist_id': latest_record['artist_id']  # Preserve the artist ID
                     })
 
                     historical_records[key].append(new_record)
