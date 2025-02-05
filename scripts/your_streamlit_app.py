@@ -115,14 +115,22 @@ def main():
     # Pagination
     total_pages = (len(artists) + ARTISTS_PER_PAGE - 1) // ARTISTS_PER_PAGE
 
+    # Initialize page in session state if not exists
+    if "page" not in st.session_state:
+        st.session_state.page = 1
+
     col1, col2, col3 = st.columns([2, 3, 2])
     with col2:
+        # Use session state page as the default value
         page = st.number_input(
             f"Page (1-{total_pages})",
             min_value=1,
             max_value=total_pages,
-            value=1
+            value=st.session_state.page,
+            key="page_input"
         )
+        # Keep page state in sync with number input
+        st.session_state.page = page
 
     start_idx = (page - 1) * ARTISTS_PER_PAGE
     end_idx = min(start_idx + ARTISTS_PER_PAGE, len(artists))
@@ -132,7 +140,6 @@ def main():
     # Display artists for current page
     for artist in artists[start_idx:end_idx]:
         name = artist["artist_name"]
-        current_rating = st.session_state.ratings.get(name, "")
 
         # Artist info
         st.markdown(f"### {name}")
@@ -150,17 +157,26 @@ def main():
                     height=170
                 )
 
-        # Rating selection with radio buttons
-        rating = st.radio(
-            f"Rate {name}",
-            options=[""] + list(RATING_EMOJIS.keys()),
-            format_func=lambda x: f"{x} {RATING_EMOJIS.get(x, 'No rating')}" if x else "No rating",
-            horizontal=True,
-            key=f"rate_{name}"
-        )
+        # Rating buttons
+        st.write("Rate this artist:")
+        cols = st.columns(len(RATING_EMOJIS))
+        current_rating = st.session_state.ratings.get(name, "")
 
-        if rating:
-            st.session_state.ratings[name] = rating
+        for emoji, (col, label) in zip(RATING_EMOJIS.keys(), enumerate(RATING_EMOJIS.values())):
+            with cols[col]:
+                button_type = "primary" if current_rating == emoji else "secondary"
+                if st.button(
+                    f"{emoji} \u2002 {label}",
+                    key=f"rate_{name}_{emoji}",
+                    type=button_type,
+                    use_container_width=True
+                ):
+                    # If clicking the same rating again, remove it
+                    if current_rating == emoji:
+                        del st.session_state.ratings[name]
+                    else:
+                        st.session_state.ratings[name] = emoji
+                    st.rerun()
 
         st.markdown("---")  # Add separator between artists
 
@@ -168,14 +184,14 @@ def main():
     col1, col2 = st.columns(2)
     with col1:
         if page > 1:
-            if st.button("← Previous Page"):
-                st.session_state.page = page - 1
-                st.experimental_rerun()
+            if st.button("← Previous Page", key=f"prev_page_{page}"):
+                st.session_state.page -= 1
+                st.rerun()
     with col2:
         if page < total_pages:
-            if st.button("Next Page →"):
-                st.session_state.page = page + 1
-                st.experimental_rerun()
+            if st.button("Next Page →", key=f"next_page_{page}"):
+                st.session_state.page += 1
+                st.rerun()
 
     # Export calendar button
     if st.button("Export Calendar"):
