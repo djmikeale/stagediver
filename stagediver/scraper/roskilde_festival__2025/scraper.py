@@ -93,6 +93,10 @@ class RoskildeFestival2025Scraper:
         date_element = soup.find('div', class_='appearance-details_showTimesDay__5QRgW')
         performance_date = date_element.text.strip() if date_element else None
 
+        # Check if the artist has been cancelled
+        cancelled_element = soup.find('div', class_='typography_cancelled__abc123')  # Update this class name
+        is_current = not bool(cancelled_element)
+
         # Get stage name
         stage_element = soup.find('div', class_='appearance-details_showTimesLocation__j5Y_x')
         stage = stage_element.text.strip() if stage_element else None
@@ -101,9 +105,16 @@ class RoskildeFestival2025Scraper:
         short_desc_element = soup.find('h2', class_='typography_headlineSmall__Xlw_0')
         short_description = short_desc_element.text.strip() if short_desc_element else None
 
-        # Get long description
+        # Get long description with preserved line breaks
         long_desc_element = soup.find('div', class_='rich-text_component__c_7l6')
-        long_description = long_desc_element.text.strip() if long_desc_element else None
+        long_description = None
+        if long_desc_element:
+            # Replace <br> and </p> tags with newlines before getting text
+            for br in long_desc_element.find_all('br'):
+                br.replace_with('\n')
+            for p in long_desc_element.find_all('p'):
+                p.append('\n')
+            long_description = long_desc_element.get_text().strip()
 
         # Find Spotify artist link (not the footer playlist link)
         spotify_link = None
@@ -117,5 +128,6 @@ class RoskildeFestival2025Scraper:
             'stage': stage,
             'short_description': short_description,
             'long_description': long_description,
-            'spotify_link': spotify_link
+            'spotify_link': spotify_link,
+            '_is_current': is_current
         }

@@ -4,6 +4,7 @@ from pathlib import Path
 from ics import Calendar, Event
 from datetime import datetime, timedelta
 import re
+from stagediver.common.config import HISTORICAL_FILE
 
 # Constants
 RATING_EMOJIS = {
@@ -38,7 +39,7 @@ def spotify_embed(artist_id):
 
 def load_lineup_data():
     """Load the historical lineup data from JSON file"""
-    data_path = Path("data/lineups_historical.json")
+    data_path = Path(HISTORICAL_FILE)
     with open(data_path) as f:
         return json.load(f)
 
@@ -55,6 +56,7 @@ def get_artists_for_festival_year(data, festival, year):
         artist for artist in data
         if artist["festival_name"] == festival
         and artist["festival_year"] == year
+        and artist.get("_is_current", False)  # Only show current artists
     ]
 
 def create_calendar_export(artists_data, ratings):
@@ -194,7 +196,7 @@ def main():
         if artist.get("bio_short"):
             if artist.get("bio_long"):  # Show short bio as expander title
                 with st.expander(f"{artist['bio_short']} *:gray[click to read more]*"):
-                    st.markdown(artist["bio_long"])
+                    st.markdown(artist["bio_long"].replace('\n', '<br><br>'), unsafe_allow_html=True)
             else:  # Only short bio available
                 st.markdown(f"*{artist['bio_short']}*")
         if artist.get("stage_name"):
