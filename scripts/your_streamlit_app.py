@@ -70,7 +70,7 @@ def create_calendar_export(artists_data, ratings):
 
     for artist in rated_artists:
         event = Event()
-        event.name = f"{artist['artist_name']} {ratings[artist['artist_name']]}"
+        event.name = f"{ratings[artist['artist_name']]} {artist['artist_name']}"
 
         # If we have actual start/end times, use those
         if artist["start_ts"] and artist["end_ts"]:
@@ -81,7 +81,11 @@ def create_calendar_export(artists_data, ratings):
             event.begin = datetime(artist["festival_year"], 7, 1, 12, 0)  # Noon on July 1st
             event.end = event.begin + timedelta(hours=1)
 
-        event.description = artist.get("bio_short", "")
+        event.url = artist.get("scrape_url", "")
+        description = artist.get("bio_short", "")
+        if artist.get("social_links", {}).get("spotify"):
+            description += f"\n\n▶️: {artist['social_links']['spotify']}"
+        event.description = description
         event.location = artist.get("stage_name", "TBA")
         cal.events.add(event)
 
