@@ -203,27 +203,35 @@ def main():
 
         # Rating buttons
         st.write("Rate this artist:")
-        cols = st.columns(len(RATING_EMOJIS))
         current_rating = st.session_state.ratings.get(name, "")
 
-        for emoji, (col, label) in zip(RATING_EMOJIS.keys(), enumerate(RATING_EMOJIS.values())):
-            with cols[col]:
-                button_type = "primary" if current_rating == emoji else "secondary"
-                if st.button(
-                    label,
-                    icon=emoji,
-                    key=f"rate_{name}_{emoji}",
-                    type=button_type,
-                    use_container_width=True
-                ):
-                    # If clicking the same rating again, remove it
-                    if current_rating == emoji:
-                        del st.session_state.ratings[name]
-                    else:
-                        st.session_state.ratings[name] = emoji
-                    st.rerun()
+        # Create options list for segmented control
+        rating_options = [f"{emoji} {label}" for emoji, label in RATING_EMOJIS.items()]
 
-        st.markdown("---")  # Add separator between artists
+        # Find current rating option or default to None
+        default = None
+        if current_rating:
+            default = f"{current_rating} {RATING_EMOJIS[current_rating]}"
+
+        selected = st.segmented_control(
+            label="Rating",  # Added proper label
+            options=rating_options,
+            key=f"rate_{name}",
+            default=default,
+            label_visibility="collapsed"  # Hide the label since we have text above
+        )
+
+        # Update rating based on selection
+        if selected is not None:
+            new_rating = selected.split()[0]  # Get just the emoji
+            if new_rating != current_rating:
+                st.session_state.ratings[name] = new_rating
+                st.rerun()
+        elif current_rating:  # Selection was cleared
+            del st.session_state.ratings[name]
+            st.rerun()
+
+        st.divider()
 
     # Navigation buttons
     col1, col2 = st.columns(2)
@@ -239,7 +247,7 @@ def main():
                 st.rerun()
 
     # Save/Load buttons
-    st.markdown("---")
+    st.divider()
     col1, col2 = st.columns(2)
 
     with col1:
@@ -278,7 +286,7 @@ def main():
         help="Download your schedule as a calendar file",
     )
 
-    st.markdown("---")
+    st.divider()
 
     # Display current ratings summary
     st.subheader("Your Ratings Summary")
