@@ -192,7 +192,11 @@ def main():
         # Artist info
         st.markdown(f"### {name}")
         if artist.get("bio_short"):
-            st.markdown(f"*{artist['bio_short']}*")
+            if artist.get("bio_long"):  # Show short bio as expander title
+                with st.expander(f"{artist['bio_short']} *:gray[click to read more]*"):
+                    st.markdown(artist["bio_long"])
+            else:  # Only short bio available
+                st.markdown(f"*{artist['bio_short']}*")
         if artist.get("stage_name"):
             st.markdown(f"**Stage:** {artist['stage_name']}")
 
