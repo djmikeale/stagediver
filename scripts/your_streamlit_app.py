@@ -8,8 +8,8 @@ import re
 # Constants
 RATING_EMOJIS = {
     "❤️": "Must see",
-    "🟢": "Want to see",
-    "🟡": "Maybe",
+    "🟢": "Good",
+    "🟡": "Meh",
     "🚫": "Skip"
 }
 
@@ -202,7 +202,6 @@ def main():
                 )
 
         # Rating buttons
-        st.write("Rate this artist:")
         current_rating = st.session_state.ratings.get(name, "")
 
         # Create options list for segmented control
@@ -214,11 +213,10 @@ def main():
             default = f"{current_rating} {RATING_EMOJIS[current_rating]}"
 
         selected = st.segmented_control(
-            label="Rating",  # Added proper label
+            label="Rate this artist:",
             options=rating_options,
             key=f"rate_{name}",
-            default=default,
-            label_visibility="collapsed"  # Hide the label since we have text above
+            default=default
         )
 
         # Update rating based on selection
