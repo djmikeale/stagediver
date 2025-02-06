@@ -272,7 +272,7 @@ def main():
     st.download_button(
         label="Export Calendar",
         icon="📆",
-        data=str(create_calendar_export(artists, st.session_state.ratings)),
+        data=create_calendar_export(artists, st.session_state.ratings).serialize(),
         file_name=f"{selected_festival}_{selected_year}_lineup.ics",
         mime="text/calendar",
         help="Download your schedule as a calendar file",
