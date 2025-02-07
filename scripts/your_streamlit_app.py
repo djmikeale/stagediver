@@ -285,14 +285,15 @@ def main():
                 st.info("Ratings already up to date")
 
     # Export calendar button (moved after save/load)
-    st.download_button(
+    if st.download_button(
         label="Export Calendar",
         icon="📆",
         data=create_calendar_export(artists, st.session_state.ratings).serialize(),
         file_name=f"{selected_festival}_{selected_year}_lineup.ics",
         mime="text/calendar",
         help="Download your schedule as a calendar file",
-    )
+    ):
+        st.balloons()
 
     st.divider()
 
