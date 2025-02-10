@@ -14,7 +14,6 @@ help:  ## Show this help menu
 install:  ## Install package and dependencies
 	$(PYTHON) -m venv $(VENV)
 	$(BIN)/pip install --upgrade pip
-	$(BIN)/pip install -r requirements.txt
 	$(BIN)/pip install -e .
 
 clean:  ## Remove build/test artifacts
