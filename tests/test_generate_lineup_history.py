@@ -1,7 +1,7 @@
 import pytest
 from datetime import datetime
 from copy import deepcopy
-from scripts.generate_lineup_history import generate_historical_data, create_historical_key
+from stagediver.cli.generate_lineup_history import generate_historical_data, create_historical_key
 
 def test_historical_data_handling():
     # Test data setup
