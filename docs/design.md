@@ -1,42 +1,11 @@
 # Stagediver Design Document
 
-## 1. Data Collection & Processing
-
-### 1.1 Web Scraping
-- Web scraping module for festival websites
-- Regular update mechanism for lineup changes
-- Support for multiple festival formats/layouts
-
-### 1.2 Data Enrichment
-- Artist metadata collection (genres, popularity, similar artists)
-- Track historical changes (e.g. lineup changes)
-- Data quality checks and validation
-- Core data enrichment (genres, country, etc.)
+## 1. Overview
+Contains current design specifications and data models for the Stagediver application.
 
 ## 2. Data Models
 
-### 2.1 Scraping Data Model
-| Field         | Type     | Required | Description                          |
-| ------------- | -------- | -------- | ------------------------------------ |
-| festival_name | string   | y        | Reference to parent festival         |
-| artist_name   | string   | y        | Official artist/band name            |
-| stage_name    | string   | y        | Performance location                 |
-| start_ts      | datetime | y        | Performance start (ISO 8601)         |
-| end_ts        | datetime | y        | Performance end (ISO 8601)           |
-| social_links  | map      | n        | Map of platform name to profile URL  |
-| bio_short     | string   | n        | 1-2 sentence description             |
-| bio_long      | string   | n        | Full artist biography                |
-| country_code  | string   | n        | Artist's origin country (ISO 3166-1) |
-| scrape_url    | string   | n        | URL where data was scraped from      |
-| scrape_ts     | datetime | n        | When the record was last modified    |
-| other_data    | map      | n        | Misc. data for later enrichment      |
-
-### 2.2 Core Data Models
-
-- Artist metadata collection (genres, popularity, similar artists)
-- keep track of historical changes, e.g. lineup changes
-- core data, e.g. genres, country, festival name + stages, etc.
-- data quality checks, e.g. key constraints, when has data been updated, etc.
+### 2.1 Core Entities
 
 #### Festival
 | Field      | Type     | Required | Description               |
@@ -103,22 +72,9 @@
 | created_at   | datetime | y        | Record creation timestamp    |
 | updated_at   | datetime | y        | Last update timestamp        |
 
-### 2.3 Implementation Notes
-- Using [nanoid](https://github.com/puyuan/py-nanoid) for IDs instead of UUID
-- Initially using hash of artist name as ID, later handle misspellings/aliases
+### 2.2 Mood Tags
+Used to categorize artist performances:
 
-## 3. User Rating System
-
-### 3.1 Google Sheets Integration
-- Export artists to Google Sheets for rating
-- Import rated artists from Google Sheets
-- Data validation and completion tracking
-- Structured sheets:
-  - Artists Sheet (ID, Name)
-  - Ratings Sheet (ID, Name, per-user ratings column)
-  - Export Sheet (flattened data for processing)
-
-### 3.2 Mood Tags
 - 🌅 Hangover - Chill, relaxed vibes
 - 💪 Fistpump - High energy dance
 - 🤘 Moshpit - Heavy, intense
@@ -130,20 +86,18 @@
 - 🌊 Wave - Dreamy, floating
 - 🔥 Hype - Energetic, exciting
 
-## 4. Visualization
-- Streamlit app for schedule visualization
-- Interactive conflict resolution
-- Rating summaries and statistics
-- Conflict types:
-  - Internal (user wants to see overlapping performances)
-  - External (friend group schedule conflicts)
-  - Overbooked time periods
+## 3. Features
 
-### 5 Calendar Export
-- Export ratings: ❤️,🟢,🟡,🤷,🚫
-- Configurable export options:
-  - Per-user filtering
-  - Include stage information
-  - Start/end times
-  - Custom fields
-  - Full schedule export without ratings
+### 3.1 Data Collection
+- Artist metadata collection (genres, popularity, similar artists)
+- Historical change tracking (e.g., lineup changes)
+- Core data management (genres, country, festival details, stages)
+- Data quality validation and constraints
+
+### 3.2 Streamlit Application
+- Interactive schedule visualization
+- Rating summaries and statistics
+- Conflict detection and management:
+  - Internal conflicts (overlapping performances of interest)
+  - External conflicts (group schedule coordination)
+- Schedule export functionality (with optional ratings)
