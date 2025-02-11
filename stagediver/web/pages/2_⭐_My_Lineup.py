@@ -1,12 +1,11 @@
-
 import streamlit as st
 import json
 from pathlib import Path
-from ics import Calendar, Event
 from datetime import datetime, timedelta
 from stagediver.common.config import HISTORICAL_FILE
 from stagediver.web.components.sidebar import show_sidebar, RATING_EMOJIS
 from stagediver.web.components.artist_card import display_artist_card
+from stagediver.web.components.utils import get_artists_for_festival_year
 
 ARTISTS_PER_PAGE = 5
 
@@ -15,15 +14,6 @@ def load_lineup_data():
     data_path = Path(HISTORICAL_FILE)
     with open(data_path) as f:
         return json.load(f)
-
-def get_artists_for_festival_year(data, festival, year):
-    """Get all artists for a specific festival and year"""
-    return [
-        artist for artist in data
-        if artist["festival_name"] == festival
-        and artist["festival_year"] == year
-        and artist.get("_is_current", False)  # Only show current artists
-    ]
 
 def main():
     # Show shared sidebar
