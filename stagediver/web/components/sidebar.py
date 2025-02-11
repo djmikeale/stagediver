@@ -104,6 +104,8 @@ def show_sidebar(artists_data=None):
         st.session_state.ratings = {}
     if "artists_data" not in st.session_state:
         st.session_state.artists_data = load_lineup_data()
+    if "show_import" not in st.session_state:
+        st.session_state.show_import = True
 
     # Initialize festival selection with first available option if not set
     festival_years = get_festivals_and_years(st.session_state.artists_data)
@@ -116,7 +118,6 @@ def show_sidebar(artists_data=None):
         st.session_state.selected_year = first_year
 
     with st.sidebar:
-
         if festival_year_options:
             # Find current selection index
             current_selection = f"{st.session_state.selected_festival} ({st.session_state.selected_year})"
@@ -136,20 +137,29 @@ def show_sidebar(artists_data=None):
                 st.session_state.selected_festival = festival
                 st.session_state.selected_year = year
 
-        uploaded_file = st.file_uploader(
-            "📂 Load Ratings",
-            type=["json"],
-            help="Upload a previously saved ratings file",
-            accept_multiple_files=False,
-            key="ratings_upload"
-        )
-        if uploaded_file:
-            content = uploaded_file.read().decode()
-            if import_ratings(content):
-                st.success("Ratings loaded successfully!")
+        # Show either the import button or file uploader
+        if st.session_state.show_import:
+            uploaded_file = st.file_uploader(
+                "📂 Load Ratings",
+                type=["json"],
+                help="Upload a previously saved ratings file",
+                accept_multiple_files=False,
+                key="ratings_upload"
+            )
+            if uploaded_file:
+                content = uploaded_file.read().decode()
+                if import_ratings(content):
+                    st.success("Ratings loaded successfully!")
+                    st.session_state.show_import = False  # Hide the uploader after successful import
+                    # Clear the file uploader state
+                    st.session_state.pop('ratings_upload', None)
+                    st.rerun()
+                else:
+                    st.info("Ratings already up to date")
+        else:
+            if st.button("📂 Import Different Ratings"):
+                st.session_state.show_import = True
                 st.rerun()
-            else:
-                st.info("Ratings already up to date")
 
         # Only show download buttons if there are ratings
         if len(st.session_state.ratings) > 0:
