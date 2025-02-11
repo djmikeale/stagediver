@@ -139,7 +139,7 @@ def main():
     festival_years = get_festivals_and_years(data)
 
     # Show shared sidebar with artists data
-    show_sidebar(artists_data=data)
+    show_sidebar()
 
     st.title("Explore Artists")
 
