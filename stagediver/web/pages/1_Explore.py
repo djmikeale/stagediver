@@ -36,12 +36,6 @@ def load_lineup_data():
     with open(data_path) as f:
         return json.load(f)
 
-def get_festivals_and_years(data):
-    """Extract unique festival/year combinations"""
-    festival_years = set()
-    for artist in data:
-        festival_years.add((artist["festival_name"], artist["festival_year"]))
-    return sorted(festival_years, key=lambda x: (-x[1], x[0]))  # Sort by year desc, then festival name
 
 def get_artists_for_festival_year(data, festival, year):
     """Get all artists for a specific festival and year"""
@@ -52,110 +46,29 @@ def get_artists_for_festival_year(data, festival, year):
         and artist.get("_is_current", False)  # Only show current artists
     ]
 
-def create_calendar_export(artists_data, ratings):
-    """Create ICS calendar with rated artists"""
-    cal = Calendar()
-
-    # Only include artists with positive ratings
-    valid_ratings = ["❤️", "🟢", "🟡"]
-    rated_artists = [
-        artist for artist in artists_data
-        if ratings.get(artist["artist_name"]) in valid_ratings
-    ]
-
-    for artist in rated_artists:
-        event = Event()
-        event.name = f"{ratings[artist['artist_name']]} {artist['artist_name']}"
-
-        # If we have actual start/end times, use those
-        if artist["start_ts"] and artist["end_ts"]:
-            event.begin = artist["start_ts"]
-            event.end = artist["end_ts"]
-        else:
-            # Placeholder times if not available
-            event.begin = datetime(artist["festival_year"], 7, 1, 12, 0)  # Noon on July 1st
-            event.end = event.begin + timedelta(hours=1)
-
-        event.url = artist.get("scrape_url", "")
-        description = artist.get("bio_short", "")
-        if artist.get("social_links", {}).get("spotify"):
-            description += f"\n\n▶️: {artist['social_links']['spotify']}"
-        event.description = description
-        event.location = artist.get("stage_name", "TBA")
-        cal.events.add(event)
-
-    return cal
-
-def export_ratings():
-    """Export ratings data as JSON string"""
-    # Initialize categories from RATING_EMOJIS
-    export_data = {
-        label: [] for label in RATING_EMOJIS.values()
-    }
-    export_data["timestamp"] = datetime.now().isoformat()
-
-    # Group artists by rating category
-    for artist, rating in st.session_state.ratings.items():
-        category = RATING_EMOJIS.get(rating)
-        if category:
-            export_data[category].append(artist)
-
-    # Sort artist lists alphabetically
-    for category in RATING_EMOJIS.values():
-        export_data[category].sort()
-
-    return json.dumps(export_data, indent=2)
-
-def import_ratings(json_str):
-    """Import ratings data from JSON string"""
-    try:
-        data = json.loads(json_str)
-
-        # Create reverse mapping (category -> emoji)
-        categories_to_emoji = {v: k for k, v in RATING_EMOJIS.items()}
-
-        # Create new ratings dictionary
-        new_ratings = {}
-        for category, emoji in categories_to_emoji.items():
-            if category in data:
-                for artist in data[category]:
-                    new_ratings[artist] = emoji
-
-        # Check if ratings are different before updating
-        if new_ratings != st.session_state.ratings:
-            st.session_state.ratings = new_ratings
-            return True
-        return False
-
-    except (json.JSONDecodeError, KeyError):
-        return False
-
 def main():
     # Use artists data from session state if available, otherwise load it
     if "artists_data" not in st.session_state:
         st.session_state.artists_data = load_lineup_data()
 
     data = st.session_state.artists_data
-    festival_years = get_festivals_and_years(data)
 
     # Show shared sidebar with artists data
     show_sidebar()
 
     st.title("Explore Artists")
 
-    # Combined festival and year selection
-    festival_year_options = [f"{festival} ({year})" for festival, year in festival_years]
-    selected_festival_year = st.selectbox(
-        "Select Festival",
-        options=festival_year_options
+    # Check if festival is selected
+    if not st.session_state.get("selected_festival"):
+        st.info("Please select a festival from the sidebar to begin")
+        return
+
+    # Get artists for selected festival/year from session state
+    artists = get_artists_for_festival_year(
+        data,
+        st.session_state.selected_festival,
+        st.session_state.selected_year
     )
-
-    # Extract festival and year from selection
-    selected_festival, year_str = selected_festival_year.rsplit(" (", 1)
-    selected_year = int(year_str.rstrip(")"))
-
-    # Get artists for selected festival/year
-    artists = get_artists_for_festival_year(data, selected_festival, selected_year)
 
     # Initialize session state for ratings if not exists
     if "ratings" not in st.session_state:

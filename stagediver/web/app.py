@@ -12,8 +12,14 @@ def main():
     # Main content
     st.title("Festival Lineup Rater")
 
-    st.markdown("""
+    if not st.session_state.get("selected_festival"):
+        st.info("Please select a festival from the sidebar to begin")
+        return
+
+    st.markdown(f"""
     Welcome to Festival Lineup Rater! 🎪
+
+    Currently viewing: **{st.session_state.selected_festival} {st.session_state.selected_year}**
 
     This tool helps you discover and organize your festival experience:
 
@@ -29,11 +35,12 @@ def main():
     st.subheader("Quick Stats")
     col1, col2, col3 = st.columns(3)
     with col1:
-        st.metric("Festivals", "5")
+        st.metric("Festivals", str(len({artist["festival_name"] for artist in st.session_state.artists_data})))
     with col2:
-        st.metric("Artists", "1,000+")
+        st.metric("Artists", f"{len(st.session_state.artists_data):,}+")
     with col3:
-        st.metric("Users", "100+")
+        rated_count = len(st.session_state.ratings)
+        st.metric("Your Ratings", str(rated_count))
 
 if __name__ == "__main__":
     main()
