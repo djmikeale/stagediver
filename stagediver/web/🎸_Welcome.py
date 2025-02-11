@@ -1,3 +1,5 @@
+# -*- page-title: Explore -*-
+
 import streamlit as st
 from stagediver.web.components.sidebar import show_sidebar
 
