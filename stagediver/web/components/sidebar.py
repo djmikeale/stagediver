@@ -103,11 +103,12 @@ def get_festivals_and_years(data):
         festival_years.add((artist["festival_name"], artist["festival_year"]))
     return sorted(festival_years, key=lambda x: (-x[1], x[0]))  # Sort by year desc, then festival name
 
-def show_sidebar(artists_data=None):
+def show_sidebar(layout="centered"):
     """Display the shared sidebar content"""
     st.set_page_config(
         page_title="Stagediver",
         page_icon="🎪",
+        layout=layout,
     )
 
     # Initialize session states
