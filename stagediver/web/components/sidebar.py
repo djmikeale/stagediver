@@ -77,6 +77,12 @@ def import_ratings(json_str):
         return False
 
 def show_sidebar(artists_data=None):
+
+    st.set_page_config(
+        page_title="Stagediver",
+        page_icon="🎪",
+    )
+
     """Display the shared sidebar content"""
     # Initialize session state for ratings and artists_data if not exists
     if "ratings" not in st.session_state:
