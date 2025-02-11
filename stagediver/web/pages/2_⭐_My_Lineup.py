@@ -1,14 +1,20 @@
+
 import streamlit as st
+import json
+from pathlib import Path
+from ics import Calendar, Event
+from datetime import datetime, timedelta
+from stagediver.common.config import HISTORICAL_FILE
 from stagediver.web.components.sidebar import show_sidebar, RATING_EMOJIS
 from stagediver.web.components.artist_card import display_artist_card
 
-def get_unrated_artists(artists_data, ratings):
-    """Get list of artists that haven't been rated yet"""
-    return [
-        artist for artist in artists_data
-        if artist["artist_name"] not in ratings
-        and artist.get("_is_current", False)  # Only show current artists
-    ]
+ARTISTS_PER_PAGE = 5
+
+def load_lineup_data():
+    """Load the historical lineup data from JSON file"""
+    data_path = Path(HISTORICAL_FILE)
+    with open(data_path) as f:
+        return json.load(f)
 
 def get_artists_for_festival_year(data, festival, year):
     """Get all artists for a specific festival and year"""
@@ -19,111 +25,86 @@ def get_artists_for_festival_year(data, festival, year):
         and artist.get("_is_current", False)  # Only show current artists
     ]
 
-def create_spotify_player_with_overlay(spotify_id, visible=True):
-    """Create a Spotify player with an overlay"""
-    st.components.v1.html(
-        f"""
-        <style>
-            .player-container {{
-                position: relative;
-                width: 100%;
-                height: 152px;
-                border-radius: 12px;
-                overflow: hidden;
-            }}
-            .overlay {{
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: calc(100% - 50px);
-                height: 100%;
-                background: rgba(14, 17, 23, 0.95);
-                backdrop-filter: blur(8px);
-                opacity: {1 if visible else 0};
-                pointer-events: {'' if visible else 'none'};
-                transition: opacity 0.3s ease;
-                z-index: 1000;
-            }}
-        </style>
-        <div class="player-container">
-            <iframe src="https://open.spotify.com/embed/album/{spotify_id}"
-                    width="100%"
-                    height="152"
-                    frameBorder="0"
-                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                    loading="lazy">
-            </iframe>
-            <div class="overlay"></div>
-        </div>
-        """,
-        height=170
-    )
-
 def main():
     # Show shared sidebar
     show_sidebar()
 
-    st.title("My Festival Lineup")
+    st.title("My Lineup")
 
-    # Add state management for the overlay visibility
-    if 'overlay_visible' not in st.session_state:
-        st.session_state.overlay_visible = True
-
-    # Get artists for selected festival/year
+    # Get artists for selected festival/year from session state
     artists = get_artists_for_festival_year(
         st.session_state.artists_data,
         st.session_state.selected_festival,
         st.session_state.selected_year
     )
 
-    # Get unrated artists
-    unrated_artists = get_unrated_artists(artists, st.session_state.ratings)
+    # Initialize session state for ratings if not exists
+    if "ratings" not in st.session_state:
+        st.session_state.ratings = {}
 
-    if not unrated_artists:
-        st.success("🎉 You've rated all artists! Check out your ratings summary below.")
-    else:
-        # Show count of remaining artists
-        st.caption(f"{len(unrated_artists)} artists left to rate")
+    # Pagination
+    total_pages = (len(artists) + ARTISTS_PER_PAGE - 1) // ARTISTS_PER_PAGE
 
-        # Display current artist
-        current_artist = unrated_artists[0]
+    # Initialize page in session state if not exists
+    if "page" not in st.session_state:
+        st.session_state.page = 1
 
-        # Create a card-like container
-        with st.container():
-            # Button to toggle overlay
-            if st.button('Reveal' if st.session_state.overlay_visible else 'Hide'):
-                st.session_state.overlay_visible = not st.session_state.overlay_visible
+    col1, col2, col3 = st.columns([2, 3, 2])
+    with col2:
+        # Use session state page as the default value
+        page = st.number_input(
+            f"Page (1-{total_pages})",
+            min_value=1,
+            max_value=total_pages,
+            value=st.session_state.page,
+            key="page_input"
+        )
+        # Keep page state in sync with number input
+        st.session_state.page = page
 
-            selected = display_artist_card(
-                current_artist,
-                blind_mode=st.session_state.overlay_visible
-            )
+    start_idx = (page - 1) * ARTISTS_PER_PAGE
+    end_idx = min(start_idx + ARTISTS_PER_PAGE, len(artists))
 
-            # Handle rating selection
-            if selected is not None:
-                new_rating = selected.split()[0]  # Get just the emoji
-                st.session_state.ratings[current_artist["artist_name"]] = new_rating
+    st.subheader(f"Rate Artists (Showing {start_idx + 1}-{end_idx} of {len(artists)})")
+
+    # Display artists for current page
+    for artist in artists[start_idx:end_idx]:
+        selected = display_artist_card(artist)
+
+        # Handle rating selection
+        if selected is not None:
+            new_rating = selected.split()[0]  # Get just the emoji
+            name = artist["artist_name"]
+            if new_rating != st.session_state.ratings.get(name, ""):
+                st.session_state.ratings[name] = new_rating
                 st.rerun()
 
-    # Show ratings summary
+        st.divider()
+
+    # Navigation buttons
+    col1, col2 = st.columns(2)
+    with col1:
+        if page > 1:
+            if st.button("« previous", key=f"prev_page_{page}"):
+                st.session_state.page -= 1
+                st.rerun()
+    with col2:
+        if page < total_pages:
+            if st.button("Next »", key=f"next_page_{page}"):
+                st.session_state.page += 1
+                st.rerun()
+
+    # Keep the ratings summary at the very end
     st.divider()
     st.subheader("Your Ratings Summary")
-
-    total_rated = len(st.session_state.ratings)
-    if total_rated > 0:
-        st.caption(f"You've rated {total_rated} out of {len(artists)} artists")
-
-        # Show summary by rating
-        for emoji, label in RATING_EMOJIS.items():
-            rated_artists = [
-                name for name, rating in st.session_state.ratings.items()
-                if rating == emoji
-            ]
-            if rated_artists:
-                with st.expander(f"{emoji} {label} ({len(rated_artists)})"):
-                    st.markdown("- " + "\n- ".join(sorted(rated_artists)))
-    else:
-        st.info("Start rating artists to build your lineup!")
+    for emoji, label in RATING_EMOJIS.items():
+        rated_artists = [
+            name for name, rating in st.session_state.ratings.items()
+            if rating == emoji
+        ]
+        if rated_artists:
+            with st.expander(f"{emoji} {label} ({len(rated_artists)})"):
+                st.markdown("- " + "\n- ".join(sorted(rated_artists)))
 
 if __name__ == "__main__":
     main()
