@@ -13,11 +13,23 @@ RATING_EMOJIS = {
     "🚫": "Skip"
 }
 
+@st.cache_data
 def load_lineup_data():
     """Load the historical lineup data from JSON file"""
     data_path = Path(HISTORICAL_FILE)
-    with open(data_path) as f:
-        return json.load(f)
+    try:
+        with open(data_path) as f:
+            data = json.load(f)
+        if not isinstance(data, list):
+            st.error(f"Invalid data format in {HISTORICAL_FILE}. Expected a list but got {type(data)}")
+            return []
+        return data
+    except FileNotFoundError:
+        st.error(f"Lineup data file not found: {HISTORICAL_FILE}")
+        return []
+    except json.JSONDecodeError:
+        st.error(f"Invalid JSON in lineup data file: {HISTORICAL_FILE}")
+        return []
 
 def create_calendar_export(artists_data, ratings):
     """Create ICS calendar with rated artists"""
@@ -91,7 +103,6 @@ def get_festivals_and_years(data):
         festival_years.add((artist["festival_name"], artist["festival_year"]))
     return sorted(festival_years, key=lambda x: (-x[1], x[0]))  # Sort by year desc, then festival name
 
-
 def show_sidebar(artists_data=None):
     """Display the shared sidebar content"""
     st.set_page_config(
@@ -102,10 +113,12 @@ def show_sidebar(artists_data=None):
     # Initialize session states
     if "ratings" not in st.session_state:
         st.session_state.ratings = {}
-    if "artists_data" not in st.session_state:
-        st.session_state.artists_data = load_lineup_data()
     if "show_import" not in st.session_state:
         st.session_state.show_import = True
+
+    # Load and store artists data in session state
+    if "artists_data" not in st.session_state:
+        st.session_state.artists_data = load_lineup_data()
 
     # Initialize festival selection with first available option if not set
     festival_years = get_festivals_and_years(st.session_state.artists_data)
@@ -177,17 +190,14 @@ def show_sidebar(artists_data=None):
                 )
 
             with col2:
-                if artists_data:
-                    cal = create_calendar_export(artists_data, st.session_state.ratings)
-                    st.download_button(
-                        label="📅 Calendar",
-                        data=str(cal),
-                        file_name="my_lineup.ics",
-                        mime="text/calendar",
-                        help="Download your lineup as calendar",
-                        use_container_width=True,
-                        type="tertiary",
-                        args=dict(style="text-align: left;"),
-                    )
-                else:
-                    st.info("Artist data not available for calendar export")
+                cal = create_calendar_export(st.session_state.artists_data, st.session_state.ratings)
+                st.download_button(
+                    label="📅 Calendar",
+                    data=str(cal),
+                    file_name="my_lineup.ics",
+                    mime="text/calendar",
+                    help="Download your lineup as calendar",
+                    use_container_width=True,
+                    type="tertiary",
+                    args=dict(style="text-align: left;"),
+                )

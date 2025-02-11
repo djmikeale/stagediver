@@ -47,25 +47,14 @@ def get_artists_for_festival_year(data, festival, year):
     ]
 
 def main():
-    # Use artists data from session state if available, otherwise load it
-    if "artists_data" not in st.session_state:
-        st.session_state.artists_data = load_lineup_data()
-
-    data = st.session_state.artists_data
-
-    # Show shared sidebar with artists data
+    # Show shared sidebar
     show_sidebar()
 
     st.title("Explore Artists")
 
-    # Check if festival is selected
-    if not st.session_state.get("selected_festival"):
-        st.info("Please select a festival from the sidebar to begin")
-        return
-
     # Get artists for selected festival/year from session state
     artists = get_artists_for_festival_year(
-        data,
+        st.session_state.artists_data,
         st.session_state.selected_festival,
         st.session_state.selected_year
     )
