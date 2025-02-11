@@ -170,7 +170,7 @@ def show_sidebar(artists_data=None):
                 else:
                     st.info("Ratings already up to date")
         else:
-            if st.button("📂 Import Different Ratings"):
+            if st.button("Import Different Ratings", type="tertiary",icon="📂"):
                 st.session_state.show_import = True
                 st.rerun()
 
@@ -179,7 +179,8 @@ def show_sidebar(artists_data=None):
             col1, col2 = st.columns(2)
             with col1:
                 st.download_button(
-                    label="💾 Save Ratings",
+                    label="Save Ratings",
+                    icon="💾",
                     data=export_ratings(),
                     file_name="festival_ratings.json",
                     mime="application/json",
@@ -192,7 +193,8 @@ def show_sidebar(artists_data=None):
             with col2:
                 cal = create_calendar_export(st.session_state.artists_data, st.session_state.ratings)
                 st.download_button(
-                    label="📅 Calendar",
+                    label="Calendar",
+                    icon="📅",
                     data=str(cal),
                     file_name="my_lineup.ics",
                     mime="text/calendar",
