@@ -3,39 +3,17 @@ import json
 from pathlib import Path
 from ics import Calendar, Event
 from datetime import datetime, timedelta
-import re
 from stagediver.common.config import HISTORICAL_FILE
 from stagediver.web.components.sidebar import show_sidebar, RATING_EMOJIS
+from stagediver.web.components.artist_card import display_artist_card
 
 ARTISTS_PER_PAGE = 5
-
-def extract_spotify_id(spotify_url):
-    """Extract Spotify artist ID from full URL"""
-    if not spotify_url:
-        return None
-    match = re.search(r'artist/([a-zA-Z0-9]+)', spotify_url)
-    return match.group(1) if match else None
-
-def spotify_embed(artist_id):
-    """Generate Spotify embed HTML for an artist"""
-    return f"""
-        <iframe style="border-radius:12px"
-                src="https://open.spotify.com/embed/artist/{artist_id}?utm_source=generator"
-                width="100%"
-                height="152"
-                frameBorder="0"
-                allowfullscreen=""
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                loading="lazy">
-        </iframe>
-    """
 
 def load_lineup_data():
     """Load the historical lineup data from JSON file"""
     data_path = Path(HISTORICAL_FILE)
     with open(data_path) as f:
         return json.load(f)
-
 
 def get_artists_for_festival_year(data, festival, year):
     """Get all artists for a specific festival and year"""
@@ -90,55 +68,15 @@ def main():
 
     # Display artists for current page
     for artist in artists[start_idx:end_idx]:
-        name = artist["artist_name"]
+        selected = display_artist_card(artist)
 
-        # Artist info
-        st.markdown(f"### {name}")
-        if artist.get("bio_short"):
-            if artist.get("bio_long"):  # Show short bio as expander title
-                with st.expander(f"{artist['bio_short']} *:gray[click to read more]*"):
-                    st.markdown(artist["bio_long"].replace('\n', '<br><br>'), unsafe_allow_html=True)
-            else:  # Only short bio available
-                st.markdown(f"*{artist['bio_short']}*")
-        if artist.get("stage_name"):
-            st.markdown(f"**Stage:** {artist['stage_name']}")
-
-        # Spotify embed
-        if artist.get("social_links", {}).get("spotify"):
-            spotify_id = extract_spotify_id(artist["social_links"]["spotify"])
-            if spotify_id:
-                st.components.v1.html(
-                    spotify_embed(spotify_id),
-                    height=170
-                )
-
-        # Rating buttons
-        current_rating = st.session_state.ratings.get(name, "")
-
-        # Create options list for segmented control
-        rating_options = [f"{emoji} {label}" for emoji, label in RATING_EMOJIS.items()]
-
-        # Find current rating option or default to None
-        default = None
-        if current_rating:
-            default = f"{current_rating} {RATING_EMOJIS[current_rating]}"
-
-        selected = st.segmented_control(
-            label="Rate this artist:",
-            options=rating_options,
-            key=f"rate_{name}",
-            default=default
-        )
-
-        # Update rating based on selection
+        # Handle rating selection
         if selected is not None:
             new_rating = selected.split()[0]  # Get just the emoji
-            if new_rating != current_rating:
+            name = artist["artist_name"]
+            if new_rating != st.session_state.ratings.get(name, ""):
                 st.session_state.ratings[name] = new_rating
                 st.rerun()
-        elif current_rating:  # Selection was cleared
-            del st.session_state.ratings[name]
-            st.rerun()
 
         st.divider()
 
@@ -164,8 +102,8 @@ def main():
             if rating == emoji
         ]
         if rated_artists:
-            st.markdown(f"**{emoji} {label}:**")
-            st.markdown("- " + "\n- ".join(rated_artists))
+            with st.expander(f"{emoji} {label} ({len(rated_artists)})"):
+                st.markdown("- " + "\n- ".join(sorted(rated_artists)))
 
 if __name__ == "__main__":
     main()
