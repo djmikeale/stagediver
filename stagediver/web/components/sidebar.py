@@ -195,7 +195,7 @@ def show_sidebar(artists_data=None):
                 st.download_button(
                     label="Calendar",
                     icon="📅",
-                    data=str(cal),
+                    data=cal.serialize(),
                     file_name="my_lineup.ics",
                     mime="text/calendar",
                     help="Download your lineup as calendar",

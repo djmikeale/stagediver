@@ -1,19 +1,10 @@
 import streamlit as st
-import json
-from pathlib import Path
 from datetime import datetime, timedelta
-from stagediver.common.config import HISTORICAL_FILE
 from stagediver.web.components.sidebar import show_sidebar, RATING_EMOJIS
 from stagediver.web.components.artist_card import display_artist_card
 from stagediver.web.components.utils import get_artists_for_festival_year
 
 ARTISTS_PER_PAGE = 5
-
-def load_lineup_data():
-    """Load the historical lineup data from JSON file"""
-    data_path = Path(HISTORICAL_FILE)
-    with open(data_path) as f:
-        return json.load(f)
 
 def main():
     # Show shared sidebar

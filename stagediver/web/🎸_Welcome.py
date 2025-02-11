@@ -56,7 +56,7 @@ def main():
     with col1:
         st.metric("Festivals", str(len({artist["festival_name"] for artist in st.session_state.artists_data})))
     with col2:
-        st.metric("Artists", f"{len(st.session_state.artists_data):,}+")
+        st.metric("Artists", f"{len(st.session_state.artists_data):,}")
     with col3:
         rated_count = len(st.session_state.ratings)
         st.metric("Your Ratings", str(rated_count))
