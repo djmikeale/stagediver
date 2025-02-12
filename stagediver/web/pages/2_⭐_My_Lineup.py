@@ -74,6 +74,7 @@ def main():
     edited_data = st.data_editor(
         data,
         hide_index=True,
+        use_container_width=True,
         column_config={
             "Artist": st.column_config.TextColumn(
                 "Artist",
@@ -82,7 +83,7 @@ def main():
             "Rating": st.column_config.SelectboxColumn(
                 "Rating",
                 width="small",
-                options=[""] + list(RATING_EMOJIS.keys()),  # Add empty option to allow clearing rating
+                options=[""] + list(RATING_EMOJIS.keys())
             ),
             "Stage": st.column_config.TextColumn(
                 "Stage",
