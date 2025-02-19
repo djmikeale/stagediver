@@ -18,9 +18,38 @@ def main():
 
     st.title("Explore Artists")
 
-    # Add state management for the overlay visibility
-    if 'overlay_visible' not in st.session_state:
-        st.session_state.overlay_visible = True
+    # Initialize view mode in session state if not exists
+    if 'view_mode' not in st.session_state:
+        st.session_state.view_mode = "explore"
+
+    # Create tabs for different views
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        explore_active = st.button(
+            "Explore",
+            type="primary" if st.session_state.view_mode == "explore" else "secondary",
+            use_container_width=True
+        )
+    with col2:
+        blind_active = st.button(
+            "Blind Listen",
+            type="primary" if st.session_state.view_mode == "blind" else "secondary",
+            use_container_width=True
+        )
+    with col3:
+        all_active = st.button(
+            "All Artists",
+            type="primary" if st.session_state.view_mode == "all" else "secondary",
+            use_container_width=True
+        )
+
+    # Update view mode based on button clicks
+    if explore_active:
+        st.session_state.view_mode = "explore"
+    elif blind_active:
+        st.session_state.view_mode = "blind"
+    elif all_active:
+        st.session_state.view_mode = "all"
 
     # Get artists for selected festival/year
     artists = get_artists_for_festival_year(
@@ -29,101 +58,85 @@ def main():
         st.session_state.selected_year
     )
 
-    # Get unrated artists
-    unrated_artists = get_unrated_artists(artists, st.session_state.ratings)
+    # Display content based on selected view mode
+    if st.session_state.view_mode in ["explore", "blind"]:
+        # Get unrated artists
+        unrated_artists = get_unrated_artists(artists, st.session_state.ratings)
 
-    if not unrated_artists:
-        st.success("🎉 You've rated all artists! Check out your ratings on the Welcome page.")
-    else:
-        # Show count of remaining artists
-        st.caption(f"{len(unrated_artists)} artists left to rate")
+        if not unrated_artists:
+            st.success("🎉 You've rated all artists! Check out your ratings on the Welcome page.")
+        else:
+            # Show count of remaining artists
+            st.caption(f"{len(unrated_artists)} artists left to rate")
 
-        # Display current artist
-        current_artist = unrated_artists[0]
+            # Display current artist
+            current_artist = unrated_artists[0]
 
-        # Create a card-like container
-        with st.container():
-            # Button to toggle overlay
-            if st.button('Reveal' if st.session_state.overlay_visible else 'Hide'):
-                st.session_state.overlay_visible = not st.session_state.overlay_visible
+            # Create a card-like container
+            with st.container():
+                selected = display_artist_card(
+                    current_artist,
+                    blind_mode=(st.session_state.view_mode == "blind")
+                )
 
-            selected = display_artist_card(
-                current_artist,
-                blind_mode=st.session_state.overlay_visible
+                # Handle rating selection
+                if selected is not None:
+                    new_rating = selected.split()[0]  # Get just the emoji
+                    st.session_state.ratings[current_artist["artist_name"]] = new_rating
+                    st.rerun()
+
+    elif st.session_state.view_mode == "all":
+        ARTISTS_PER_PAGE = 5
+
+        # Initialize page in session state if not exists
+        if "page" not in st.session_state:
+            st.session_state.page = 1
+
+        # Pagination logic
+        total_pages = (len(artists) + ARTISTS_PER_PAGE - 1) // ARTISTS_PER_PAGE
+
+        col1, col2, col3 = st.columns([2, 3, 2])
+        with col2:
+            page = st.number_input(
+                f"Page (1-{total_pages})",
+                min_value=1,
+                max_value=total_pages,
+                value=st.session_state.page,
+                key="page_input"
             )
+            st.session_state.page = page
+
+        start_idx = (page - 1) * ARTISTS_PER_PAGE
+        end_idx = min(start_idx + ARTISTS_PER_PAGE, len(artists))
+
+        st.caption(f"Showing {start_idx + 1}-{end_idx} of {len(artists)} artists")
+
+        # Display artists for current page
+        for artist in artists[start_idx:end_idx]:
+            selected = display_artist_card(artist)
 
             # Handle rating selection
             if selected is not None:
                 new_rating = selected.split()[0]  # Get just the emoji
-                st.session_state.ratings[current_artist["artist_name"]] = new_rating
-                st.rerun()
+                name = artist["artist_name"]
+                if new_rating != st.session_state.ratings.get(name, ""):
+                    st.session_state.ratings[name] = new_rating
+                    st.rerun()
 
-    st.subheader("All Artists")
+            st.divider()
 
-    ARTISTS_PER_PAGE = 5
-
-    # Get artists for selected festival/year from session state
-    artists = get_artists_for_festival_year(
-        st.session_state.artists_data,
-        st.session_state.selected_festival,
-        st.session_state.selected_year
-    )
-
-    # Initialize session state for ratings if not exists
-    if "ratings" not in st.session_state:
-        st.session_state.ratings = {}
-
-    # Pagination
-    total_pages = (len(artists) + ARTISTS_PER_PAGE - 1) // ARTISTS_PER_PAGE
-
-    # Initialize page in session state if not exists
-    if "page" not in st.session_state:
-        st.session_state.page = 1
-
-    col1, col2, col3 = st.columns([2, 3, 2])
-    with col2:
-        # Use session state page as the default value
-        page = st.number_input(
-            f"Page (1-{total_pages})",
-            min_value=1,
-            max_value=total_pages,
-            value=st.session_state.page,
-            key="page_input"
-        )
-        # Keep page state in sync with number input
-        st.session_state.page = page
-
-    start_idx = (page - 1) * ARTISTS_PER_PAGE
-    end_idx = min(start_idx + ARTISTS_PER_PAGE, len(artists))
-
-    st.subheader(f"Rate Artists (Showing {start_idx + 1}-{end_idx} of {len(artists)})")
-
-    # Display artists for current page
-    for artist in artists[start_idx:end_idx]:
-        selected = display_artist_card(artist)
-
-        # Handle rating selection
-        if selected is not None:
-            new_rating = selected.split()[0]  # Get just the emoji
-            name = artist["artist_name"]
-            if new_rating != st.session_state.ratings.get(name, ""):
-                st.session_state.ratings[name] = new_rating
-                st.rerun()
-
-        st.divider()
-
-    # Navigation buttons
-    col1, col2 = st.columns(2)
-    with col1:
-        if page > 1:
-            if st.button("« previous", key=f"prev_page_{page}"):
-                st.session_state.page -= 1
-                st.rerun()
-    with col2:
-        if page < total_pages:
-            if st.button("Next »", key=f"next_page_{page}"):
-                st.session_state.page += 1
-                st.rerun()
+        # Navigation buttons
+        col1, col2 = st.columns(2)
+        with col1:
+            if page > 1:
+                if st.button("« previous", key=f"prev_page_{page}"):
+                    st.session_state.page -= 1
+                    st.rerun()
+        with col2:
+            if page < total_pages:
+                if st.button("Next »", key=f"next_page_{page}"):
+                    st.session_state.page += 1
+                    st.rerun()
 
 if __name__ == "__main__":
     main()
