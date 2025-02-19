@@ -8,9 +8,9 @@ from stagediver.common.config import HISTORICAL_FILE
 # Constants
 RATING_EMOJIS = {
     "❤️": "Must see",
-    "🟢": "Good",
+    "🟢": "Yes",
     "🟡": "Meh",
-    "🚫": "Skip"
+    "🚫": "No"
 }
 
 @st.cache_data

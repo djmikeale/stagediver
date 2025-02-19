@@ -24,12 +24,11 @@ def create_spotify_player_with_overlay(spotify_id, visible=True):
                 position: absolute;
                 top: 0;
                 left: 0;
-                width: calc(100% - 50px);
+                width: calc(100% - 45px);
                 height: 100%;
-                background: rgba(14, 17, 23, 0.95);
-                backdrop-filter: blur(8px);
+                backdrop-filter: blur(6px);
                 opacity: {1 if visible else 0};
-                pointer-events: {'' if visible else 'none'};
+                pointer-events: none;
                 transition: opacity 0.3s ease;
                 z-index: 1000;
             }}
