@@ -31,32 +31,44 @@ def main():
         st.info("No artists found for this festival. Please select a different festival from the sidebar.")
         return
 
-    # Create a list of all artists with their full info
+    # Cache the ratings dictionary lookup
+    ratings_dict = st.session_state.ratings
+
+    # Create a list of all artists with their full info - optimized version
     all_artists = [
         {
             "name": artist["artist_name"],
-            "rating": st.session_state.ratings.get(artist["artist_name"], ""),
+            "rating": ratings_dict.get(artist["artist_name"], ""),
             "stage": artist.get("stage_name", "TBA"),
-            "bio": artist.get("bio_short", ""),
-            "spotify": artist.get("social_links", {}).get("spotify", ""),
+            # Only include bio if it exists
+            "bio": artist.get("bio_short", "") if "bio_short" in artist else "",
+            # Optimize nested dictionary lookup
+            "spotify": artist.get("social_links", {}).get("spotify", "") if "social_links" in artist else "",
         }
         for artist in artists
     ]
 
-    # Sort artists: rated ones first (by rating), then unrated (alphabetically)
+    # Cache emoji_order for sorting
     emoji_order = list(RATING_EMOJIS.keys())
-    all_artists.sort(
-        key=lambda x: (
-            # First sort by whether it has a rating (rated first)
-            x["rating"] == "",
-            # Then by rating order (if rated)
-            emoji_order.index(x["rating"]) if x["rating"] in emoji_order else len(emoji_order),
-            # Finally by name
-            x["name"].lower()
-        )
-    )
+    emoji_order_dict = {emoji: i for i, emoji in enumerate(emoji_order)}
 
-    # Create a DataFrame for display
+    def sort_key(x):
+        rating = x["rating"]
+        return (
+            rating == "",  # First sort by whether it has a rating
+            emoji_order_dict.get(rating, len(emoji_order)) if rating else len(emoji_order),  # Then by rating
+            x["name"].lower()  # Finally by name
+        )
+
+    # Sort artists using optimized sort function
+    all_artists.sort(key=sort_key)
+
+    # Show rating stats before creating DataFrame
+    total_artists = len(all_artists)
+    rated_artists = sum(1 for artist in all_artists if artist["rating"])
+    st.caption(f"Rated {rated_artists} out of {total_artists} artists")
+
+    # Create DataFrame only once and reuse
     data = {
         "Artist": [artist["name"] for artist in all_artists],
         "Rating": [artist["rating"] for artist in all_artists],
@@ -64,11 +76,6 @@ def main():
         "Description": [artist["bio"] for artist in all_artists],
         "Spotify": [artist["spotify"] for artist in all_artists],
     }
-
-    # Show rating stats
-    total_artists = len(all_artists)
-    rated_artists = sum(1 for artist in all_artists if artist["rating"])
-    st.caption(f"Rated {rated_artists} out of {total_artists} artists")
 
     # Display as an editable table
     edited_data = st.data_editor(
