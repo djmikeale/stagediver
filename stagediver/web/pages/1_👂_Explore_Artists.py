@@ -22,34 +22,18 @@ def main():
     if 'view_mode' not in st.session_state:
         st.session_state.view_mode = "explore"
 
-    # Create tabs for different views
-    col1, col2, col3 = st.columns(3)
-    with col1:
-        explore_active = st.button(
-            "Explore",
-            type="primary" if st.session_state.view_mode == "explore" else "secondary",
-            use_container_width=True
-        )
-    with col2:
-        blind_active = st.button(
-            "Blind Listen",
-            type="primary" if st.session_state.view_mode == "blind" else "secondary",
-            use_container_width=True
-        )
-    with col3:
-        all_active = st.button(
-            "All Artists",
-            type="primary" if st.session_state.view_mode == "all" else "secondary",
-            use_container_width=True
-        )
-
-    # Update view mode based on button clicks
-    if explore_active:
-        st.session_state.view_mode = "explore"
-    elif blind_active:
-        st.session_state.view_mode = "blind"
-    elif all_active:
-        st.session_state.view_mode = "all"
+    # Create view selector using radio
+    st.session_state.view_mode = st.radio(
+        "Select View",
+        options=["explore", "blind", "all"],
+        format_func=lambda x: {
+            "explore": "Explore",
+            "blind": "Blind Listen",
+            "all": "All Artists"
+        }[x],
+        horizontal=True,
+        label_visibility="collapsed"
+    )
 
     # Get artists for selected festival/year
     artists = get_artists_for_festival_year(
