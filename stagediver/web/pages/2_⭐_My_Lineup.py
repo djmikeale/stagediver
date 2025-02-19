@@ -48,21 +48,6 @@ def main():
         for artist in artists
     ]
 
-    # Cache emoji_order for sorting
-    emoji_order = list(RATING_EMOJIS.keys())
-    emoji_order_dict = {emoji: i for i, emoji in enumerate(emoji_order)}
-
-    def sort_key(x):
-        rating = x["rating"]
-        return (
-            rating == "",  # First sort by whether it has a rating
-            emoji_order_dict.get(rating, len(emoji_order)) if rating else len(emoji_order),  # Then by rating
-            x["name"].lower()  # Finally by name
-        )
-
-    # Sort artists using optimized sort function
-    all_artists.sort(key=sort_key)
-
     # Show rating stats before creating DataFrame
     total_artists = len(all_artists)
     rated_artists = sum(1 for artist in all_artists if artist["rating"])
@@ -70,8 +55,8 @@ def main():
 
     # Create DataFrame only once and reuse
     data = {
-        "Artist": [artist["name"] for artist in all_artists],
         "Rating": [artist["rating"] for artist in all_artists],
+        "Artist": [artist["name"] for artist in all_artists],
         "Stage": [artist["stage"] for artist in all_artists],
         "Description": [artist["bio"] for artist in all_artists],
         "Spotify": [artist["spotify"] for artist in all_artists],
@@ -83,14 +68,14 @@ def main():
         hide_index=True,
         use_container_width=True,
         column_config={
-            "Artist": st.column_config.TextColumn(
-                "Artist",
-                width="medium",
-            ),
             "Rating": st.column_config.SelectboxColumn(
                 "Rating",
                 width="small",
                 options=[""] + list(RATING_EMOJIS.keys())
+            ),
+            "Artist": st.column_config.TextColumn(
+                "Artist",
+                width="medium",
             ),
             "Stage": st.column_config.TextColumn(
                 "Stage",
