@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "stagediver"
 version = "0.1.0"
 description = "A tool for extracting festival lineups and finding your favorite artists"
-requires-python = ">=3.8"
+requires-python = ">=3.9,!=3.9.7"
 dependencies = [
     "requests>=2.31.0",
     "beautifulsoup4>=4.12.0",
