@@ -1,54 +1,59 @@
 # Stagediver
 
-## Find new music to love, and plan your must-see concerts
+[Stagediver 🔗](https://stagediver.streamlit.app/).
 
-## What it does
-Stagediver helps you:
-- Discover festival lineups through automated website scraping
-- Preview and rate artists' music to find your favorites
-- Create an optimized concert schedule based on ratings, time, and location
-- Export your schedule to your calendar
+## Discover hidden gems
 
-## installation
+With 100s of artists at large festivals, it's hard to know who to see.
+
+Stagediver makes it easy to explore artists, and find out which ones you can't miss... and which ones are just `meh`.
+
+## Save future favorites to your calendar
+
+When you're done with rating, export favorite artists to your calendar.
+
+Don't wanna listen to 100+ artists in one sitting?
+Save your progress, and come back later to listen to more!
+
+## Make unforgettable festival memories
+
+Sunscreen, Stagediver, and a smile; you're ready to go.
+Share your calendar with friends, and discover their must-see artists.
+Set up reminders so you don't miss your favorite artists.
+
+<details>
+<summary>
+
+## Under the hood
+
+</summary>
+
+### How it works
+
+This app
+- Scrapes festival websites to get the lineup
+- Uses artist socials + links to embed their music
+- Uses your ratings to build a custom schedule
+- Exports your schedule to your calendar
+
+### Installation
+
 ```bash
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## Development Roadmap
+### Development Roadmap
 
-1. Core Data Models & Storage
-   - [ ] Design JSON schema for festivals, artists, stages, performances
-   - [ ] Implement Pydantic models for data validation
-   - [ ] Create JSON file-based data store
-   - [ ] Add helper functions for data access and modification
-   - [ ] Generate sample festival data for development
+Feature ideas:
 
-2. Festival Data Collection
-   - [ ] Build festival website scrapers
-   - [ ] Parse and normalize lineup data
-   - [ ] Store festival data in database
+- Add "compare" functionality to compare your + your friends' favorite artists
+- Add "conflicts" functionality to see when your favorite artists are playing at the same time
+- Add granular export options
+  - Export separate ratings to different files
+  - Add "reminders" functionality to get notifications before your favorite artists are playing
+- Some llm stuff to classify artists, genres, etc.
+- apple script to remove old events + import new events
 
-3. Artist Enrichment
-   - [ ] Integrate with music APIs (Spotify, etc)
-   - [ ] Collect artist metadata and preview URLs
-   - [ ] Classify genres and detect similar artists
-   - [ ] Run data quality checks
-
-4. User Features
-   - [ ] Export to calendar
-   - [ ] Implement artist rating system
-   - [ ] Import from calendar
-
-5. Calendar Integration
-   - [ ] Generate iCal feeds
-   - [ ] Add export filtering options
-   - [ ] Support multi-user exports
-   - [ ] Test with various calendar clients
-   - [ ] apple script to remove old events + import new events
-
-streamlit:
-- create "save string" to save the current state of the app as a string, and "load string" to load the app state from a string. and add as parameter to url
-- add "compare" functionality to compare different festivals
-- add "compare faves" functionality to compare your favorite artists with others' favorite artists
+</details>

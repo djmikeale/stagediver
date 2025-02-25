@@ -38,13 +38,23 @@ def main():
         return
 
     st.markdown(f"""
-    Welcome to Stagediver! 🎪
+    Discover hidden gems
 
-    We'll help you discover and organize your festival experience:
+    Save future favorites to your calendar
 
-    1. **Explore Artists** - Browse and discover artists playing at the festival
-    2. **My Lineup** - Rate artists and build your personal schedule
-    3. **Share** - share and compare your lineup with friends
+    Make unforgettable festival memories
+
+    ## Introduction
+
+    With 100s of artists at large festivals, it's hard to know who to see.
+
+    Stagediver makes it easy to explore artists, and find out which ones you can't miss... and which ones are just `meh`.
+
+    When you're done with rating, export favorite artists to your calendar.
+
+    Don't wanna listen to 100+ artists in one sitting?
+    Save your progress, and come back later to listen to more!
+
 
     Get started by selecting a page from the sidebar! 👈
     """)
