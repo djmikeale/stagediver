@@ -16,6 +16,10 @@ install:  ## Install package and dependencies
 	$(BIN)/pip install --upgrade pip
 	$(BIN)/pip install -e .
 
+install-uv:  ## Install package and dependencies using uv
+	uv venv
+	uv pip install -e .
+
 clean:  ## Remove build/test artifacts
 	rm -rf $(VENV)
 	git clean -fdX
