@@ -1,6 +1,8 @@
 import streamlit as st
-from stagediver.web.components.sidebar import show_sidebar, RATING_EMOJIS
+
+from stagediver.web.components.sidebar import RATING_EMOJIS, show_sidebar
 from stagediver.web.components.utils import get_artists_for_festival_year
+
 
 def update_ratings(edited_data, all_artists):
     """Update session state ratings when table is edited"""
@@ -14,6 +16,7 @@ def update_ratings(edited_data, all_artists):
                 del st.session_state.ratings[artist["name"]]
             st.rerun()
 
+
 def main():
     # Show shared sidebar with wide layout
     show_sidebar(layout="wide")
@@ -24,11 +27,13 @@ def main():
     artists = get_artists_for_festival_year(
         st.session_state.artists_data,
         st.session_state.selected_festival,
-        st.session_state.selected_year
+        st.session_state.selected_year,
     )
 
     if not artists:
-        st.info("No artists found for this festival. Please select a different festival from the sidebar.")
+        st.info(
+            "No artists found for this festival. Please select a different festival from the sidebar."
+        )
         return
 
     # Cache the ratings dictionary lookup
@@ -43,7 +48,11 @@ def main():
             # Only include bio if it exists
             "bio": artist.get("bio_short", "") if "bio_short" in artist else "",
             # Optimize nested dictionary lookup
-            "spotify": artist.get("social_links", {}).get("spotify", "") if "social_links" in artist else "",
+            "spotify": (
+                artist.get("social_links", {}).get("spotify", "")
+                if "social_links" in artist
+                else ""
+            ),
         }
         for artist in artists
     ]
@@ -69,9 +78,7 @@ def main():
         use_container_width=True,
         column_config={
             "Rating": st.column_config.SelectboxColumn(
-                "Rating",
-                width="small",
-                options=[""] + list(RATING_EMOJIS.keys())
+                "Rating", width="small", options=[""] + list(RATING_EMOJIS.keys())
             ),
             "Artist": st.column_config.TextColumn(
                 "Artist",
@@ -92,11 +99,12 @@ def main():
             ),
         },
         disabled=["Artist", "Stage", "Description", "Spotify"],
-        key="lineup_editor"
+        key="lineup_editor",
     )
 
     # Check for changes and update ratings
     update_ratings(edited_data, all_artists)
+
 
 if __name__ == "__main__":
     main()

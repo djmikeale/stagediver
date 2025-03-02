@@ -1,5 +1,7 @@
 import streamlit as st
-from stagediver.web.components.sidebar import show_sidebar, RATING_EMOJIS
+
+from stagediver.web.components.sidebar import RATING_EMOJIS, show_sidebar
+
 
 def show_ratings_summary(artists):
     """Display a summary of user ratings"""
@@ -13,14 +15,16 @@ def show_ratings_summary(artists):
         # Show summary by rating
         for emoji, label in RATING_EMOJIS.items():
             rated_artists = [
-                name for name, rating in st.session_state.ratings.items()
+                name
+                for name, rating in st.session_state.ratings.items()
                 if rating == emoji
             ]
             if rated_artists:
-                with st.expander(f"{label} ({len(rated_artists)})",icon=f"{emoji}"):
+                with st.expander(f"{label} ({len(rated_artists)})", icon=f"{emoji}"):
                     st.markdown("- " + "\n- ".join(sorted(rated_artists)))
     else:
         st.info("Start rating artists to build your lineup!")
+
 
 def main():
     # Initialize session state for ratings if not exists
@@ -37,7 +41,8 @@ def main():
         st.info("Please select a festival from the sidebar to begin")
         return
 
-    st.markdown(f"""
+    st.markdown(
+        f"""
     Discover hidden gems
 
     Save future favorites to your calendar
@@ -57,14 +62,25 @@ def main():
 
 
     Get started by selecting a page from the sidebar! 👈
-    """)
+    """
+    )
 
     # Stats section
     st.divider()
     st.subheader("Quick Stats")
     col1, col2, col3 = st.columns(3)
     with col1:
-        st.metric("Festivals", str(len({artist["festival_name"] for artist in st.session_state.artists_data})))
+        st.metric(
+            "Festivals",
+            str(
+                len(
+                    {
+                        artist["festival_name"]
+                        for artist in st.session_state.artists_data
+                    }
+                )
+            ),
+        )
     with col2:
         st.metric("Artists", f"{len(st.session_state.artists_data):,}")
     with col3:
@@ -74,6 +90,7 @@ def main():
     # Show ratings summary if there are any ratings
     if st.session_state.ratings:
         show_ratings_summary(st.session_state.artists_data)
+
 
 if __name__ == "__main__":
     main()

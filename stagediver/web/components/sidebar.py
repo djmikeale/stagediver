@@ -1,17 +1,15 @@
-import streamlit as st
-from datetime import datetime, timedelta
 import json
-from ics import Calendar, Event
+from datetime import datetime, timedelta
 from pathlib import Path
+
+import streamlit as st
+from ics import Calendar, Event
+
 from stagediver.common.config import HISTORICAL_FILE
 
 # Constants
-RATING_EMOJIS = {
-    "❤️": "Must see",
-    "🟢": "Yes",
-    "🟡": "Meh",
-    "🚫": "No"
-}
+RATING_EMOJIS = {"❤️": "Must see", "🟢": "Yes", "🟡": "Meh", "🚫": "No"}
+
 
 @st.cache_data
 def load_lineup_data():
@@ -21,7 +19,9 @@ def load_lineup_data():
         with open(data_path) as f:
             data = json.load(f)
         if not isinstance(data, list):
-            st.error(f"Invalid data format in {HISTORICAL_FILE}. Expected a list but got {type(data)}")
+            st.error(
+                f"Invalid data format in {HISTORICAL_FILE}. Expected a list but got {type(data)}"
+            )
             return []
         return data
     except FileNotFoundError:
@@ -31,12 +31,14 @@ def load_lineup_data():
         st.error(f"Invalid JSON in lineup data file: {HISTORICAL_FILE}")
         return []
 
+
 def create_calendar_export(artists_data, ratings):
     """Create ICS calendar with rated artists"""
     cal = Calendar()
     valid_ratings = ["❤️", "🟢", "🟡"]
     rated_artists = [
-        artist for artist in artists_data
+        artist
+        for artist in artists_data
         if ratings.get(artist["artist_name"]) in valid_ratings
     ]
 
@@ -61,6 +63,7 @@ def create_calendar_export(artists_data, ratings):
 
     return cal
 
+
 def export_ratings():
     """Export ratings data as JSON string"""
     export_data = {label: [] for label in RATING_EMOJIS.values()}
@@ -75,6 +78,7 @@ def export_ratings():
         export_data[category].sort()
 
     return json.dumps(export_data, indent=2)
+
 
 def import_ratings(json_str):
     """Import ratings data from JSON string"""
@@ -96,12 +100,16 @@ def import_ratings(json_str):
     except (json.JSONDecodeError, KeyError):
         return False
 
+
 def get_festivals_and_years(data):
     """Extract unique festival/year combinations"""
     festival_years = set()
     for artist in data:
         festival_years.add((artist["festival_name"], artist["festival_year"]))
-    return sorted(festival_years, key=lambda x: (-x[1], x[0]))  # Sort by year desc, then festival name
+    return sorted(
+        festival_years, key=lambda x: (-x[1], x[0])
+    )  # Sort by year desc, then festival name
+
 
 def show_sidebar(layout="centered"):
     """Display the shared sidebar content"""
@@ -123,7 +131,9 @@ def show_sidebar(layout="centered"):
 
     # Initialize festival selection with first available option if not set
     festival_years = get_festivals_and_years(st.session_state.artists_data)
-    festival_year_options = [f"{festival} ({year})" for festival, year in festival_years]
+    festival_year_options = [
+        f"{festival} ({year})" for festival, year in festival_years
+    ]
 
     if not st.session_state.get("selected_festival") and festival_year_options:
         # Set initial selection to first available option
@@ -135,13 +145,17 @@ def show_sidebar(layout="centered"):
         if festival_year_options:
             # Find current selection index
             current_selection = f"{st.session_state.selected_festival} ({st.session_state.selected_year})"
-            current_index = festival_year_options.index(current_selection) if current_selection in festival_year_options else 0
+            current_index = (
+                festival_year_options.index(current_selection)
+                if current_selection in festival_year_options
+                else 0
+            )
 
             selected_festival_year = st.selectbox(
                 "Select Festival",
                 options=festival_year_options,
                 index=current_index,
-                key="festival_selector"
+                key="festival_selector",
             )
 
             # Update session state when selection changes
@@ -158,20 +172,22 @@ def show_sidebar(layout="centered"):
                 type=["json"],
                 help="Upload a previously saved ratings file",
                 accept_multiple_files=False,
-                key="ratings_upload"
+                key="ratings_upload",
             )
             if uploaded_file:
                 content = uploaded_file.read().decode()
                 if import_ratings(content):
                     st.success("Ratings loaded successfully!")
-                    st.session_state.show_import = False  # Hide the uploader after successful import
+                    st.session_state.show_import = (
+                        False  # Hide the uploader after successful import
+                    )
                     # Clear the file uploader state
-                    st.session_state.pop('ratings_upload', None)
+                    st.session_state.pop("ratings_upload", None)
                     st.rerun()
                 else:
                     st.info("Ratings already up to date")
         else:
-            if st.button("Import Different Ratings", type="tertiary",icon="📂"):
+            if st.button("Import Different Ratings", type="tertiary", icon="📂"):
                 st.session_state.show_import = True
                 st.rerun()
 
@@ -192,7 +208,9 @@ def show_sidebar(layout="centered"):
                 )
 
             with col2:
-                cal = create_calendar_export(st.session_state.artists_data, st.session_state.ratings)
+                cal = create_calendar_export(
+                    st.session_state.artists_data, st.session_state.ratings
+                )
                 st.download_button(
                     label="Calendar",
                     icon="📅",

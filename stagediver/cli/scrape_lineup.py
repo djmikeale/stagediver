@@ -10,6 +10,7 @@ from typing import Optional
 
 from stagediver.scraper import run_scraper
 
+
 def get_scraper_class(festival: str, year: int):
     """
     Dynamically import and return the appropriate scraper class.
@@ -43,29 +44,29 @@ def get_scraper_class(festival: str, year: int):
             f"Looking for class: {festival.title()}Festival{year}Scraper"
         ) from e
 
+
 def main():
     parser = argparse.ArgumentParser(description="Fetch and save festival lineup data")
 
     # Required arguments
     parser.add_argument(
-        "-f", "--festival",
+        "-f",
+        "--festival",
         type=str,
         required=True,
-        help="Festival name (e.g., roskilde)"
+        help="Festival name (e.g., roskilde)",
     )
 
     parser.add_argument(
-        "-y", "--year",
-        type=int,
-        required=True,
-        help="Festival year (e.g., 2025)"
+        "-y", "--year", type=int, required=True, help="Festival year (e.g., 2025)"
     )
 
     # Optional arguments
     parser.add_argument(
-        "-s", "--sample-size",
+        "-s",
+        "--sample-size",
         type=int,
-        help="Optional: Limit number of artists to scrape (default: all artists)"
+        help="Optional: Limit number of artists to scrape (default: all artists)",
     )
 
     args = parser.parse_args()
@@ -76,6 +77,7 @@ def main():
     # Initialize and run the scraper
     scraper = scraper_class()
     run_scraper(scraper, sample_size=args.sample_size)
+
 
 if __name__ == "__main__":
     main()

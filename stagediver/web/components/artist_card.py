@@ -1,12 +1,15 @@
-import streamlit as st
 import re
+
+import streamlit as st
+
 
 def extract_spotify_id(spotify_url):
     """Extract Spotify artist ID from full URL"""
     if not spotify_url:
         return None
-    match = re.search(r'artist/([a-zA-Z0-9]+)', spotify_url)
+    match = re.search(r"artist/([a-zA-Z0-9]+)", spotify_url)
     return match.group(1) if match else None
+
 
 def create_spotify_player_with_overlay(spotify_id, visible=True):
     """Create a Spotify player with an overlay"""
@@ -44,8 +47,9 @@ def create_spotify_player_with_overlay(spotify_id, visible=True):
             <div class="overlay"></div>
         </div>
         """,
-        height=170
+        height=170,
     )
+
 
 def display_artist_card(artist, show_rating=True, blind_mode=False):
     """Display an artist card with optional rating controls and blind mode"""
@@ -59,7 +63,10 @@ def display_artist_card(artist, show_rating=True, blind_mode=False):
         if artist.get("bio_short"):
             if artist.get("bio_long"):  # Show short bio as expander title
                 with st.expander(f"{artist['bio_short']} *:gray[click to read more]*"):
-                    st.markdown(artist["bio_long"].replace('\n', '<br><br>'), unsafe_allow_html=True)
+                    st.markdown(
+                        artist["bio_long"].replace("\n", "<br><br>"),
+                        unsafe_allow_html=True,
+                    )
             else:  # Only short bio available
                 st.markdown(f"*{artist['bio_short']}*")
         if artist.get("stage_name"):
@@ -72,8 +79,7 @@ def display_artist_card(artist, show_rating=True, blind_mode=False):
     if spotify_url := artist.get("social_links", {}).get("spotify"):
         if spotify_id := extract_spotify_id(spotify_url):
             create_spotify_player_with_overlay(
-                spotify_id=spotify_id,
-                visible=blind_mode
+                spotify_id=spotify_id, visible=blind_mode
             )
 
     if show_rating:
@@ -92,7 +98,7 @@ def display_artist_card(artist, show_rating=True, blind_mode=False):
             label="Rate this artist:",
             options=rating_options,
             key=f"rate_{name}",
-            default=default
+            default=default,
         )
 
         return selected
