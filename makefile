@@ -1,8 +1,9 @@
-.PHONY: install test install-simple clean
+.PHONY: install test install-simple clean install-dev lint
 
 # Python interpreter settings
 VENV = venv
 BIN = $(VENV)/bin
+PRECOMMIT_INSTALL = pre-commit install
 
 # Default target
 .DEFAULT_GOAL := help
@@ -13,12 +14,13 @@ help:  ## Show this help menu
 install:  ## Install package and dependencies using uv
 	uv venv
 	uv pip install -e .
+	$(PRECOMMIT_INSTALL)
 
 install-simple:  ## Install package and dependencies
 	$(PYTHON) -m venv $(VENV)
 	$(BIN)/pip install --upgrade pip
 	$(BIN)/pip install -e .
-
+	$(PRECOMMIT_INSTALL)
 
 clean:  ## Remove build/test artifacts
 	rm -rf $(VENV)
