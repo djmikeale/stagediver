@@ -92,7 +92,7 @@ def run_scraper(scraper, sample_size: Optional[int] = None) -> None:
         artist = {
             "artist_name": artist_data["name"],
             "stage_name": artist_data.get("stage", ""),
-            "start_ts": None,  # Could parse from performance_date if needed
+            "start_ts": artist_data.get("start_ts", None),
             "end_ts": None,
             "social_links": (
                 {"spotify": artist_data.get("spotify_link")}
@@ -101,18 +101,12 @@ def run_scraper(scraper, sample_size: Optional[int] = None) -> None:
             ),
             "bio_short": artist_data.get("short_description", ""),
             "bio_long": artist_data.get("long_description", ""),
-            "country_code": None,  # Not available in current scrape
+            "country_code": artist_data.get("country_code", None),
             "scrape_url": artist_data["url"],
             "other_data": {},
         }
         new_lineup["artists"].append(artist)
 
-    # Load existing lineups
-    existing_lineups = load_existing_lineups()
-
-    # Add new lineup to the list
-    existing_lineups.append(new_lineup)
-
     # Save to file
-    save_json_file(existing_lineups, LINEUPS_FILE)
+    save_json_file(new_lineup, LINEUPS_FILE)
     print(f"Saved {len(new_lineup['artists'])} artists to {LINEUPS_FILE}")

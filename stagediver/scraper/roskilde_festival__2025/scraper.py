@@ -2,6 +2,7 @@
 Scraper implementation for Roskilde Festival 2025.
 """
 
+import re
 from datetime import datetime
 from typing import Dict, List
 
@@ -15,6 +16,21 @@ class RoskildeFestival2025Scraper:
     """
     Scraper for Roskilde Festival 2025 lineup and schedule.
     """
+
+    # Mapping of Danish dates to ISO format dates for Roskilde Festival 2025
+    DATE_MAPPING = {
+        "søndag 29. juni": "2025-06-29",
+        "mandag 30. juni": "2025-06-30",
+        "tirsdag 1. juli": "2025-07-01",
+        "onsdag 2. juli": "2025-07-02",
+        "torsdag 3. juli": "2025-07-03",
+        "fredag 4. juli": "2025-07-04",
+        "lørdag 5. juli": "2025-07-05",
+        "onsdag nat 2. juli*": "2025-07-03",
+        "torsdag nat 3. juli*": "2025-07-04",
+        "fredag nat 4. juli*": "2025-07-05",
+        "lørdag nat 5. juli*": "2025-07-06",
+    }
 
     def __init__(self):
         self.festival_name = "Roskilde Festival"
@@ -50,9 +66,7 @@ class RoskildeFestival2025Scraper:
         soup = BeautifulSoup(response.text, "html.parser")
 
         artists_data = []
-        artist_cards = soup.find_all(
-            "div", class_="line-up-overview-cards_artistCard__WFH6G"
-        )
+        artist_cards = soup.find_all("div", class_=re.compile(r"artistCard"))
 
         # Limit the number of cards if specified
         if sample_size:
@@ -69,7 +83,7 @@ class RoskildeFestival2025Scraper:
             href = link_element.get("href", "")
             full_url = self.base_url + href if href else ""
 
-            content_div = card.find("div", class_="card_content__NCkf_")
+            content_div = card.find("div", class_=lambda c: c and "card_content" in c)
             name = (
                 content_div.find("h2").text.strip()
                 if content_div and content_div.find("h2")
@@ -97,29 +111,54 @@ class RoskildeFestival2025Scraper:
         soup = BeautifulSoup(response.text, "html.parser")
 
         # Get performance date
-        date_element = soup.find("div", class_="appearance-details_showTimesDay__5QRgW")
+        date_element = soup.find("div", class_=lambda c: c and "showTimesDay" in c)
         performance_date = date_element.text.strip() if date_element else None
+        if performance_date:
+            # Convert to lowercase before mapping
+            performance_date = self.DATE_MAPPING.get(performance_date.lower().strip())
 
-        # Check if the artist has been cancelled
-        cancelled_element = soup.find(
-            "div", class_="typography_cancelled__abc123"
-        )  # Update this class name
-        is_current = not bool(cancelled_element)
-
-        # Get stage name
+        # Get stage name and time
         stage_element = soup.find(
-            "div", class_="appearance-details_showTimesLocation__j5Y_x"
+            "div", class_=lambda c: c and "showTimesLocation" in c
         )
-        stage = stage_element.text.strip() if stage_element else None
+        stage_info = stage_element.text.strip() if stage_element else None
+
+        artist_country = soup.find(
+            "sup", class_=lambda c: c and "typography_superscript" in c
+        )
+        artist_country = artist_country.text.strip() if artist_country else None
+
+        # Split stage info into time and stage name
+        stage_time = None
+        stage_name = None
+        if stage_info:
+            parts = stage_info.split(", ", 1)
+            if len(parts) == 2:
+                stage_time, stage_name = parts
+
+        # Combine date and time into datetime
+        start_ts = None
+        if performance_date and stage_time:
+            try:
+                # Convert time from "HH.MM" to "HH:MM"
+                time_str = stage_time.replace(".", ":")
+                datetime_str = f"{performance_date}T{time_str}:00"
+                start_ts = datetime.fromisoformat(datetime_str).isoformat()
+            except ValueError as e:
+                print(f"Error parsing datetime: {e}")
 
         # Get short description
-        short_desc_element = soup.find("h2", class_="typography_headlineSmall__Xlw_0")
+        short_desc_element = soup.find(
+            "h2", class_=lambda c: c and "headlineSmall" in c
+        )
         short_description = (
             short_desc_element.text.strip() if short_desc_element else None
         )
 
         # Get long description with preserved line breaks
-        long_desc_element = soup.find("div", class_="rich-text_component__c_7l6")
+        long_desc_element = soup.find(
+            "div", class_=lambda c: c and "rich-text_component" in c
+        )
         long_description = None
         if long_desc_element:
             # Replace <br> and </p> tags with newlines before getting text
@@ -140,9 +179,10 @@ class RoskildeFestival2025Scraper:
 
         return {
             "performance_date": performance_date,
-            "stage": stage,
+            "stage": stage_name,
+            "start_ts": start_ts,
             "short_description": short_description,
             "long_description": long_description,
             "spotify_link": spotify_link,
-            "_is_current": is_current,
+            "country_code": artist_country,
         }
