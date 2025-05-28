@@ -4,7 +4,7 @@ Scraper implementation for Roskilde Festival 2025.
 
 import re
 from datetime import datetime
-from typing import Dict, List
+from typing import Dict, List, Optional, Tuple
 
 import requests
 from bs4 import BeautifulSoup
@@ -51,6 +51,41 @@ class RoskildeFestival2025Scraper:
         # Make an initial request to set cookies
         self.session.get(self.base_url)
 
+    def _find_element(
+        self, soup: BeautifulSoup, class_pattern: str
+    ) -> Optional[BeautifulSoup]:
+        """Helper method to find elements by class pattern."""
+        return soup.find("div", class_=lambda c: c and class_pattern in c)
+
+    def _get_text(self, element: Optional[BeautifulSoup]) -> Optional[str]:
+        """Helper method to safely get text from an element."""
+        return element.text.strip() if element else None
+
+    def _parse_stage_info(self, stage_info: str) -> List[Dict[str, str]]:
+        """Parse stage information into time and stage name pairs."""
+        if not stage_info:
+            return []
+
+        stage_times = []
+        for info in stage_info.split("/"):
+            if match := re.match(r".*?(\d{2}\.\d{2}),\s*(.*)", info.strip()):
+                time, stage = match.groups()
+                stage_times.append({"time": time, "stage": stage})
+        return stage_times
+
+    def _get_start_timestamp(
+        self, date: str, stage_times: List[Dict[str, str]]
+    ) -> Optional[str]:
+        """Convert date and time to ISO timestamp."""
+        if not (date and stage_times):
+            return None
+
+        try:
+            time_str = stage_times[0]["time"].replace(".", ":")
+            return datetime.fromisoformat(f"{date}T{time_str}:00").isoformat()
+        except ValueError:
+            return None
+
     def fetch_lineup(self, sample_size=None) -> ScrapedData:
         """
         Fetch the festival lineup from the website.
@@ -62,42 +97,35 @@ class RoskildeFestival2025Scraper:
             ScrapedData: Raw scraped data including artist links and basic info
         """
         print("Fetching program page...")
-        response = self.session.get(self.program_url)
-        soup = BeautifulSoup(response.text, "html.parser")
+        soup = BeautifulSoup(self.session.get(self.program_url).text, "html.parser")
+        artist_cards = (
+            soup.find_all("div", class_=re.compile(r"artistCard"))[:sample_size]
+            if sample_size
+            else soup.find_all("div", class_=re.compile(r"artistCard"))
+        )
 
+        print(f"Processing {len(artist_cards)} artists")
         artists_data = []
-        artist_cards = soup.find_all("div", class_=re.compile(r"artistCard"))
-
-        # Limit the number of cards if specified
-        if sample_size:
-            artist_cards = artist_cards[:sample_size]
-
-        total_artists = len(artist_cards)
-        print(f"Processing {total_artists} artists")
 
         for i, card in enumerate(artist_cards, 1):
-            link_element = card.find("a")
-            if not link_element:
-                continue
+            if link_element := card.find("a"):
+                href = link_element.get("href", "")
+                full_url = self.base_url + href if href else ""
 
-            href = link_element.get("href", "")
-            full_url = self.base_url + href if href else ""
-
-            content_div = card.find("div", class_=lambda c: c and "card_content" in c)
-            name = (
-                content_div.find("h2").text.strip()
-                if content_div and content_div.find("h2")
-                else ""
-            )
-
-            if name and full_url:
-                print(f"Fetching details for {name} ({i}/{total_artists})...")
-                artist_data = {
-                    "name": name,
-                    "url": full_url,
-                    **self._fetch_artist_details(full_url),
-                }
-                artists_data.append(artist_data)
+                if content_div := card.find(
+                    "div", class_=lambda c: c and "card_content" in c
+                ):
+                    if name := self._get_text(content_div.find("h2")):
+                        print(
+                            f"Fetching details for {name} ({i}/{len(artist_cards)})..."
+                        )
+                        artists_data.append(
+                            {
+                                "name": name,
+                                "url": full_url,
+                                **self._fetch_artist_details(full_url),
+                            }
+                        )
 
         return ScrapedData(
             source_url=self.program_url,
@@ -107,90 +135,52 @@ class RoskildeFestival2025Scraper:
 
     def _fetch_artist_details(self, url: str) -> Dict:
         """Fetch detailed information from artist's page."""
-        response = self.session.get(url)
-        soup = BeautifulSoup(response.text, "html.parser")
+        soup = BeautifulSoup(self.session.get(url).text, "html.parser")
 
-        # Get performance date
-        date_element = soup.find("div", class_=lambda c: c and "showTimesDay" in c)
-        performance_date = date_element.text.strip() if date_element else None
-        if performance_date:
-            # Convert to lowercase before mapping
-            performance_date = self.DATE_MAPPING.get(performance_date.lower().strip())
-
-        # Get stage name and time
-        stage_element = soup.find(
-            "div", class_=lambda c: c and "showTimesLocation" in c
+        # Get performance date and stage info
+        performance_date = self.DATE_MAPPING.get(
+            self._get_text(self._find_element(soup, "showTimesDay")).lower().strip()
         )
-        stage_info = stage_element.text.strip() if stage_element else None
+        stage_info = self._get_text(self._find_element(soup, "showTimesLocation"))
+        stage_times = self._parse_stage_info(stage_info)
 
-        artist_country = soup.find(
+        # Get country codes
+        country_element = soup.find(
             "sup", class_=lambda c: c and "typography_superscript" in c
         )
-        artist_country = (
-            [country.strip() for country in artist_country.text.split("/")]
-            if artist_country
+        country_codes = (
+            [c.strip() for c in country_element.text.split("/")]
+            if country_element
             else None
         )
 
-        # Split stage info into time and stage name
-        stage_times = []
-        if stage_info:
-            # Split by / to handle multiple times
-            stage_infos = stage_info.split("/")
-            for info in stage_infos:
-                # Match time using two capture groups: (HH.MM), (stage_name)
-                match = re.match(r".*?(\d{2}\.\d{2}),\s*(.*)", info.strip())
-                if match:
-                    stage_time, stage_name = match.groups()
-                    stage_times.append({"time": stage_time, "stage": stage_name})
-
-        # Combine date and time into datetime
-        start_ts = None
-        if performance_date and stage_times:
-            try:
-                # Use first time for now
-                time_str = stage_times[0]["time"].replace(".", ":")
-                datetime_str = f"{performance_date}T{time_str}:00"
-                start_ts = datetime.fromisoformat(datetime_str).isoformat()
-            except ValueError as e:
-                print(f"Error parsing datetime: {e}")
-
-        # Get short description
-        short_desc_element = soup.find(
-            "h2", class_=lambda c: c and "headlineSmall" in c
-        )
-        short_description = (
-            short_desc_element.text.strip() if short_desc_element else None
+        # Get descriptions
+        short_desc = self._get_text(
+            soup.find("h2", class_=lambda c: c and "headlineSmall" in c)
         )
 
-        # Get long description with preserved line breaks
-        long_desc_element = soup.find(
-            "div", class_=lambda c: c and "rich-text_component" in c
-        )
-        long_description = None
+        long_desc_element = self._find_element(soup, "rich-text_component")
         if long_desc_element:
-            # Replace <br> and </p> tags with newlines before getting text
             for br in long_desc_element.find_all("br"):
                 br.replace_with("\n")
             for p in long_desc_element.find_all("p"):
                 p.append("\n")
-            long_description = long_desc_element.get_text().strip()
+            long_desc = long_desc_element.get_text().strip()
+        else:
+            long_desc = None
 
-        # Find Spotify artist link (not the footer playlist link)
-        spotify_link = None
+        # Get Spotify link
         spotify_links = soup.find_all(
             "a", href=lambda x: x and "open.spotify.com/artist" in x
         )
-        if spotify_links:
-            # Remove tracking parameters from Spotify URL
-            spotify_link = spotify_links[0]["href"].split("?")[0]
+        spotify_link = spotify_links[0]["href"].split("?")[0] if spotify_links else None
 
         return {
             "performance_date": performance_date,
             "stage": stage_times[0]["stage"] if stage_times else None,
-            "start_ts": start_ts,
-            "short_description": short_description,
-            "long_description": long_description,
+            "start_ts": self._get_start_timestamp(performance_date, stage_times),
+            "short_description": short_desc,
+            "long_description": long_desc,
             "spotify_link": spotify_link,
-            "country_code": artist_country,
+            "country_code": country_codes,
         }
