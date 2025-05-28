@@ -1,4 +1,5 @@
 import re
+from datetime import datetime
 
 import streamlit as st
 
@@ -51,7 +52,7 @@ def create_spotify_player_with_overlay(spotify_id, visible=True):
     )
 
 
-def display_artist_card(artist, show_rating=True, blind_mode=False):
+def display_artist_card(artist, blind_mode=False):
     """Display an artist card with optional rating controls and blind mode"""
     from stagediver.web.components.sidebar import RATING_EMOJIS
 
@@ -71,6 +72,10 @@ def display_artist_card(artist, show_rating=True, blind_mode=False):
                 st.markdown(f"*{artist['bio_short']}*")
         if artist.get("stage_name"):
             st.markdown(f"**Stage:** {artist['stage_name']}")
+
+        if artist.get("start_ts"):
+            start_time = datetime.fromisoformat(artist["start_ts"])
+            st.markdown(f"**Start:** {start_time.strftime('%A, %d %B @ %H:%M')}")
     else:
         # In blind mode, show a placeholder title
         st.markdown("### 🎵 Mystery Artist")
@@ -82,23 +87,22 @@ def display_artist_card(artist, show_rating=True, blind_mode=False):
                 spotify_id=spotify_id, visible=blind_mode
             )
 
-    if show_rating:
-        # Rating buttons
-        current_rating = st.session_state.ratings.get(name, "")
+    # Rating buttons
+    current_rating = st.session_state.ratings.get(name, "")
 
-        # Create options list for segmented control
-        rating_options = [f"{emoji} {label}" for emoji, label in RATING_EMOJIS.items()]
+    # Create options list for segmented control
+    rating_options = [f"{emoji} {label}" for emoji, label in RATING_EMOJIS.items()]
 
-        # Find current rating option or default to None
-        default = None
-        if current_rating:
-            default = f"{current_rating} {RATING_EMOJIS[current_rating]}"
+    # Find current rating option or default to None
+    default = None
+    if current_rating:
+        default = f"{current_rating} {RATING_EMOJIS[current_rating]}"
 
-        selected = st.segmented_control(
-            label="Rate this artist:",
-            options=rating_options,
-            key=f"rate_{name}",
-            default=default,
-        )
+    selected = st.segmented_control(
+        label="Rate this artist:",
+        options=rating_options,
+        key=f"rate_{name}",
+        default=default,
+    )
 
-        return selected
+    return selected

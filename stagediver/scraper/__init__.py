@@ -8,7 +8,7 @@ Contains:
 """
 
 import os
-from datetime import datetime
+from datetime import datetime, timedelta
 from typing import Dict, List, Optional, Type
 
 from stagediver.common.config import LINEUPS_FILE
@@ -95,9 +95,9 @@ def run_scraper(scraper, sample_size: Optional[int] = None) -> None:
             "start_ts": artist_data.get("start_ts", None),
             # assume 1 hour performance if no end_ts is provided
             "end_ts": (
-                datetime.fromisoformat(artist_data["start_ts"])
-                .replace(hour=datetime.fromisoformat(artist_data["start_ts"]).hour + 1)
-                .isoformat()
+                (
+                    datetime.fromisoformat(artist_data["start_ts"]) + timedelta(hours=1)
+                ).isoformat()
                 if artist_data.get("start_ts")
                 else None
             ),

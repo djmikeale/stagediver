@@ -9,12 +9,7 @@ from stagediver.web.components.utils import get_artists_for_festival_year
 
 def get_unrated_artists(artists_data, ratings):
     """Get list of artists that haven't been rated yet"""
-    return [
-        artist
-        for artist in artists_data
-        if artist["artist_name"] not in ratings
-        and artist.get("_is_current", False)  # Only show current artists
-    ]
+    return [artist for artist in artists_data if artist["artist_name"] not in ratings]
 
 
 def main():

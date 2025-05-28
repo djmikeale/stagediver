@@ -5,7 +5,7 @@ from pathlib import Path
 import streamlit as st
 from ics import Calendar, Event
 
-from stagediver.common.config import HISTORICAL_FILE
+from stagediver.common.config import LINEUPS_FILE
 
 # Constants
 RATING_EMOJIS = {"❤️": "Must see", "🟢": "Yes", "🟡": "Meh", "🚫": "No"}
@@ -14,22 +14,22 @@ RATING_EMOJIS = {"❤️": "Must see", "🟢": "Yes", "🟡": "Meh", "🚫": "No
 @st.cache_data
 def load_lineup_data():
     """Load the historical lineup data from JSON file"""
-    data_path = Path(HISTORICAL_FILE)
+    data_path = Path(LINEUPS_FILE)
     try:
         with open(data_path) as f:
             data = json.load(f)
-        if not isinstance(data, list):
+        if not isinstance(data, dict) or "artists" not in data:
             st.error(
-                f"Invalid data format in {HISTORICAL_FILE}. Expected a list but got {type(data)}"
+                f"Invalid data format in {LINEUPS_FILE}. Expected a dict with 'artists' key but got {type(data)}"
             )
-            return []
+            return {"artists": []}
         return data
     except FileNotFoundError:
-        st.error(f"Lineup data file not found: {HISTORICAL_FILE}")
-        return []
+        st.error(f"Lineup data file not found: {LINEUPS_FILE}")
+        return {"artists": []}
     except json.JSONDecodeError:
-        st.error(f"Invalid JSON in lineup data file: {HISTORICAL_FILE}")
-        return []
+        st.error(f"Invalid JSON in lineup data file: {LINEUPS_FILE}")
+        return {"artists": []}
 
 
 def create_calendar_export(artists_data, ratings):
@@ -38,7 +38,7 @@ def create_calendar_export(artists_data, ratings):
     valid_ratings = ["❤️", "🟢", "🟡"]
     rated_artists = [
         artist
-        for artist in artists_data
+        for artist in artists_data["artists"]
         if ratings.get(artist["artist_name"]) in valid_ratings
     ]
 
@@ -50,7 +50,7 @@ def create_calendar_export(artists_data, ratings):
             event.begin = artist["start_ts"]
             event.end = artist["end_ts"]
         else:
-            event.begin = datetime(artist["festival_year"], 7, 1, 12, 0)
+            event.begin = datetime(artists_data["festival_year"], 7, 1, 13, 37)
             event.end = event.begin + timedelta(hours=1)
 
         event.url = artist.get("scrape_url", "")
@@ -104,8 +104,11 @@ def import_ratings(json_str):
 def get_festivals_and_years(data):
     """Extract unique festival/year combinations"""
     festival_years = set()
-    for artist in data:
-        festival_years.add((artist["festival_name"], artist["festival_year"]))
+    # Get festival info from the root level of the data
+    festival_name = data.get("festival_name")
+    festival_year = data.get("festival_year")
+    if festival_name and festival_year:
+        festival_years.add((festival_name, festival_year))
     return sorted(
         festival_years, key=lambda x: (-x[1], x[0])
     )  # Sort by year desc, then festival name
