@@ -61,6 +61,14 @@ def display_artist_card(artist, blind_mode=False):
     # Artist info - only show if not in blind mode
     if not blind_mode:
         st.markdown(f"### {name}")
+
+        if stage := artist.get("stage_name"):
+            text = f"{stage}"
+            if start_ts := artist.get("start_ts"):
+                start_time = datetime.fromisoformat(start_ts)
+                text += f" • {start_time.strftime('%A, %-d %B, %H:%M')}"
+            st.markdown(f":gray[{text}]")
+
         if artist.get("bio_short"):
             if artist.get("bio_long"):  # Show short bio as expander title
                 with st.expander(f"{artist['bio_short']} *:gray[click to read more]*"):
@@ -70,12 +78,7 @@ def display_artist_card(artist, blind_mode=False):
                     )
             else:  # Only short bio available
                 st.markdown(f"*{artist['bio_short']}*")
-        if artist.get("stage_name"):
-            st.markdown(f"**Stage:** {artist['stage_name']}")
 
-        if artist.get("start_ts"):
-            start_time = datetime.fromisoformat(artist["start_ts"])
-            st.markdown(f"**Start:** {start_time.strftime('%A, %d %B @ %H:%M')}")
     else:
         # In blind mode, show a placeholder title
         st.markdown("### 🎵 Mystery Artist")
