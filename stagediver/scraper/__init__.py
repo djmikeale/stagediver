@@ -93,7 +93,14 @@ def run_scraper(scraper, sample_size: Optional[int] = None) -> None:
             "artist_name": artist_data["name"],
             "stage_name": artist_data.get("stage", ""),
             "start_ts": artist_data.get("start_ts", None),
-            "end_ts": None,
+            # assume 1 hour performance if no end_ts is provided
+            "end_ts": (
+                datetime.fromisoformat(artist_data["start_ts"])
+                .replace(hour=datetime.fromisoformat(artist_data["start_ts"]).hour + 1)
+                .isoformat()
+                if artist_data.get("start_ts")
+                else None
+            ),
             "social_links": (
                 {"spotify": artist_data.get("spotify_link")}
                 if artist_data.get("spotify_link")

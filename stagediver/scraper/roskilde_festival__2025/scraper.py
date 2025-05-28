@@ -126,22 +126,30 @@ class RoskildeFestival2025Scraper:
         artist_country = soup.find(
             "sup", class_=lambda c: c and "typography_superscript" in c
         )
-        artist_country = artist_country.text.strip() if artist_country else None
+        artist_country = (
+            [country.strip() for country in artist_country.text.split("/")]
+            if artist_country
+            else None
+        )
 
         # Split stage info into time and stage name
-        stage_time = None
-        stage_name = None
+        stage_times = []
         if stage_info:
-            parts = stage_info.split(", ", 1)
-            if len(parts) == 2:
-                stage_time, stage_name = parts
+            # Split by / to handle multiple times
+            stage_infos = stage_info.split("/")
+            for info in stage_infos:
+                # Match time using two capture groups: (HH.MM), (stage_name)
+                match = re.match(r".*?(\d{2}\.\d{2}),\s*(.*)", info.strip())
+                if match:
+                    stage_time, stage_name = match.groups()
+                    stage_times.append({"time": stage_time, "stage": stage_name})
 
         # Combine date and time into datetime
         start_ts = None
-        if performance_date and stage_time:
+        if performance_date and stage_times:
             try:
-                # Convert time from "HH.MM" to "HH:MM"
-                time_str = stage_time.replace(".", ":")
+                # Use first time for now
+                time_str = stage_times[0]["time"].replace(".", ":")
                 datetime_str = f"{performance_date}T{time_str}:00"
                 start_ts = datetime.fromisoformat(datetime_str).isoformat()
             except ValueError as e:
@@ -179,7 +187,7 @@ class RoskildeFestival2025Scraper:
 
         return {
             "performance_date": performance_date,
-            "stage": stage_name,
+            "stage": stage_times[0]["stage"] if stage_times else None,
             "start_ts": start_ts,
             "short_description": short_description,
             "long_description": long_description,
