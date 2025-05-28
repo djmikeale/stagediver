@@ -3,9 +3,10 @@ Scraper implementation for Roskilde Festival 2025.
 """
 
 import re
-from datetime import datetime
+from datetime import datetime, timedelta
 from typing import Dict, List, Optional, Tuple
 
+import pytz
 import requests
 from bs4 import BeautifulSoup
 
@@ -75,14 +76,17 @@ class RoskildeFestival2025Scraper:
 
     def _get_start_timestamp(
         self, date: str, stage_times: List[Dict[str, str]]
-    ) -> Optional[str]:
-        """Convert date and time to ISO timestamp."""
+    ) -> Optional[datetime]:
+        """Convert date and time to timezone-aware datetime object."""
         if not (date and stage_times):
             return None
 
         try:
             time_str = stage_times[0]["time"].replace(".", ":")
-            return datetime.fromisoformat(f"{date}T{time_str}:00").isoformat()
+            # Create datetime in Denmark's timezone (CET/CEST)
+            denmark_tz = pytz.timezone("Europe/Copenhagen")
+            dt = datetime.fromisoformat(f"{date}T{time_str}:00")
+            return denmark_tz.localize(dt)
         except ValueError:
             return None
 

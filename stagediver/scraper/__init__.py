@@ -9,10 +9,9 @@ Contains:
 
 import os
 from datetime import datetime, timedelta
-from typing import Dict, List, Optional, Type
+from typing import Dict, List, Optional
 
 from stagediver.common import LINEUPS_FILE, load_json_file, save_json_file
-from stagediver.models import ScrapedData
 
 
 def load_existing_lineups() -> List[Dict]:
@@ -88,17 +87,14 @@ def run_scraper(scraper, sample_size: Optional[int] = None) -> None:
 
     # Process each artist from raw content
     for artist_data in lineup_data.raw_content["artists"]:
+        start_ts = artist_data.get("start_ts")
         artist = {
             "artist_name": artist_data["name"],
             "stage_name": artist_data.get("stage", ""),
-            "start_ts": artist_data.get("start_ts", None),
+            "start_ts": start_ts.isoformat() if start_ts else None,
             # assume 1 hour performance if no end_ts is provided
             "end_ts": (
-                (
-                    datetime.fromisoformat(artist_data["start_ts"]) + timedelta(hours=1)
-                ).isoformat()
-                if artist_data.get("start_ts")
-                else None
+                (start_ts + timedelta(hours=1)).isoformat() if start_ts else None
             ),
             "social_links": (
                 {"spotify": artist_data.get("spotify_link")}
