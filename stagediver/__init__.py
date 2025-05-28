@@ -6,6 +6,6 @@ Contains:
 - Basic configuration loading
 """
 
-from stagediver.common.config import *
+from stagediver.common import *
 
 __version__ = "0.1.0"

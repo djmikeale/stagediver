@@ -5,7 +5,7 @@ from pathlib import Path
 import streamlit as st
 from ics import Calendar, Event
 
-from stagediver.common.config import LINEUPS_FILE
+from stagediver.common import LINEUPS_FILE
 
 # Constants
 RATING_EMOJIS = {"❤️": "Must see", "🟢": "Yes", "🟡": "Meh", "🚫": "No"}

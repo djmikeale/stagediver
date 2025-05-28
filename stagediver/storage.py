@@ -4,7 +4,7 @@ from typing import Dict, List, Optional
 
 from pydantic import BaseModel
 
-from stagediver.common.utils import load_json_file, save_json_file
+from stagediver.common import load_json_file, save_json_file
 
 from .models import Artist, Festival, Performance, Stage
 

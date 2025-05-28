@@ -11,8 +11,7 @@ import os
 from datetime import datetime, timedelta
 from typing import Dict, List, Optional, Type
 
-from stagediver.common.config import LINEUPS_FILE
-from stagediver.common.utils import load_json_file, save_json_file
+from stagediver.common import LINEUPS_FILE, load_json_file, save_json_file
 from stagediver.models import ScrapedData
 
 
