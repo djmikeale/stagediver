@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+from typing import Any, Dict, List, Optional
 
 import streamlit as st
 from streamlit_calendar import calendar
@@ -8,10 +9,84 @@ from stagediver.web.components.sidebar import RATING_EMOJIS, show_sidebar
 from stagediver.web.components.utils import get_artists_for_festival_year
 
 
-def main():
+def get_rating_colors() -> Dict[str, str]:
+    """Returns a mapping of rating emojis to their corresponding colors."""
+    return {
+        "❤️": "#ff4b4b",  # Red for Must see
+        "🟢": "#177233",  # Green for Yes
+        "🟡": "#ffa421",  # Yellow for Meh
+        "🚫": "#808080",  # Gray for No
+        "⚪": "#a9a9a9",  # Dark gray for unrated
+    }
+
+
+def create_calendar_event(
+    artist: Dict[str, Any], rating: str, rating_colors: Dict[str, str]
+) -> Dict[str, Any]:
+    """Creates a calendar event from artist data."""
+    start_time = (
+        datetime.fromisoformat(artist.get("start_ts"))
+        if artist.get("start_ts")
+        else datetime(2024, 7, 1, 13, 37)
+    )
+    end_time = (
+        datetime.fromisoformat(artist.get("end_ts"))
+        if artist.get("end_ts")
+        else start_time + timedelta(hours=1)
+    )
+    color = rating_colors.get(rating, rating_colors["⚪"])
+
+    return {
+        "title": f"{rating} {artist['artist_name']}",
+        "start": start_time.isoformat(),
+        "end": end_time.isoformat(),
+        "resourceId": artist.get("stage_name", "Unknown Stage"),
+        "description": artist.get("bio_short", ""),
+        "backgroundColor": color,
+        "borderColor": color,
+        "artist_data": artist,
+    }
+
+
+def get_calendar_options(events: List[Dict[str, Any]]) -> Dict[str, Any]:
+    """Returns calendar configuration options."""
+    return {
+        "editable": False,
+        "selectable": True,
+        "initialDate": (
+            events[0]["start"].split("T")[0]
+            if events
+            else datetime.now().strftime("%Y-%m-%d")
+        ),
+        "initialView": "resourceTimeGridDay",
+        "slotMinTime": "11:30:00",
+        "slotMaxTime": "28:30:00",  # 28:30 represents 04:30 the next day
+        "resourceGroupField": "building",
+    }
+
+
+def handle_event_click(
+    clicked_event: Dict[str, Any], artists: List[Dict[str, Any]]
+) -> None:
+    """Handles calendar event click and displays artist card."""
+    artist_name = clicked_event.get("title", "Unknown Artist")[2:]
+    artist = next((a for a in artists if a["artist_name"] == artist_name), None)
+
+    if artist:
+        selected = display_artist_card(artist)
+        if selected is not None:
+            new_rating = selected.split()[0]  # Get just the emoji
+            if new_rating != st.session_state.ratings.get(artist_name, ""):
+                st.session_state.ratings[artist_name] = new_rating
+                st.rerun()
+    else:
+        st.error(f"Could not find artist data for: {artist_name}")
+
+
+def main() -> None:
+    """Main function to render the calendar view."""
     # Show shared sidebar with wide layout
     show_sidebar(layout="wide")
-
     st.title("Calendar View")
 
     # Initialize clicked event in session state if not exists
@@ -31,45 +106,16 @@ def main():
         )
         return
 
-    # Define color mapping for ratings
-    rating_colors = {
-        "❤️": "#ff4b4b",  # Red for Must see
-        "🟢": "#177233",  # Green for Yes
-        "🟡": "#ffa421",  # Yellow for Meh
-        "🚫": "#808080",  # Gray for No
-        "⚪": "#a9a9a9",  # Dark gray for unrated
-    }
-
-    # Create calendar events from all artists
-    calendar_events = []
-    for artist in artists:
-        start_time = artist.get("start_ts")
-        if start_time:
-            start_time = datetime.fromisoformat(start_time)
-        else:
-            start_time = datetime(2024, 7, 1, 13, 37)
-
-        end_time = artist.get("end_ts")
-        if end_time:
-            end_time = datetime.fromisoformat(end_time)
-        else:
-            end_time = start_time + timedelta(hours=1)
-
-        # Get rating and color
-        rating = st.session_state.ratings.get(artist["artist_name"], "⚪")
-        color = rating_colors.get(rating, rating_colors["⚪"])
-
-        event = {
-            "title": f"{rating} {artist['artist_name']}",
-            "start": start_time.isoformat(),
-            "end": end_time.isoformat(),
-            "resourceId": artist.get("stage_name", "Unknown Stage"),
-            "description": artist.get("bio_short", ""),
-            "backgroundColor": color,
-            "borderColor": color,
-            "artist_data": artist,
-        }
-        calendar_events.append(event)
+    # Create calendar events
+    rating_colors = get_rating_colors()
+    calendar_events = [
+        create_calendar_event(
+            artist,
+            st.session_state.ratings.get(artist["artist_name"], "⚪"),
+            rating_colors,
+        )
+        for artist in artists
+    ]
 
     # Get unique stages for resources
     stages = sorted(set(event["resourceId"] for event in calendar_events))
@@ -85,19 +131,17 @@ def main():
         )
 
     with col2:
-        # Create options list for multiselect including unrated
         rating_options = [f"{emoji} {label}" for emoji, label in RATING_EMOJIS.items()]
-        rating_options.append("⚪ Unrated")  # Add unrated option
+        rating_options.append("⚪ Unrated")
         selected_ratings = st.multiselect(
             "Filter by rating",
             options=rating_options,
-            default=rating_options,  # Show all by default
+            default=rating_options,
             help="Select ratings to display",
         )
-        # Extract emojis from selected ratings
         selected_ratings = [rating.split()[0] for rating in selected_ratings]
 
-    # Filter events based on selected stages and ratings
+    # Filter events and resources
     filtered_events = [
         event
         for event in calendar_events
@@ -105,7 +149,6 @@ def main():
         and any(rating in event["title"] for rating in selected_ratings)
     ]
 
-    # Filter resources based on selected stages
     filtered_resources = [
         {"id": stage, "building": stage, "title": stage}
         for stage in selected_stages
@@ -116,22 +159,10 @@ def main():
         )
     ]
 
-    calendar_options = {
-        "editable": False,
-        "selectable": True,
-        "initialDate": (
-            calendar_events[0]["start"].split("T")[0]
-            if calendar_events
-            else datetime.now().strftime("%Y-%m-%d")
-        ),
-        "initialView": "resourceTimeGridDay",
-        "slotMinTime": "11:30:00",
-        "slotMaxTime": "28:30:00",  # 28:30 represents 04:30 the next day
-        "resourceGroupField": "building",
-        "resources": filtered_resources,
-    }
+    # Configure and render calendar
+    calendar_options = get_calendar_options(filtered_events)
+    calendar_options["resources"] = filtered_resources
 
-    # Render calendar and capture click events
     calendar_result = calendar(
         events=filtered_events,
         options=calendar_options,
@@ -141,24 +172,11 @@ def main():
 
     # Handle event clicks
     if calendar_result and "eventClick" in calendar_result:
-        clicked_event = calendar_result["eventClick"]["event"]
-        st.session_state.clicked_event = clicked_event
+        st.session_state.clicked_event = calendar_result["eventClick"]["event"]
 
     # Display artist card if an event was clicked
     if st.session_state.clicked_event:
-
-        artist_name = st.session_state.clicked_event.get("title", "Unknown Artist")[2:]
-        artist = next((a for a in artists if a["artist_name"] == artist_name), None)
-        if artist:
-            selected = display_artist_card(artist)
-            # Handle rating selection
-            if selected is not None:
-                new_rating = selected.split()[0]  # Get just the emoji
-                if new_rating != st.session_state.ratings.get(artist_name, ""):
-                    st.session_state.ratings[artist_name] = new_rating
-                    st.rerun()
-        else:
-            st.error(f"Could not find artist data for: {artist_name}")
+        handle_event_click(st.session_state.clicked_event, artists)
 
 
 if __name__ == "__main__":
