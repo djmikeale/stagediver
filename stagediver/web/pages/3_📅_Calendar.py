@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 import streamlit as st
 from streamlit_calendar import calendar
 
+from stagediver.web.components.artist_card import display_artist_card
 from stagediver.web.components.sidebar import RATING_EMOJIS, show_sidebar
 from stagediver.web.components.utils import get_artists_for_festival_year
 
@@ -12,6 +13,10 @@ def main():
     show_sidebar(layout="wide")
 
     st.title("Calendar View")
+
+    # Initialize clicked event in session state if not exists
+    if "clicked_event" not in st.session_state:
+        st.session_state.clicked_event = None
 
     # Get artists for selected festival/year
     artists = get_artists_for_festival_year(
@@ -60,9 +65,9 @@ def main():
             "end": end_time.isoformat(),
             "resourceId": artist.get("stage_name", "Unknown Stage"),
             "description": artist.get("bio_short", ""),
-            "url": artist.get("scrape_url", ""),
             "backgroundColor": color,
             "borderColor": color,
+            "artist_data": artist,
         }
         calendar_events.append(event)
 
@@ -120,16 +125,40 @@ def main():
             else datetime.now().strftime("%Y-%m-%d")
         ),
         "initialView": "resourceTimeGridDay",
-        "slotMinTime": "09:00:00",
+        "slotMinTime": "11:30:00",
         "slotMaxTime": "28:30:00",  # 28:30 represents 04:30 the next day
         "resourceGroupField": "building",
         "resources": filtered_resources,
     }
 
-    calendar_data = calendar(
+    # Render calendar and capture click events
+    calendar_result = calendar(
         events=filtered_events,
         options=calendar_options,
+        key="calendar_view",
+        callbacks=["eventClick"],
     )
+
+    # Handle event clicks
+    if calendar_result and "eventClick" in calendar_result:
+        clicked_event = calendar_result["eventClick"]["event"]
+        st.session_state.clicked_event = clicked_event
+
+    # Display artist card if an event was clicked
+    if st.session_state.clicked_event:
+
+        artist_name = st.session_state.clicked_event.get("title", "Unknown Artist")[2:]
+        artist = next((a for a in artists if a["artist_name"] == artist_name), None)
+        if artist:
+            selected = display_artist_card(artist)
+            # Handle rating selection
+            if selected is not None:
+                new_rating = selected.split()[0]  # Get just the emoji
+                if new_rating != st.session_state.ratings.get(artist_name, ""):
+                    st.session_state.ratings[artist_name] = new_rating
+                    st.rerun()
+        else:
+            st.error(f"Could not find artist data for: {artist_name}")
 
 
 if __name__ == "__main__":
