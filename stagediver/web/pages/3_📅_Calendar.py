@@ -62,7 +62,7 @@ def get_calendar_options(events: List[Dict[str, Any]]) -> Dict[str, Any]:
         "slotMinTime": "11:00:00",
         "slotMaxTime": "28:30:00",  # 28:30 represents 04:30 the next day
         "resourceGroupField": "building",
-        "height": "400px",  # Set a fixed height for the calendar
+        "height": "500px",  # Set a fixed height for the calendar
         "scrollTime": "17:00:00",
         "slotLabelFormat": {
             "hour": "2-digit",
@@ -94,7 +94,6 @@ def main() -> None:
     """Main function to render the calendar view."""
     # Show shared sidebar with wide layout
     show_sidebar(layout="wide")
-    st.title("Calendar View")
 
     # Initialize clicked event in session state if not exists
     if "clicked_event" not in st.session_state:
