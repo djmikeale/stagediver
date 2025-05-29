@@ -240,10 +240,6 @@ def show_sidebar(layout="centered"):
                             <style>
                                 .rating-table {{
                                     width: 100%;
-                                    border-collapse: collapse;
-                                    border: none !important;
-                                    border-spacing: 0;
-                                    margin: 5px 0;
                                 }}
                                 .rating-table, .rating-table tr, .rating-table td {{
                                     border: none !important;
@@ -252,22 +248,19 @@ def show_sidebar(layout="centered"):
                                     padding: 8px;
                                     text-align: center;
                                     color: white;
-                                    border: none !important;
                                 }}
                                 .rating-cell:first-child {{
-                                    border-top-left-radius: 8px;
-                                    border-bottom-left-radius: 8px;
-                                    border: none;
+                                    border-top-left-radius: 0.5rem;
+                                    border-bottom-left-radius: 0.5rem;
                                 }}
                                 .rating-cell:last-child {{
-                                    border-top-right-radius: 8px;
-                                    border-bottom-right-radius: 8px;
-                                    border: none;
+                                    border-top-right-radius: 0.5rem;
+                                    border-bottom-right-radius: 0.5rem;
                                 }}
-                                .rating-cell.heart {{ background-color: #ff4b4b; border: none; }}
-                                .rating-cell.yes {{ background-color: #177233; border: none; }}
-                                .rating-cell.meh {{ background-color: #ffa421; border: none; }}
-                                .rating-cell.no {{ background-color: #808080; border: none; }}
+                                .rating-cell.heart {{ background-color: #ff4b4b; }}
+                                .rating-cell.yes {{ background-color: #177233; }}
+                                .rating-cell.meh {{ background-color: #ffa421; }}
+                                .rating-cell.no {{ background-color: #808080; }}
                             </style>
                             <table class="rating-table">
                                 <tr>
