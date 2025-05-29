@@ -59,9 +59,16 @@ def get_calendar_options(events: List[Dict[str, Any]]) -> Dict[str, Any]:
             else datetime.now().strftime("%Y-%m-%d")
         ),
         "initialView": "resourceTimeGridDay",
-        "slotMinTime": "11:30:00",
+        "slotMinTime": "11:00:00",
         "slotMaxTime": "28:30:00",  # 28:30 represents 04:30 the next day
         "resourceGroupField": "building",
+        "height": "400px",  # Set a fixed height for the calendar
+        "scrollTime": "17:00:00",
+        "slotLabelFormat": {
+            "hour": "2-digit",
+            "hour12": False,
+        },
+        "allDaySlot": False,
     }
 
 
