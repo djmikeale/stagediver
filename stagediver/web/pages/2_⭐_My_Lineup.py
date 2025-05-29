@@ -57,11 +57,6 @@ def main():
         for artist in artists
     ]
 
-    # Show rating stats before creating DataFrame
-    total_artists = len(all_artists)
-    rated_artists = sum(1 for artist in all_artists if artist["rating"])
-    st.caption(f"Rated {rated_artists} out of {total_artists} artists")
-
     # Create DataFrame only once and reuse
     data = {
         "Rating": [artist["rating"] for artist in all_artists],

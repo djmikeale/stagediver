@@ -1,14 +1,18 @@
 import json
+from collections import OrderedDict
 from datetime import datetime, timedelta
 from pathlib import Path
 
+import pandas as pd
 import streamlit as st
 from ics import Calendar, Event
 
 from stagediver.common import LINEUPS_FILE
 
 # Constants
-RATING_EMOJIS = {"❤️": "Must see", "🟢": "Yes", "🟡": "Meh", "🚫": "No"}
+RATING_EMOJIS = OrderedDict(
+    [("❤️", "Must see"), ("🟢", "Yes"), ("🟡", "Meh"), ("🚫", "No")]
+)
 
 
 @st.cache_data
@@ -177,4 +181,56 @@ def show_sidebar(layout="centered"):
                         help="Download your lineup as calendar",
                         use_container_width=True,
                         type="tertiary",
+                    )
+
+                # Show rating statistics
+                st.divider()
+
+                # Get total concerts and rated count
+                total_concerts = len(
+                    [
+                        a
+                        for a in st.session_state.artists_data["artists"]
+                        if a["artist_name"]
+                    ]
+                )
+                rated_concerts = len(st.session_state.ratings)
+
+                # Count each rating type
+                rating_counts = {
+                    emoji: len(
+                        [r for r in st.session_state.ratings.values() if r == emoji]
+                    )
+                    for emoji in RATING_EMOJIS
+                }
+
+                # Display stats
+                st.text(
+                    f"You've rated {rated_concerts} out of {total_concerts} concerts ({rated_concerts/total_concerts*100:.0f}%), spread across the following ratings:"
+                )
+
+                # Create stacked bar chart for ratings
+                if rating_counts:
+                    # Create a DataFrame for the chart with explicit ordering
+                    chart_data = pd.DataFrame(
+                        {
+                            "Rating": [""],
+                            " ❤️": [rating_counts.get("❤️", 0)],
+                            " 🟢": [rating_counts.get("🟢", 0)],
+                            " 🟡": [rating_counts.get("🟡", 0)],
+                            "🚫": [rating_counts.get("🚫", 0)],
+                        }
+                    )
+                    # Create stacked bar chart
+                    st.bar_chart(
+                        chart_data.set_index("Rating"),
+                        use_container_width=True,
+                        horizontal=True,
+                        stack=True,
+                        color=[
+                            "#ff4b4b",  # ❤️
+                            "#177233",  # 🟢
+                            "#ffa421",  # 🟡
+                            "#808080",  # 🚫
+                        ],
                     )
