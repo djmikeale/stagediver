@@ -5,24 +5,11 @@ import streamlit as st
 from streamlit_calendar import calendar
 
 from stagediver.web.components.artist_card import display_artist_card
-from stagediver.web.components.sidebar import RATING_EMOJIS, show_sidebar
+from stagediver.web.components.sidebar import RATING_INFO, show_sidebar
 from stagediver.web.components.utils import get_artists_for_festival_year
 
 
-def get_rating_colors() -> Dict[str, str]:
-    """Returns a mapping of rating emojis to their corresponding colors."""
-    return {
-        "❤️": "#ff4b4b",  # Red for Must see
-        "🟢": "#177233",  # Green for Yes
-        "🟡": "#ffa421",  # Yellow for Meh
-        "🚫": "#808080",  # Gray for No
-        "⚪": "#a9a9a9",  # Dark gray for unrated
-    }
-
-
-def create_calendar_event(
-    artist: Dict[str, Any], rating: str, rating_colors: Dict[str, str]
-) -> Dict[str, Any]:
+def create_calendar_event(artist: Dict[str, Any], rating: str) -> Dict[str, Any]:
     """Creates a calendar event from artist data."""
     start_time = (
         datetime.fromisoformat(artist.get("start_ts"))
@@ -34,7 +21,9 @@ def create_calendar_event(
         if artist.get("end_ts")
         else start_time + timedelta(hours=1)
     )
-    color = rating_colors.get(rating, rating_colors["⚪"])
+
+    # Get color from RATING_INFO or use gray for unrated
+    color = RATING_INFO[rating]["bg_color"] if rating in RATING_INFO else "#a9a9a9"
 
     return {
         "title": f"{rating} {artist['artist_name']}",
@@ -113,12 +102,10 @@ def main() -> None:
         return
 
     # Create calendar events
-    rating_colors = get_rating_colors()
     calendar_events = [
         create_calendar_event(
             artist,
             st.session_state.ratings.get(artist["artist_name"], "⚪"),
-            rating_colors,
         )
         for artist in artists
     ]
@@ -145,7 +132,9 @@ def main() -> None:
         )
 
     with col2:
-        rating_options = [f"{emoji} {label}" for emoji, label in RATING_EMOJIS.items()]
+        rating_options = [
+            f"{emoji} {info['text']}" for emoji, info in RATING_INFO.items()
+        ]
         rating_options.append("⚪ Unrated")
         selected_ratings = st.multiselect(
             "Filter by rating",

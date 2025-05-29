@@ -3,6 +3,8 @@ from datetime import datetime
 
 import streamlit as st
 
+from stagediver.web.components.sidebar import RATING_INFO
+
 
 def extract_spotify_id(spotify_url):
     """Extract Spotify artist ID from full URL"""
@@ -54,8 +56,6 @@ def create_spotify_player_with_overlay(spotify_id, visible=True):
 
 def display_artist_card(artist, blind_mode=False):
     """Display an artist card with optional rating controls and blind mode"""
-    from stagediver.web.components.sidebar import RATING_EMOJIS
-
     name = artist["artist_name"]
 
     # Artist info - only show if not in blind mode
@@ -94,18 +94,23 @@ def display_artist_card(artist, blind_mode=False):
     current_rating = st.session_state.ratings.get(name, "")
 
     # Create options list for segmented control
-    rating_options = [f"{emoji} {label}" for emoji, label in RATING_EMOJIS.items()]
+    rating_options = [f"{emoji} {info['text']}" for emoji, info in RATING_INFO.items()]
 
     # Find current rating option or default to None
     default = None
     if current_rating:
-        default = f"{current_rating} {RATING_EMOJIS[current_rating]}"
+        default = f"{current_rating} {RATING_INFO[current_rating]['text']}"
 
-    selected = st.segmented_control(
-        label="Rate this artist:",
+    rating = st.segmented_control(
+        "Rating",
         options=rating_options,
-        key=f"rate_{name}",
         default=default,
+        key=f"rating_{name}",
     )
+    if rating:
+        emoji = rating.split(" ")[0]
+        st.session_state.ratings[name] = emoji
+    elif name in st.session_state.ratings:
+        del st.session_state.ratings[name]
 
-    return selected
+    return rating

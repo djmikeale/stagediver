@@ -1,29 +1,6 @@
 import streamlit as st
 
-from stagediver.web.components.sidebar import RATING_EMOJIS, show_sidebar
-
-
-def show_ratings_summary(artists):
-    """Display a summary of user ratings"""
-    st.divider()
-    st.subheader("Your Ratings")
-
-    total_rated = len(st.session_state.ratings)
-    if total_rated > 0:
-        st.caption(f"You've rated {total_rated} out of {len(artists)} artists")
-
-        # Show summary by rating
-        for emoji, label in RATING_EMOJIS.items():
-            rated_artists = [
-                name
-                for name, rating in st.session_state.ratings.items()
-                if rating == emoji
-            ]
-            if rated_artists:
-                with st.expander(f"{label} ({len(rated_artists)})", icon=f"{emoji}"):
-                    st.markdown("- " + "\n- ".join(sorted(rated_artists)))
-    else:
-        st.info("Start rating artists to build your lineup!")
+from stagediver.web.components.sidebar import show_sidebar
 
 
 def main():
@@ -59,10 +36,6 @@ def main():
     ## 👈 Get started by selecting a page from the sidebar!
     """
     )
-
-    # Show ratings summary if there are any ratings
-    if st.session_state.ratings:
-        show_ratings_summary(st.session_state.artists_data["artists"])
 
 
 if __name__ == "__main__":

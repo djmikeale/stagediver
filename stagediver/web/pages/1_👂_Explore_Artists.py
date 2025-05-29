@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 import streamlit as st
 
 from stagediver.web.components.artist_card import display_artist_card
-from stagediver.web.components.sidebar import RATING_EMOJIS, show_sidebar
+from stagediver.web.components.sidebar import RATING_INFO, show_sidebar
 from stagediver.web.components.utils import get_artists_for_festival_year
 
 

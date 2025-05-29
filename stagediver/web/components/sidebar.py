@@ -10,9 +10,12 @@ from ics import Calendar, Event
 from stagediver.common import LINEUPS_FILE
 
 # Constants
-RATING_EMOJIS = OrderedDict(
-    [("❤️", "Must see"), ("🟢", "Yes"), ("🟡", "Meh"), ("🚫", "No")]
-)
+RATING_INFO = {
+    "❤️": {"text": "Must see", "short_name": "heart", "bg_color": "#ff4b4b"},
+    "🟢": {"text": "Yes", "short_name": "yes", "bg_color": "#177233"},
+    "🟡": {"text": "Meh", "short_name": "meh", "bg_color": "#ffa421"},
+    "🚫": {"text": "No", "short_name": "no", "bg_color": "#808080"},
+}
 
 
 @st.cache_data
@@ -60,12 +63,12 @@ def create_calendar_export(artists_data, ratings):
 def export_ratings():
     """Export ratings data as JSON string"""
     export_data = {
-        label: sorted(
+        info["text"]: sorted(
             artist
             for artist, rating in st.session_state.ratings.items()
             if rating == emoji
         )
-        for emoji, label in RATING_EMOJIS.items()
+        for emoji, info in RATING_INFO.items()
     }
     export_data["timestamp"] = datetime.now().isoformat()
     return json.dumps(export_data, indent=2)
@@ -75,7 +78,9 @@ def import_ratings(json_str):
     """Import ratings data from JSON string"""
     try:
         data = json.loads(json_str)
-        categories_to_emoji = {v: k for k, v in RATING_EMOJIS.items()}
+        categories_to_emoji = {
+            info["text"]: emoji for emoji, info in RATING_INFO.items()
+        }
         new_ratings = {
             artist: emoji
             for category, emoji in categories_to_emoji.items()
@@ -201,7 +206,7 @@ def show_sidebar(layout="centered"):
                     emoji: len(
                         [r for r in st.session_state.ratings.values() if r == emoji]
                     )
-                    for emoji in RATING_EMOJIS
+                    for emoji in RATING_INFO
                 }
 
                 # Display stats
@@ -226,15 +231,6 @@ def show_sidebar(layout="centered"):
                     }
 
                     if active_ratings:
-                        # Map emojis to their CSS classes
-                        emoji_classes = {
-                            "❤️": "heart",
-                            "🟢": "yes",
-                            "🟡": "meh",
-                            "🚫": "no",
-                        }
-
-                        # Create table with proportional columns
                         st.markdown(
                             f"""
                             <style>
@@ -257,15 +253,15 @@ def show_sidebar(layout="centered"):
                                     border-top-right-radius: 0.5rem;
                                     border-bottom-right-radius: 0.5rem;
                                 }}
-                                .rating-cell.heart {{ background-color: #ff4b4b; }}
-                                .rating-cell.yes {{ background-color: #177233; }}
-                                .rating-cell.meh {{ background-color: #ffa421; }}
-                                .rating-cell.no {{ background-color: #808080; }}
+                                {''.join(
+                                    f'.rating-cell.{info["short_name"]} {{ background-color: {info["bg_color"]}; }}'
+                                    for info in RATING_INFO.values()
+                                )}
                             </style>
                             <table class="rating-table">
                                 <tr>
                                     {''.join(
-                                        f'<td class="rating-cell {emoji_classes[emoji]}" style="width: {percentage}%">'
+                                        f'<td class="rating-cell {RATING_INFO[emoji]["short_name"]}" style="width: {percentage}%">'
                                         f'{emoji}<br>{count}</td>'
                                         for emoji, (count, percentage) in active_ratings.items()
                                     )}

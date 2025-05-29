@@ -1,6 +1,6 @@
 import streamlit as st
 
-from stagediver.web.components.sidebar import RATING_EMOJIS, show_sidebar
+from stagediver.web.components.sidebar import RATING_INFO, show_sidebar
 from stagediver.web.components.utils import get_artists_for_festival_year
 
 
@@ -72,7 +72,7 @@ def main():
         use_container_width=True,
         column_config={
             "Rating": st.column_config.SelectboxColumn(
-                "Rating", width="small", options=[""] + list(RATING_EMOJIS.keys())
+                "Rating", width="small", options=[""] + list(RATING_INFO.keys())
             ),
             "Artist": st.column_config.TextColumn(
                 "Artist",
