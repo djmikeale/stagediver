@@ -21,8 +21,6 @@ def main():
     # Show shared sidebar with wide layout
     show_sidebar(layout="wide")
 
-    st.title("My Lineup")
-
     # Get artists for selected festival/year
     artists = get_artists_for_festival_year(
         st.session_state.artists_data,
@@ -70,6 +68,7 @@ def main():
     edited_data = st.data_editor(
         data,
         hide_index=True,
+        height=800,
         use_container_width=True,
         column_config={
             "Rating": st.column_config.SelectboxColumn(
