@@ -181,7 +181,9 @@ class RoskildeFestival2025Scraper:
 
         return {
             "performance_date": performance_date,
-            "stage": stage_times[0]["stage"] if stage_times else None,
+            "stage": (
+                stage_times[0]["stage"] if stage_times else "TBA"
+            ),  # required for calendar view
             "start_ts": self._get_start_timestamp(performance_date, stage_times),
             "short_description": short_desc,
             "long_description": long_desc,
