@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 import streamlit as st
 from streamlit_calendar import calendar
 
-from stagediver.web.components.sidebar import show_sidebar
+from stagediver.web.components.sidebar import RATING_EMOJIS, show_sidebar
 from stagediver.web.components.utils import get_artists_for_festival_year
 
 
@@ -80,12 +80,17 @@ def main():
         )
 
     with col2:
+        # Create options list for multiselect including unrated
+        rating_options = [f"{emoji} {label}" for emoji, label in RATING_EMOJIS.items()]
+        rating_options.append("⚪ Unrated")  # Add unrated option
         selected_ratings = st.multiselect(
-            "Ratings",
-            options=list(rating_colors.keys()),
-            default=list(rating_colors.keys()),
-            help="Filter by rating",
+            "Filter by rating",
+            options=rating_options,
+            default=rating_options,  # Show all by default
+            help="Select ratings to display",
         )
+        # Extract emojis from selected ratings
+        selected_ratings = [rating.split()[0] for rating in selected_ratings]
 
     # Filter events based on selected stages and ratings
     filtered_events = [
