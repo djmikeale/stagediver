@@ -209,28 +209,75 @@ def show_sidebar(layout="centered"):
                     f"You've rated {rated_concerts} out of {total_concerts} concerts ({rated_concerts/total_concerts*100:.0f}%), spread across the following ratings:"
                 )
 
-                # Create stacked bar chart for ratings
+                # Create proportional table for ratings
                 if rating_counts:
-                    # Create a DataFrame for the chart with explicit ordering
-                    chart_data = pd.DataFrame(
-                        {
-                            "Rating": [""],
-                            " ❤️": [rating_counts.get("❤️", 0)],
-                            " 🟢": [rating_counts.get("🟢", 0)],
-                            " 🟡": [rating_counts.get("🟡", 0)],
-                            "🚫": [rating_counts.get("🚫", 0)],
+                    # Calculate percentages for each rating
+                    total_rated = sum(rating_counts.values())
+                    rating_percentages = {
+                        emoji: (count / total_rated * 100) if total_rated > 0 else 0
+                        for emoji, count in rating_counts.items()
+                    }
+
+                    # Filter out ratings with 0 count
+                    active_ratings = {
+                        emoji: (count, rating_percentages[emoji])
+                        for emoji, count in rating_counts.items()
+                        if count > 0
+                    }
+
+                    if active_ratings:
+                        # Map emojis to their CSS classes
+                        emoji_classes = {
+                            "❤️": "heart",
+                            "🟢": "yes",
+                            "🟡": "meh",
+                            "🚫": "no",
                         }
-                    )
-                    # Create stacked bar chart
-                    st.bar_chart(
-                        chart_data.set_index("Rating"),
-                        use_container_width=True,
-                        horizontal=True,
-                        stack=True,
-                        color=[
-                            "#ff4b4b",  # ❤️
-                            "#177233",  # 🟢
-                            "#ffa421",  # 🟡
-                            "#808080",  # 🚫
-                        ],
-                    )
+
+                        # Create table with proportional columns
+                        st.markdown(
+                            f"""
+                            <style>
+                                .rating-table {{
+                                    width: 100%;
+                                    border-collapse: collapse;
+                                    border: none !important;
+                                    border-spacing: 0;
+                                    margin: 5px 0;
+                                }}
+                                .rating-table, .rating-table tr, .rating-table td {{
+                                    border: none !important;
+                                }}
+                                .rating-cell {{
+                                    padding: 8px;
+                                    text-align: center;
+                                    color: white;
+                                    border: none !important;
+                                }}
+                                .rating-cell:first-child {{
+                                    border-top-left-radius: 8px;
+                                    border-bottom-left-radius: 8px;
+                                    border: none;
+                                }}
+                                .rating-cell:last-child {{
+                                    border-top-right-radius: 8px;
+                                    border-bottom-right-radius: 8px;
+                                    border: none;
+                                }}
+                                .rating-cell.heart {{ background-color: #ff4b4b; border: none; }}
+                                .rating-cell.yes {{ background-color: #177233; border: none; }}
+                                .rating-cell.meh {{ background-color: #ffa421; border: none; }}
+                                .rating-cell.no {{ background-color: #808080; border: none; }}
+                            </style>
+                            <table class="rating-table">
+                                <tr>
+                                    {''.join(
+                                        f'<td class="rating-cell {emoji_classes[emoji]}" style="width: {percentage}%">'
+                                        f'{emoji}<br>{count}</td>'
+                                        for emoji, (count, percentage) in active_ratings.items()
+                                    )}
+                                </tr>
+                            </table>
+                            """,
+                            unsafe_allow_html=True,
+                        )
