@@ -43,42 +43,22 @@ def main():
 
     st.markdown(
         f"""
-    Discover hidden gems
-
-    Save future favorites to your calendar
-
-    Make unforgettable festival memories
+    - 🕵️ Discover hidden gems
+    - 📅 Save future favorites to your calendar
+    - 🎉 Make unforgettable festival memories
 
     ## Introduction
 
-    With 100s of artists at large festivals, it's hard to know who to see.
+    - With 100s of artists at large festivals, it's hard to know who to see.
+    - Stagediver makes it easy to explore artists, and find out which ones you can't miss... and which ones are just `meh`.
+    - When you're done with rating, export favorite artists to your calendar.
 
-    Stagediver makes it easy to explore artists, and find out which ones you can't miss... and which ones are just `meh`.
-
-    When you're done with rating, export favorite artists to your calendar.
-
-    Don't wanna listen to 100+ artists in one sitting?
-    Save your progress, and come back later to listen to more!
+    *Don't wanna listen to 100+ artists in one sitting? Save your progress, and come back later to listen to more!*
 
 
-    Get started by selecting a page from the sidebar! 👈
+    ## 👈 Get started by selecting a page from the sidebar!
     """
     )
-
-    # Stats section
-    st.divider()
-    st.subheader("Quick Stats")
-    col1, col2, col3 = st.columns(3)
-    with col1:
-        st.metric(
-            "Festivals",
-            "1",  # Since we now have one festival per file
-        )
-    with col2:
-        st.metric("Artists", f"{len(st.session_state.artists_data['artists']):,}")
-    with col3:
-        rated_count = len(st.session_state.ratings)
-        st.metric("Your Ratings", str(rated_count))
 
     # Show ratings summary if there are any ratings
     if st.session_state.ratings:
