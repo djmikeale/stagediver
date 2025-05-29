@@ -78,28 +78,30 @@ def display_artist_card(artist, blind_mode=False):
     # Artist info - only show if not in blind mode
     if not blind_mode:
 
-        if stage := artist.get("stage_name"):
-            text = f"{stage}"
-            if start_ts := artist.get("start_ts"):
-                start_time = datetime.fromisoformat(start_ts)
-                text += f" • {start_time.strftime('%A, %-d %B, %H:%M')}"
+        # Convert country codes to flags
+        country_flags = " ".join(
+            country_code_to_flag(code) for code in artist.get("country_code", [])
+        )
+        st.markdown(f"### {country_flags} {name}")
 
-            # Convert country codes to flags
-            country_flags = " ".join(
-                country_code_to_flag(code) for code in artist.get("country_code", [])
-            )
-            st.markdown(f"### {country_flags} {name} :gray[&nbsp;&nbsp;{text}] ")
+        text = ""
+        if stage := artist.get("stage_name"):
+            text += f"{stage}: "
+
+        if start_ts := artist.get("start_ts"):
+            start_time = datetime.fromisoformat(start_ts)
+            text += f"{start_time.strftime('%A, %-d %B, %H:%M')}"
 
         if artist.get("scrape_url"):
-            subheader = f"[🌐]({artist['scrape_url']})"
+            text += f"&nbsp;&nbsp;[🔗]({artist['scrape_url']})"
 
         if artist.get("social_links", {}).get("spotify"):
-            subheader += f"&nbsp;&nbsp;[▶️]({artist['social_links']['spotify']})"
+            text += f"&nbsp;&nbsp;&nbsp;[▶️]({artist['social_links']['spotify']})"
+
+        st.markdown(f":gray[{text}]")
 
         if artist.get("bio_short"):
-            subheader += f"&nbsp;&nbsp;*{artist['bio_short']}*"
-
-        st.markdown(f"{subheader}")
+            st.markdown(f"*{artist['bio_short']}*")
 
     else:
         # In blind mode, show a placeholder title
