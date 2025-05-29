@@ -133,7 +133,15 @@ def main() -> None:
         selected_stages = st.multiselect(
             "Stages",
             options=stages,
-            default=["Apollo", "Arena", "Gaia", "Gloria", "Orange Scene", "Platform"],
+            default=[
+                "Apollo",
+                "Arena",
+                "Avalon",
+                "Gaia",
+                "Gloria",
+                "Orange Scene",
+                "Platform",
+            ],
             help="Select stages to display",
         )
 
@@ -152,18 +160,11 @@ def main() -> None:
     filtered_events = [
         event
         for event in calendar_events
-        if event["resourceId"] in selected_stages
-        and any(rating in event["title"] for rating in selected_ratings)
+        if any(rating in event["title"] for rating in selected_ratings)
     ]
 
     filtered_resources = [
-        {"id": stage, "building": stage, "title": stage}
-        for stage in selected_stages
-        if any(
-            event["resourceId"] == stage
-            and any(rating in event["title"] for rating in selected_ratings)
-            for event in calendar_events
-        )
+        {"id": stage, "building": stage, "title": stage} for stage in selected_stages
     ]
 
     # Configure and render calendar
