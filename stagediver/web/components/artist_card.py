@@ -1,6 +1,7 @@
 import re
 from datetime import datetime
 
+import pycountry
 import streamlit as st
 
 from stagediver.web.components.sidebar import RATING_INFO
@@ -54,30 +55,51 @@ def create_spotify_player_with_overlay(spotify_id, visible=True):
     )
 
 
+def country_code_to_flag(country_code):
+    """Convert a country code to a flag emoji using pycountry"""
+    if not country_code:
+        return ""
+    try:
+        # Map UK to GB
+        if country_code.upper() == "UK":
+            country_code = "GB"
+        if country_code.upper() == "INT":
+            country_code = "🌐"
+        country = pycountry.countries.get(alpha_2=country_code.upper())
+        return country.flag if country else country_code
+    except (KeyError, AttributeError):
+        return country_code
+
+
 def display_artist_card(artist, blind_mode=False):
     """Display an artist card with optional rating controls and blind mode"""
     name = artist["artist_name"]
 
     # Artist info - only show if not in blind mode
     if not blind_mode:
-        st.markdown(f"### {name}")
 
         if stage := artist.get("stage_name"):
             text = f"{stage}"
             if start_ts := artist.get("start_ts"):
                 start_time = datetime.fromisoformat(start_ts)
                 text += f" • {start_time.strftime('%A, %-d %B, %H:%M')}"
-            st.markdown(f":gray[{text}]")
+
+            # Convert country codes to flags
+            country_flags = " ".join(
+                country_code_to_flag(code) for code in artist.get("country_code", [])
+            )
+            st.markdown(f"### {country_flags} {name} :gray[&nbsp;&nbsp;{text}] ")
+
+        if artist.get("scrape_url"):
+            subheader = f"[🌐]({artist['scrape_url']})"
+
+        if artist.get("social_links", {}).get("spotify"):
+            subheader += f"&nbsp;&nbsp;[▶️]({artist['social_links']['spotify']})"
 
         if artist.get("bio_short"):
-            if artist.get("bio_long"):  # Show short bio as expander title
-                with st.expander(f"{artist['bio_short']} *:gray[click to read more]*"):
-                    st.markdown(
-                        artist["bio_long"].replace("\n", "<br><br>"),
-                        unsafe_allow_html=True,
-                    )
-            else:  # Only short bio available
-                st.markdown(f"*{artist['bio_short']}*")
+            subheader += f"&nbsp;&nbsp;*{artist['bio_short']}*"
+
+        st.markdown(f"{subheader}")
 
     else:
         # In blind mode, show a placeholder title
@@ -103,14 +125,24 @@ def display_artist_card(artist, blind_mode=False):
 
     rating = st.segmented_control(
         "Rating",
+        label_visibility="collapsed",
         options=rating_options,
         default=default,
         key=f"rating_{name}",
     )
+
     if rating:
         emoji = rating.split(" ")[0]
         st.session_state.ratings[name] = emoji
     elif name in st.session_state.ratings:
         del st.session_state.ratings[name]
+
+    if artist.get("bio_long") and not blind_mode:
+        st.divider()
+        with st.expander(f"Read more about {name}"):
+            st.markdown(
+                artist["bio_long"].replace("\n", "<br><br>"),
+                unsafe_allow_html=True,
+            )
 
     return rating

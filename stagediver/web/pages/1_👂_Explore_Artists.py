@@ -52,10 +52,6 @@ def main():
                 "🎉 You've rated all artists! Check out your ratings on the Welcome page."
             )
         else:
-            # Show count of remaining artists
-            st.caption(f"{len(unrated_artists)} artists left to rate")
-
-            # Display current artist
             current_artist = unrated_artists[0]
 
             # Create a card-like container
