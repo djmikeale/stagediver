@@ -105,7 +105,7 @@ def get_festivals_and_years(data):
 
 def show_sidebar(layout="centered"):
     """Display the shared sidebar content"""
-    st.set_page_config(page_title="Stagediver", page_icon="🎪", layout=layout)
+    st.set_page_config(page_title="Stagediver", page_icon="🎸", layout=layout)
 
     # Initialize session states
     if "ratings" not in st.session_state:

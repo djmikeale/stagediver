@@ -82,7 +82,7 @@ def display_artist_card(artist, blind_mode=False):
         country_flags = " ".join(
             country_code_to_flag(code) for code in artist.get("country_code", [])
         )
-        st.markdown(f"### {country_flags} {name}")
+        st.header(f"{name} {country_flags}", anchor=False)
 
         text = ""
         if stage := artist.get("stage_name"):
@@ -105,7 +105,7 @@ def display_artist_card(artist, blind_mode=False):
 
     else:
         # In blind mode, show a placeholder title
-        st.markdown("### 🎵 Mystery Artist")
+        st.header(f"Mystery Artist 🏴‍☠️", anchor=False)
 
     # Spotify embed with optional overlay
     if spotify_url := artist.get("social_links", {}).get("spotify"):
@@ -140,7 +140,6 @@ def display_artist_card(artist, blind_mode=False):
         del st.session_state.ratings[name]
 
     if artist.get("bio_long") and not blind_mode:
-        st.divider()
         with st.expander(f"Read more about {name}"):
             st.markdown(
                 artist["bio_long"].replace("\n", "<br><br>"),
