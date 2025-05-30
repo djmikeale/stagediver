@@ -1,9 +1,7 @@
 import json
-from collections import OrderedDict
 from datetime import datetime, timedelta
 from pathlib import Path
 
-import pandas as pd
 import streamlit as st
 from ics import Calendar, Event
 
@@ -101,6 +99,69 @@ def get_festivals_and_years(data):
         if festival_year := data.get("festival_year"):
             return [(festival_name, festival_year)]
     return []
+
+
+def display_rating_stats(rating_counts, total_concerts, rated_concerts):
+    """Display rating statistics in a proportional table format"""
+    # Display stats text
+    st.text(
+        f"You've rated {rated_concerts} out of {total_concerts} concerts ({rated_concerts/total_concerts*100:.0f}%), spread across the following ratings:"
+    )
+
+    # Calculate percentages for each rating
+    total_rated = sum(rating_counts.values())
+    rating_percentages = {
+        emoji: (count / total_rated * 100) if total_rated > 0 else 0
+        for emoji, count in rating_counts.items()
+    }
+
+    # Filter out ratings with 0 count
+    active_ratings = {
+        emoji: (count, rating_percentages[emoji])
+        for emoji, count in rating_counts.items()
+        if count > 0
+    }
+
+    if active_ratings:
+        st.markdown(
+            f"""
+            <style>
+                .rating-table {{
+                    width: 100%;
+                }}
+                .rating-table, .rating-table tr, .rating-table td {{
+                    border: none !important;
+                }}
+                .rating-cell {{
+                    padding: 8px;
+                    text-align: center;
+                    color: white;
+                }}
+                .rating-cell:first-child {{
+                    border-top-left-radius: 0.5rem;
+                    border-bottom-left-radius: 0.5rem;
+                }}
+                .rating-cell:last-child {{
+                    border-top-right-radius: 0.5rem;
+                    border-bottom-right-radius: 0.5rem;
+                }}
+                {''.join(
+                    f'.rating-cell.{info["short_name"]} {{ background-color: {info["bg_color"]}; }}'
+                    for info in RATING_INFO.values()
+                )}
+            </style>
+            <table class="rating-table">
+                <tr>
+                    {''.join(
+                        f'<td class="rating-cell {RATING_INFO[emoji]["short_name"]}" style="width: {percentage}%">'
+                        f'{emoji}<br>{count}</td>'
+                        for emoji, (count, percentage) in active_ratings.items()
+                    )}
+                </tr>
+            </table>
+            """,
+            unsafe_allow_html=True,
+        )
 
 
 def show_sidebar(layout="centered"):
@@ -209,64 +270,6 @@ def show_sidebar(layout="centered"):
                     for emoji in RATING_INFO
                 }
 
-                # Display stats
-                st.text(
-                    f"You've rated {rated_concerts} out of {total_concerts} concerts ({rated_concerts/total_concerts*100:.0f}%), spread across the following ratings:"
-                )
-
                 # Create proportional table for ratings
                 if rating_counts:
-                    # Calculate percentages for each rating
-                    total_rated = sum(rating_counts.values())
-                    rating_percentages = {
-                        emoji: (count / total_rated * 100) if total_rated > 0 else 0
-                        for emoji, count in rating_counts.items()
-                    }
-
-                    # Filter out ratings with 0 count
-                    active_ratings = {
-                        emoji: (count, rating_percentages[emoji])
-                        for emoji, count in rating_counts.items()
-                        if count > 0
-                    }
-
-                    if active_ratings:
-                        st.markdown(
-                            f"""
-                            <style>
-                                .rating-table {{
-                                    width: 100%;
-                                }}
-                                .rating-table, .rating-table tr, .rating-table td {{
-                                    border: none !important;
-                                }}
-                                .rating-cell {{
-                                    padding: 8px;
-                                    text-align: center;
-                                    color: white;
-                                }}
-                                .rating-cell:first-child {{
-                                    border-top-left-radius: 0.5rem;
-                                    border-bottom-left-radius: 0.5rem;
-                                }}
-                                .rating-cell:last-child {{
-                                    border-top-right-radius: 0.5rem;
-                                    border-bottom-right-radius: 0.5rem;
-                                }}
-                                {''.join(
-                                    f'.rating-cell.{info["short_name"]} {{ background-color: {info["bg_color"]}; }}'
-                                    for info in RATING_INFO.values()
-                                )}
-                            </style>
-                            <table class="rating-table">
-                                <tr>
-                                    {''.join(
-                                        f'<td class="rating-cell {RATING_INFO[emoji]["short_name"]}" style="width: {percentage}%">'
-                                        f'{emoji}<br>{count}</td>'
-                                        for emoji, (count, percentage) in active_ratings.items()
-                                    )}
-                                </tr>
-                            </table>
-                            """,
-                            unsafe_allow_html=True,
-                        )
+                    display_rating_stats(rating_counts, total_concerts, rated_concerts)
