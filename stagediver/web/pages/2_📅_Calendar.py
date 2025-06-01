@@ -142,13 +142,20 @@ def main() -> None:
             default=rating_options,
             help="Select ratings to display",
         )
+        # Extract just the emoji from the selected ratings
         selected_ratings = [rating.split()[0] for rating in selected_ratings]
 
     # Filter events and resources
     filtered_events = [
         event
         for event in calendar_events
-        if any(rating in event["title"] for rating in selected_ratings)
+        if (
+            # If "⚪" is selected, include unrated events
+            ("⚪" in selected_ratings and event["title"].split()[0] not in RATING_INFO)
+            or
+            # Otherwise, only include events with selected ratings
+            event["title"].split()[0] in selected_ratings
+        )
     ]
 
     filtered_resources = [
@@ -159,10 +166,16 @@ def main() -> None:
     calendar_options = get_calendar_options(filtered_events)
     calendar_options["resources"] = filtered_resources
 
+    # Create a unique key based on the filters and current ratings state
+    ratings_state = "-".join(
+        f"{k}:{v}" for k, v in sorted(st.session_state.ratings.items())
+    )
+    calendar_key = f"calendar_view_{'-'.join(selected_ratings)}_{'-'.join(selected_stages)}_{ratings_state}"
+
     calendar_result = calendar(
         events=filtered_events,
         options=calendar_options,
-        key="calendar_view",
+        key=calendar_key,
         callbacks=["eventClick"],
     )
 
