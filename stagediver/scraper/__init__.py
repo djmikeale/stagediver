@@ -7,47 +7,10 @@ Contains:
 - Raw data validation
 """
 
-import os
 from datetime import datetime, timedelta
 from typing import Dict, List, Optional
 
-from stagediver.common import LINEUPS_FILE, load_json_file, save_json_file
-
-
-def load_existing_lineups() -> List[Dict]:
-    """Load existing lineup data with integrity check."""
-    try:
-        data = load_json_file(LINEUPS_FILE)
-
-        # Basic integrity checks
-        if not isinstance(data, list):
-            raise ValueError("Lineup data must be a list")
-
-        required_fields = {"festival_name", "scrape_ts", "artists"}
-        for entry in data:
-            if not isinstance(entry, dict):
-                raise ValueError("Each scrape entry must be a dictionary")
-            if not all(field in entry for field in required_fields):
-                raise ValueError(f"Missing required fields: {required_fields}")
-            if not isinstance(entry["artists"], list):
-                raise ValueError("Artists must be a list")
-
-        return data
-
-    except FileNotFoundError:
-        return []
-    except ValueError as e:
-        print(f"Error loading existing lineup data: {e}")
-        backup_file = f"{LINEUPS_FILE}.bak"
-        if os.path.exists(LINEUPS_FILE):
-            os.rename(LINEUPS_FILE, backup_file)
-            print(f"Corrupted file backed up to {backup_file}")
-        return []
-
-
-def save_lineups(lineups: List[Dict]):
-    """Save lineup data."""
-    save_json_file(lineups, LINEUPS_FILE)
+from stagediver.common import save_json_file
 
 
 def transform_artist_data(raw_data: dict) -> dict:

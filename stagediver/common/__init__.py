@@ -7,7 +7,6 @@ import os
 from typing import Any, Dict, List
 
 DATA_DIR = "data"
-LINEUPS_FILE = os.path.join(DATA_DIR, "lineups.json")
 
 
 def get_lineups_file(festival: str, year: int) -> str:

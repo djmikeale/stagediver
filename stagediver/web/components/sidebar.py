@@ -189,12 +189,15 @@ def show_sidebar(layout="centered"):
     # Festival selection
     festival_years = get_festivals_and_years(st.session_state.artists_data)
     if festival_years:
+        festival_years_sorted = sorted(
+            festival_years, key=lambda x: (x[0], -x[1])
+        )  # By name, then year descending
         festival_year_options = [
-            f"{festival} ({year})" for festival, year in festival_years
+            f"{festival} ({year})" for festival, year in festival_years_sorted
         ]
         if not st.session_state.get("selected_festival"):
             st.session_state.selected_festival, st.session_state.selected_year = (
-                festival_years[0]
+                festival_years_sorted[0]
             )
 
         with st.sidebar:
