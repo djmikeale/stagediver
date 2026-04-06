@@ -8,6 +8,7 @@ import argparse
 import importlib
 from typing import Optional
 
+from stagediver.common import get_lineups_file
 from stagediver.scraper import run_scraper
 
 
@@ -35,6 +36,7 @@ def get_scraper_class(festival: str, year: int):
     except (ImportError, AttributeError) as e:
         available = [
             "roskilde (2025)",
+            "roskilde (2026)",
             # Add more as they become available
         ]
         raise ValueError(
@@ -74,9 +76,12 @@ def main():
     # Get the appropriate scraper class
     scraper_class = get_scraper_class(args.festival.lower(), args.year)
 
+    # Generate the file path for this festival and year
+    file_path = get_lineups_file(args.festival.lower(), args.year)
+
     # Initialize and run the scraper
     scraper = scraper_class()
-    run_scraper(scraper, sample_size=args.sample_size)
+    run_scraper(scraper, sample_size=args.sample_size, file_path=file_path)
 
 
 if __name__ == "__main__":

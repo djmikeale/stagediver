@@ -70,7 +70,9 @@ def transform_artist_data(raw_data: dict) -> dict:
     }
 
 
-def run_scraper(scraper, sample_size: Optional[int] = None) -> None:
+def run_scraper(
+    scraper, sample_size: Optional[int] = None, file_path: str = None
+) -> None:
     """Run a scraper and save results."""
     print(f"Running {scraper.__class__.__name__}...")
 
@@ -110,5 +112,5 @@ def run_scraper(scraper, sample_size: Optional[int] = None) -> None:
         new_lineup["artists"].append(artist)
 
     # Save to file
-    save_json_file(new_lineup, LINEUPS_FILE)
-    print(f"Saved {len(new_lineup['artists'])} artists to {LINEUPS_FILE}")
+    save_json_file(new_lineup, file_path)
+    print(f"Saved {len(new_lineup['artists'])} artists to {file_path}")

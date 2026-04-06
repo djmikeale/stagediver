@@ -1,11 +1,14 @@
+import glob
 import json
+import os
 from datetime import datetime, timedelta
 from pathlib import Path
 
 import streamlit as st
 from ics import Calendar, Event
 
-from stagediver.common import LINEUPS_FILE
+from stagediver.common import DATA_DIR
+from stagediver.web.components.utils import get_data_for_festival_year
 
 # Constants
 RATING_INFO = {
@@ -18,14 +21,19 @@ RATING_INFO = {
 
 @st.cache_data
 def load_lineup_data():
-    """Load the historical lineup data from JSON file"""
-    try:
-        with open(Path(LINEUPS_FILE)) as f:
-            data = json.load(f)
-        return data if isinstance(data, dict) and "artists" in data else {"artists": []}
-    except (FileNotFoundError, json.JSONDecodeError) as e:
-        st.error(f"Error loading lineup data: {e}")
-        return {"artists": []}
+    """Load all lineup data from JSON files in the data directory"""
+    data_files = glob.glob(os.path.join(DATA_DIR, "*.json"))
+    all_data = []
+    for file_path in data_files:
+        try:
+            with open(file_path) as f:
+                data = json.load(f)
+            if isinstance(data, dict) and "artists" in data:
+                all_data.append(data)
+        except (FileNotFoundError, json.JSONDecodeError):
+            # Skip invalid files
+            pass
+    return all_data
 
 
 def create_calendar_export(artists_data, ratings):
@@ -93,12 +101,14 @@ def import_ratings(json_str):
         return False
 
 
-def get_festivals_and_years(data):
-    """Extract unique festival/year combinations"""
-    if festival_name := data.get("festival_name"):
-        if festival_year := data.get("festival_year"):
-            return [(festival_name, festival_year)]
-    return []
+def get_festivals_and_years(data_list):
+    """Extract unique festival/year combinations from all data"""
+    festival_years = []
+    for data in data_list:
+        if festival_name := data.get("festival_name"):
+            if festival_year := data.get("festival_year"):
+                festival_years.append((festival_name, festival_year))
+    return festival_years
 
 
 def display_rating_stats(rating_counts, total_concerts, rated_concerts):
@@ -202,6 +212,13 @@ def show_sidebar(layout="centered"):
                 st.session_state.selected_festival = festival
                 st.session_state.selected_year = int(year.rstrip(")"))
 
+            # Get data for selected festival
+            selected_data = get_data_for_festival_year(
+                st.session_state.artists_data,
+                st.session_state.selected_festival,
+                st.session_state.selected_year,
+            )
+
             # Ratings import/export
             if st.session_state.show_import:
                 if uploaded_file := st.file_uploader(
@@ -240,7 +257,7 @@ def show_sidebar(layout="centered"):
                         label="Calendar",
                         icon="📅",
                         data=create_calendar_export(
-                            st.session_state.artists_data, st.session_state.ratings
+                            selected_data, st.session_state.ratings
                         ).serialize(),
                         file_name="my_lineup.ics",
                         mime="text/calendar",
@@ -254,11 +271,7 @@ def show_sidebar(layout="centered"):
 
                 # Get total concerts and rated count
                 total_concerts = len(
-                    [
-                        a
-                        for a in st.session_state.artists_data["artists"]
-                        if a["artist_name"]
-                    ]
+                    [a for a in selected_data["artists"] if a["artist_name"]]
                 )
                 rated_concerts = len(st.session_state.ratings)
 

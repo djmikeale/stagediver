@@ -10,6 +10,11 @@ DATA_DIR = "data"
 LINEUPS_FILE = os.path.join(DATA_DIR, "lineups.json")
 
 
+def get_lineups_file(festival: str, year: int) -> str:
+    """Generate the file path for a specific festival and year."""
+    return os.path.join(DATA_DIR, f"{festival.lower()}_{year}.json")
+
+
 def load_json_file(filepath: str) -> Any:
     """Load and parse a JSON file."""
     if not os.path.exists(filepath):
