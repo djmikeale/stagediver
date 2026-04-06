@@ -17,6 +17,7 @@ class ScrapedData(BaseModel):
     )
     raw_content: dict
     festival_name: Optional[str] = None
+    festival_year: Optional[int] = None
     success: bool = True
     error_message: Optional[str] = None
     metadata: dict = Field(default_factory=dict)

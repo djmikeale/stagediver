@@ -1,45 +1,37 @@
 """
 Script to fetch and save festival lineup data.
-Usage:
-    python save_festival_lineup.py --festival roskilde --year 2025 [--sample-size 5]
 """
 
 import argparse
 import importlib
+import inspect
 from typing import Optional
 
-from stagediver.common import get_lineups_file
 from stagediver.scraper import run_scraper
 
 
-def get_scraper_class(festival: str, year: int):
+def get_scraper_class(class_name: str):
     """
-    Dynamically import and return the appropriate scraper class.
+    Dynamically import and return the specified scraper class.
 
     Args:
-        festival: Festival name (lowercase)
-        year: Festival year
+        class_name: Name of the scraper class to load
 
     Returns:
-        Scraper class for the specified festival and year
+        Scraper class with the given name
     """
+    module = importlib.import_module("stagediver.scraper.scraper")
     try:
-        # Import from consolidated scraper module
-        module = importlib.import_module("stagediver.scraper.scraper")
-
-        # Convention: ScraperClass is named [FestivalName]Festival[Year]Scraper
-        class_name = f"{festival.title()}Festival{year}Scraper"
         return getattr(module, class_name)
-    except (ImportError, AttributeError) as e:
+    except AttributeError as e:
         available = [
-            "roskilde (2025)",
-            "roskilde (2026)",
-            # Add more as they become available
+            name
+            for name, cls in inspect.getmembers(module, inspect.isclass)
+            if cls.__module__ == module.__name__ and name != "BaseFestivalScraper"
         ]
         raise ValueError(
-            f"No scraper found for {festival} {year}. "
-            f"Available scrapers: {', '.join(available)}\n"
-            f"Looking for class: {festival.title()}Festival{year}Scraper"
+            f"No scraper found for class '{class_name}'.\n\n"
+            f"Available scrapers: \n{'\n'.join(sorted(available))}"
         ) from e
 
 
@@ -48,15 +40,11 @@ def main():
 
     # Required arguments
     parser.add_argument(
-        "-f",
-        "--festival",
+        "-c",
+        "--class-name",
         type=str,
         required=True,
-        help="Festival name (e.g., roskilde)",
-    )
-
-    parser.add_argument(
-        "-y", "--year", type=int, required=True, help="Festival year (e.g., 2025)"
+        help="Scraper class name to load (e.g. RoskildeFestival2026Scraper)",
     )
 
     # Optional arguments
@@ -69,15 +57,14 @@ def main():
 
     args = parser.parse_args()
 
-    # Get the appropriate scraper class
-    scraper_class = get_scraper_class(args.festival.lower(), args.year)
+    try:
+        scraper_class = get_scraper_class(args.class_name)
+    except ValueError as error:
+        print(error)
+        raise SystemExit(1)
 
-    # Generate the file path for this festival and year
-    file_path = get_lineups_file(args.festival.lower(), args.year)
-
-    # Initialize and run the scraper
     scraper = scraper_class()
-    run_scraper(scraper, sample_size=args.sample_size, file_path=file_path)
+    run_scraper(scraper, sample_size=args.sample_size)
 
 
 if __name__ == "__main__":

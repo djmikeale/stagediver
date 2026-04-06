@@ -16,7 +16,24 @@ from bs4 import BeautifulSoup
 from stagediver.models import ScrapedData
 
 
-class RoskildeFestival2025Scraper:
+class BaseFestivalScraper:
+    """Base class for all festival scrapers with common functionality."""
+
+    def __init__(self):
+        self.festival_name: str
+        self.festival_year: int
+        self.base_url: str
+        self.program_url: str
+        self.session: requests.Session
+
+    @property
+    def festival_id(self) -> str:
+        """Generate festival ID from name and year (e.g., roskilde_festival__2025)."""
+        normalized_name = self.festival_name.lower().replace(" ", "_")
+        return f"{normalized_name}__{self.festival_year}"
+
+
+class RoskildeFestival2025Scraper(BaseFestivalScraper):
     """
     Scraper for Roskilde Festival 2025 lineup and schedule.
     """
@@ -138,6 +155,7 @@ class RoskildeFestival2025Scraper:
             source_url=self.program_url,
             raw_content={"artists": artists_data},
             festival_name=self.festival_name,
+            festival_year=self.festival_year,
         )
 
     def _fetch_artist_details(self, url: str) -> Dict:
@@ -195,7 +213,7 @@ class RoskildeFestival2025Scraper:
         }
 
 
-class RoskildeFestival2026Scraper:
+class RoskildeFestival2026Scraper(BaseFestivalScraper):
     """
     Scraper for Roskilde Festival 2026 lineup and schedule.
     """
@@ -317,6 +335,7 @@ class RoskildeFestival2026Scraper:
             source_url=self.program_url,
             raw_content={"artists": artists_data},
             festival_name=self.festival_name,
+            festival_year=self.festival_year,
         )
 
     def _fetch_artist_details(self, url: str) -> Dict:

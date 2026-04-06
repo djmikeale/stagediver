@@ -33,11 +33,19 @@ def transform_artist_data(raw_data: dict) -> dict:
     }
 
 
-def run_scraper(
-    scraper, sample_size: Optional[int] = None, file_path: str = None
-) -> None:
-    """Run a scraper and save results."""
+def run_scraper(scraper, sample_size: Optional[int] = None) -> None:
+    """Run a scraper and save results.
+
+    Args:
+        scraper: The scraper instance with festival_id, festival_name, festival_year
+        sample_size: Optional maximum number of artists to fetch
+    """
     print(f"Running {scraper.__class__.__name__}...")
+
+    # Auto-generate file path from scraper's festival_id
+    from stagediver.common import DATA_DIR
+
+    file_path = f"{DATA_DIR}/{scraper.festival_id}.json"
 
     # Get lineup data
     lineup_data = scraper.fetch_lineup(sample_size=sample_size)
