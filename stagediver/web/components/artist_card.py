@@ -17,7 +17,7 @@ def extract_spotify_id(spotify_url):
 
 def create_spotify_player_with_overlay(spotify_id, visible=True):
     """Create a Spotify player with an overlay"""
-    st.components.v1.html(
+    st.iframe(
         f"""
         <style>
             .player-container {{
