@@ -40,6 +40,32 @@ This app
 
 run `make install` to install the package and dependencies
 
+### Running the App
+
+To start the Stagediver web app locally, run:
+
+```bash
+streamlit run stagediver/web/🎸_Stagediver.py
+```
+
+This will launch the interactive app in your browser where you can explore artists and build your festival schedule.
+
+### Scraping Festival Lineups
+
+To fetch and save festival lineup data, use the scrape_lineup CLI tool:
+
+```bash
+python stagediver/cli/scrape_lineup.py -h
+```
+
+This shows all available options. Example usage:
+
+```bash
+python stagediver/cli/scrape_lineup.py --festival roskilde --year 2026
+```
+
+For more details on available scrapers and options, see the help output from the command above.
+
 ### Development Roadmap
 
 Feature ideas:

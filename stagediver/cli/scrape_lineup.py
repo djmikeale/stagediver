@@ -24,11 +24,8 @@ def get_scraper_class(festival: str, year: int):
         Scraper class for the specified festival and year
     """
     try:
-        # Convert festival name to match folder structure
-        module_name = f"{festival}_festival"
-        module = importlib.import_module(
-            f"stagediver.scraper.{module_name}__{year}.scraper"
-        )
+        # Import from consolidated scraper module
+        module = importlib.import_module("stagediver.scraper.scraper")
 
         # Convention: ScraperClass is named [FestivalName]Festival[Year]Scraper
         class_name = f"{festival.title()}Festival{year}Scraper"
@@ -42,7 +39,6 @@ def get_scraper_class(festival: str, year: int):
         raise ValueError(
             f"No scraper found for {festival} {year}. "
             f"Available scrapers: {', '.join(available)}\n"
-            f"Looking for module: stagediver.scraper.{festival}_festival__{year}.scraper\n"
             f"Looking for class: {festival.title()}Festival{year}Scraper"
         ) from e
 
