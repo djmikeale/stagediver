@@ -30,7 +30,7 @@ def get_scraper_class(class_name: str):
             if cls.__module__ == module.__name__ and name != "BaseFestivalScraper"
         ]
         raise ValueError(
-            f"No scraper found for class '{class_name}'.\n\n"
+            f"No scraper found for class:\n{class_name}\n\n"
             f"Available scrapers: \n{'\n'.join(sorted(available))}"
         ) from e
 

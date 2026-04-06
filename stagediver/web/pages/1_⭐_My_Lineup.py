@@ -1,7 +1,7 @@
 import streamlit as st
 
 from stagediver.web.components.sidebar import RATING_INFO, show_sidebar
-from stagediver.web.components.utils import get_artists_for_festival_year
+from stagediver.web.components.utils import get_data_for_festival_year
 
 
 def update_ratings(edited_data, all_artists):
@@ -22,11 +22,12 @@ def main():
     show_sidebar(layout="wide")
 
     # Get artists for selected festival/year
-    artists = get_artists_for_festival_year(
+    data = get_data_for_festival_year(
         st.session_state.artists_data,
         st.session_state.selected_festival,
         st.session_state.selected_year,
     )
+    artists = data["artists"] if data else []
 
     if not artists:
         st.info(
