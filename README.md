@@ -58,10 +58,8 @@ To fetch and save festival lineup data, use the scrape_lineup CLI tool:
 python stagediver/cli/scrape_lineup.py -h
 ```
 
-This shows all available options. Example usage:
-
 ```bash
-python stagediver/cli/scrape_lineup.py --festival roskilde --year 2026
+python stagediver/cli/scrape_lineup.py -c RoskildeFestival2026Scraper
 ```
 
 For more details on available scrapers and options, see the help output from the command above.

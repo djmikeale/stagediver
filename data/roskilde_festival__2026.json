@@ -1,13 +1,13 @@
 {
   "festival_name": "Roskilde Festival",
   "festival_year": 2026,
-  "scrape_ts": "2026-04-06T11:58:48.111266",
+  "scrape_ts": "2026-05-03T08:19:46.794869",
   "artists": [
     {
       "artist_name": "Gorillaz",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Orange Scene",
+      "start_ts": "2026-07-02T22:00:00+02:00",
+      "end_ts": "2026-07-02T23:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/3AA28KZvwAUcZuOKwyblJQ"
       },
@@ -20,10 +20,26 @@
       "other_data": {}
     },
     {
+      "artist_name": "Jennie",
+      "stage_name": "Orange Scene",
+      "start_ts": "2026-07-03T22:00:00+02:00",
+      "end_ts": "2026-07-03T23:00:00+02:00",
+      "social_links": {
+        "spotify": "https://open.spotify.com/artist/250b0Wlc5Vk0CoUsaCY84M"
+      },
+      "bio_short": "K-pop-superstjerne indtager Orange Scene med sit ekstravagante popunivers",
+      "bio_long": "“Who wanna rock with Jennie?” synger den sydkoreanske popstjerne Jennie selvsikkert på sit første soloalbum Ruby, der udkom i 2025 til massiv hype. Og til sommerens Roskilde Festival bliver der rig mulighed for at feste med Jennie, når hun med sin første danske koncert som solokunstner er klar til at levere et popshow af en anden verden på Orange Scene.  \nHar man fulgt det mindste med i den sydkoreanske genre K-pop, som har udviklet sig til et globalt popfænomen, vil Jennie være en kendt stemme. Både som del af en af genrens mest succesfulde grupper, Blackpink og i eget navn.  \nDe knivskarpe produktioner og stærkt vanedannende hooks, som Blackpink har erobret verden med, bringer Jennie over på sit soloalbum, der dog også viser hende som en global popstjerne, der transcenderer K-pop formatet. Det er slet og ret pop i verdensklasse præget af kunstneriske samarbejder med en række af tidens markante kunstnere som Dua Lipa, Kali Uchis og Childish Gambino. Først og fremmest er lyden dog defineret af Jennie selv, der fremstår som en både alsidig og nuanceret kunstner og en vidtfavnende vokalist.  \nAlbummet høstede roser fra en bred vifte af medier, herunder NME, der skrev: “She asserts herself not just as a global star, but as a fully realised artist, shaping her sound and vision with an intentionality that signals real growth.” Også live har Jennie imponeret, bl.a. med en overlegen og rost performance på sidste års Coachella Festival. \nI en blanding af overdådige koreografier, visuals og en stærk vokalperformance bringer hun de solide popbangers til live på scenen, og der er uden tvivl lagt op til en popfest af de helt store, når hun indtager Orange Scene til sommer som den første K-pop artist nogensinde.",
+      "country_code": [
+        "KR"
+      ],
+      "scrape_url": "https://www.roskilde-festival.dk/program/musik/jennie",
+      "other_data": {}
+    },
+    {
       "artist_name": "The Cure",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Orange Scene",
+      "start_ts": "2026-07-01T22:00:00+02:00",
+      "end_ts": "2026-07-01T23:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/7bu3H8JO7d0UbMoVzbo70s"
       },
@@ -37,9 +53,9 @@
     },
     {
       "artist_name": "Zara Larsson",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Orange Scene",
+      "start_ts": "2026-07-04T23:15:00+02:00",
+      "end_ts": "2026-07-05T00:15:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/1Xylc3o4UrD53lo9CvFvVg"
       },
@@ -53,9 +69,9 @@
     },
     {
       "artist_name": "Addison Rae",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Orange Scene",
+      "start_ts": "2026-07-03T19:00:00+02:00",
+      "end_ts": "2026-07-03T20:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/4gvjmrtzydbMpyJaXUtwvP"
       },
@@ -69,9 +85,9 @@
     },
     {
       "artist_name": "Aphaca",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Orange Scene",
+      "start_ts": "2026-07-04T01:00:00+02:00",
+      "end_ts": "2026-07-04T02:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/5Ppbc55kNdjvxP8Tw2P8S9"
       },
@@ -84,10 +100,26 @@
       "other_data": {}
     },
     {
+      "artist_name": "Bad Gyal",
+      "stage_name": "Arena",
+      "start_ts": "2026-07-04T21:45:00+02:00",
+      "end_ts": "2026-07-04T22:45:00+02:00",
+      "social_links": {
+        "spotify": "https://open.spotify.com/artist/4F4pp8NUW08JuXwnoxglpN"
+      },
+      "bio_short": "Catalansk reggaeton-stjerne vender tilbage til Roskilde Festival med nyt album og stort show",
+      "bio_long": "“One frisky Latin banger after another”, skrev The Guardian om Bad Gyals debutalbum, La Joia, der for alvor gjorde den catalanske sanger til et globalt fænomen i 2024. Samme år gæstede Bad Gyal Roskilde Festival, hvor tusindvis af begejstrede fans havde trodset den silende regn for at opleve det spanske popikon. I 2026 vender divaen tilbage til festivalen med et helt nyt album, så du kan roligt gå i gang med at varme op. \nFor der skal danses, når Bad Gyal udfolder sit sveddryppende og sensuelle univers af reggaeton, dancehall og pop, hvor der både er plads til tung bas, clubbede beats og smægtende ballader, der går både i kroppen og hjertet. \nBad Gyal begyndte allerede i 2016 at vække opsigt med en række singler samt udgivelsen Slow Wine Mixtape, og siden er hun i hjemlandet vokset til en megastjerne, hvis singler rutinemæssigt stryger til tops på hitlisterne. Også internationalt fik man hurtigt ørerne op for talentet. Allerede i 2017 kårede magasinet FACT hendes single \"Jacaranda\" til årets sang. \nSiden hendes besøg på Roskilde Festival i 2024 er hun kun vokset i popularitet med både en række stærke singler, en dokumentarfilm på Amazon Prime og ikke mindst den stort anlagte Bikini Badness Tour, der har demonstreret hendes format som live-kunstner i en farverig tour de force af show og musik med masser af dansere, overdådige visuals og en perlerække af dansable hits. Det bliver en varm sommer på Roskilde Festival!",
+      "country_code": [
+        "ES"
+      ],
+      "scrape_url": "https://www.roskilde-festival.dk/program/musik/bad-gyal",
+      "other_data": {}
+    },
+    {
       "artist_name": "Clipse",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Orange Scene",
+      "start_ts": "2026-07-04T18:30:00+02:00",
+      "end_ts": "2026-07-04T19:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/2J257euzcjnDLipsyJH3F2"
       },
@@ -101,9 +133,9 @@
     },
     {
       "artist_name": "David Byrne",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Arena",
+      "start_ts": "2026-07-03T20:30:00+02:00",
+      "end_ts": "2026-07-03T21:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/20vuBdFblWUo2FCOvUzusB"
       },
@@ -117,9 +149,9 @@
     },
     {
       "artist_name": "EsDeeKid",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Arena",
+      "start_ts": "2026-07-02T00:00:00+02:00",
+      "end_ts": "2026-07-02T01:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/0EyhkwP3UnwGFBy6xwKjSy"
       },
@@ -133,9 +165,9 @@
     },
     {
       "artist_name": "Ethel Cain",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Arena",
+      "start_ts": "2026-07-02T19:00:00+02:00",
+      "end_ts": "2026-07-02T20:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/0avMDS4HyoCEP6RqZJWpY2"
       },
@@ -148,10 +180,26 @@
       "other_data": {}
     },
     {
+      "artist_name": "Ken Carson",
+      "stage_name": "Arena",
+      "start_ts": "2026-07-02T21:00:00+02:00",
+      "end_ts": "2026-07-02T22:00:00+02:00",
+      "social_links": {
+        "spotify": "https://open.spotify.com/artist/3gBZUcNeVumkeeJ19CY2sX"
+      },
+      "bio_short": "En af rage rappens mest markante stemmer indtager Roskilde Festival med første danske koncert",
+      "bio_long": "Albumtitler som A Great Chaos og More Chaos sætter tonen ret præcist. For når Atlanta-rapperen Ken Carson indtager scenen, inviteres publikum til at slippe kontrollen i et frenetisk lydbillede af tunge trap-beats, overstyrede synths og forvrængede vokaler. \nAllerede som teenager vakte Ken Carson opsigt i undergrundsmiljøet med en række tracks uploadet på Soundcloud. En af mange, der lod sig imponere, var Playboi Carti, som snart signede ham til sit label, Opium, hvor han er blevet en af de mest prominente kunstnere. \nLigesom Playboi Carti selv er Ken Carson blevet udråbt som en af bannerførerne for trap-undergenren rage rap, der i de seneste år har taget verden med storm med rå nerve og tungt buldrende produktioner. Og både fra scenen og på sine udgivelser lever Ken Carson bestemt op til rage rappens ry for at ruske op i lytteren med kaotisk energi og punk-ethos, som han mestrer som få andre.  \nRammende skrev NME om More Chaos, der udkom i 2025: “While others play it safe, Carson’s feral, unleashing madness without hesitation as the overlord of the moshpit. And in that mayhem, he’s found his kingdom.” Der er således også lagt op til moshpit og undergrunds-hiphop i verdensklasse, når Ken Carson indtager Roskilde Festival til sommer i forbindelse med sin første danske koncert.",
+      "country_code": [
+        "US"
+      ],
+      "scrape_url": "https://www.roskilde-festival.dk/program/musik/ken-carson",
+      "other_data": {}
+    },
+    {
       "artist_name": "Kneecap",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Arena",
+      "start_ts": "2026-07-03T00:00:00+02:00",
+      "end_ts": "2026-07-03T01:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/1ZVACPeq7ccGCoUXwtafUU"
       },
@@ -165,9 +213,9 @@
     },
     {
       "artist_name": "Lily Allen",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Orange Scene",
+      "start_ts": "2026-07-04T20:45:00+02:00",
+      "end_ts": "2026-07-04T21:45:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/13saZpZnCDWOI9D4IJhp1f"
       },
@@ -181,9 +229,9 @@
     },
     {
       "artist_name": "Little Simz",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Orange Scene",
+      "start_ts": "2026-07-02T18:00:00+02:00",
+      "end_ts": "2026-07-02T19:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/6eXZu6O7nAUA5z6vLV8NKI"
       },
@@ -197,9 +245,9 @@
     },
     {
       "artist_name": "Tessa",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Orange Scene",
+      "start_ts": "2026-07-03T16:00:00+02:00",
+      "end_ts": "2026-07-03T17:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/3pJK3CUpbnyX7ogDfAwa9J"
       },
@@ -213,9 +261,9 @@
     },
     {
       "artist_name": "Tobias Rahim",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Orange Scene",
+      "start_ts": "2026-07-03T01:00:00+02:00",
+      "end_ts": "2026-07-03T02:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/1w2fVGZN37TieWhlqS8UwB"
       },
@@ -229,9 +277,9 @@
     },
     {
       "artist_name": "TV-2",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Orange Scene",
+      "start_ts": "2026-07-04T15:30:00+02:00",
+      "end_ts": "2026-07-04T16:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/6jvJrJNRIBqin5CYaT2cup"
       },
@@ -245,9 +293,9 @@
     },
     {
       "artist_name": "Wolf Alice",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Orange Scene",
+      "start_ts": "2026-07-01T19:30:00+02:00",
+      "end_ts": "2026-07-01T20:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/3btzEQD6sugImIHPMRgkwV"
       },
@@ -261,9 +309,9 @@
     },
     {
       "artist_name": "Yung Lean & Bladee",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Arena",
+      "start_ts": "2026-07-04T00:15:00+02:00",
+      "end_ts": "2026-07-04T01:15:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/67lytN32YpUxiSeWlKfHJ3"
       },
@@ -277,9 +325,9 @@
     },
     {
       "artist_name": "Audrey Nuna",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Arena",
+      "start_ts": "2026-07-04T17:15:00+02:00",
+      "end_ts": "2026-07-04T18:15:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/0Wwji82sLA0Hcvtuak3omb"
       },
@@ -292,26 +340,10 @@
       "other_data": {}
     },
     {
-      "artist_name": "Bad Gyal",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
-      "social_links": {
-        "spotify": "https://open.spotify.com/artist/4F4pp8NUW08JuXwnoxglpN"
-      },
-      "bio_short": "Catalansk reggaeton-stjerne vender tilbage til Roskilde Festival med nyt album og stort show",
-      "bio_long": "“One frisky Latin banger after another”, skrev The Guardian om Bad Gyals debutalbum, La Joia, der for alvor gjorde den catalanske sanger til et globalt fænomen i 2024. Samme år gæstede Bad Gyal Roskilde Festival, hvor tusindvis af begejstrede fans havde trodset den silende regn for at opleve det spanske popikon. I 2026 vender divaen tilbage til festivalen med et helt nyt album, så du kan roligt gå i gang med at varme op. \nFor der skal danses, når Bad Gyal udfolder sit sveddryppende og sensuelle univers af reggaeton, dancehall og pop, hvor der både er plads til tung bas, clubbede beats og smægtende ballader, der går både i kroppen og hjertet. \nBad Gyal begyndte allerede i 2016 at vække opsigt med en række singler samt udgivelsen Slow Wine Mixtape, og siden er hun i hjemlandet vokset til en megastjerne, hvis singler rutinemæssigt stryger til tops på hitlisterne. Også internationalt fik man hurtigt ørerne op for talentet. Allerede i 2017 kårede magasinet FACT hendes single \"Jacaranda\" til årets sang. \nSiden hendes besøg på Roskilde Festival i 2024 er hun kun vokset i popularitet med både en række stærke singler, en dokumentarfilm på Amazon Prime og ikke mindst den stort anlagte Bikini Badness Tour, der har demonstreret hendes format som live-kunstner i en farverig tour de force af show og musik med masser af dansere, overdådige visuals og en perlerække af dansable hits. Det bliver en varm sommer på Roskilde Festival!",
-      "country_code": [
-        "ES"
-      ],
-      "scrape_url": "https://www.roskilde-festival.dk/program/musik/bad-gyal",
-      "other_data": {}
-    },
-    {
       "artist_name": "BB Trickz",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Lagune",
+      "start_ts": "2026-07-02T16:30:00+02:00",
+      "end_ts": "2026-07-02T17:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/5QS9NAK4AgJPTcRe472pZA"
       },
@@ -324,10 +356,26 @@
       "other_data": {}
     },
     {
+      "artist_name": "BIA",
+      "stage_name": "Eos",
+      "start_ts": "2026-07-01T17:00:00+02:00",
+      "end_ts": "2026-07-01T18:00:00+02:00",
+      "social_links": {
+        "spotify": "https://open.spotify.com/artist/6veh5zbFpm31XsPdjBgPER"
+      },
+      "bio_short": "Stærk cocktail af trap, R&B og latin-elementer fra fremragende rapper",
+      "bio_long": "Til trods for at hendes regulære debutalbum Bianca først udkom i 2025, kan man roligt kalde rapperen Bia for et garvet navn i amerikansk hiphop. En kunstner, der i over 10 år har imponeret med både store hits, stærke features og en personlig stil, der forener hård trap, melodiske R&B-hooks og elementer af latin.  \nAllerede i 2014 vakte Bia, hvis borgerlige navn er Bianca Miquela Landrau, opsigt i tv-serien Sisterhood of Hip Hop, ligesom hun blev signet på Pharrell Williams’ label I Am Other. Snart efter fulgte en række stærke singler, og Bia blev inviteret til at varme op for navne som Pusha T og Ariana Grande. I 2018 medvirkede hun på Kali Uchis debutalbum, Isolation, og samme år udsendte hun sin egen debut-EP, Nice Girls Finish Last: Cuidado.  \nSiden har hun triumferet med flere ikoniske sange, som Russ-samarbejdet “Best on Earth”, der i 2019 blev en viral succes, godt hjulpet på vej af, at selveste Rihanna udråbte den til sin yndlingssang. Det helt store gennembrud kom i 2021 med EP’en For Certain og samarbejdet med Nicki Minaj på kæmpehittet “Whole Lotta Money”, der også landede på magasinet Rolling Stones liste over årets 50 bedste tracks.  \nMed Bianca samler hun kortene på sit hidtil mest personlige udspil, der markerer endnu en milepæl. Bia imponerer som rapper med overlegne bars, og albumformatet giver mulighed for at udforske flere facetter af det store talent - både når hun dyrker sine latin-rødder i samarbejde med stjerner som Becky G og Roskilde Festival-aktuelle Young Miko, og når hun går i dialog med sydstatsrappen i samarbejde med Denzel Curry. Der er lagt op til en brandvarm hiphop-koncert, når Bia gæster Roskilde Festival.",
+      "country_code": [
+        "US"
+      ],
+      "scrape_url": "https://www.roskilde-festival.dk/program/musik/bia",
+      "other_data": {}
+    },
+    {
       "artist_name": "Brutalismus 3000",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Arena",
+      "start_ts": "2026-07-03T02:00:00+02:00",
+      "end_ts": "2026-07-03T03:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/6LtXxYMIiKSy2EGHnz1f5j"
       },
@@ -341,9 +389,9 @@
     },
     {
       "artist_name": "Cobrah",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Lagune",
+      "start_ts": "2026-07-03T00:15:00+02:00",
+      "end_ts": "2026-07-03T01:15:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/1AHswQqsDNmu1xaE8KpBne"
       },
@@ -357,9 +405,9 @@
     },
     {
       "artist_name": "DBN Gogo",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Eos",
+      "start_ts": "2026-07-03T20:30:00+02:00",
+      "end_ts": "2026-07-03T21:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/3Oa0mJQWQrUOqJ8fcLuu7l"
       },
@@ -373,9 +421,9 @@
     },
     {
       "artist_name": "Guldimund",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Arena",
+      "start_ts": "2026-07-02T14:30:00+02:00",
+      "end_ts": "2026-07-02T15:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/5269oiQ5yjMDcgXoJr6zkw"
       },
@@ -389,9 +437,9 @@
     },
     {
       "artist_name": "Igorrr",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Lagune",
+      "start_ts": "2026-07-04T19:30:00+02:00",
+      "end_ts": "2026-07-04T20:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/2p2uE4i92Dn4DkThfoKIB9"
       },
@@ -405,9 +453,9 @@
     },
     {
       "artist_name": "Jade",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Arena",
+      "start_ts": "2026-07-01T20:45:00+02:00",
+      "end_ts": "2026-07-01T21:45:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/24b0qNYNgeOfpP5rbljIB3"
       },
@@ -420,10 +468,26 @@
       "other_data": {}
     },
     {
+      "artist_name": "JALEN NGONDA",
+      "stage_name": "Eos",
+      "start_ts": "2026-07-02T15:00:00+02:00",
+      "end_ts": "2026-07-02T16:00:00+02:00",
+      "social_links": {
+        "spotify": "https://open.spotify.com/artist/2kEDso93O2hDgCbnuiSkkZ"
+      },
+      "bio_short": "Soul-sensation indtager Roskilde Festival med nyt album og ekstraordinær stemme",
+      "bio_long": "Der er dækket op til en soul-fest af de helt store, når amerikanske Jalen Ngonda indtager Roskilde Festival med blændende sange, et stærkt live-band og ikke mindst en vokal, der må smelte alle hjerter med hang til klassisk soul.  \nDen talentfulde sanger, sangskriver og multiinstrumentalist lægger ikke skjul på sin kærlighed til Motowns gyldne æra af soul, funk og R&B. Alligevel fremstår Jalen Ngonda aldrig nostalgisk, men rammer publikum med et nærvær og en lyd, der forener historisk bevidsthed med moderne klange.  \nMed debutalbummet Come Around And Love Me fra 2023 blev Jalen Ngonda øjeblikkeligt en ny soulsensation, og albummet høstede topanmeldelser flere steder – bl.a. i The Guardian, der beskrev det som “half an hour of untrammelled joy” og sammenlignede Ngondas udtryk med selveste Marvin Gaye. Flere store stjerner som Olivia Dean, Jill Scott og Elton John har også meldt sig under fanerne som beundrere af Jalen Ngondas åbenlyse talent.  \nSiden debutalbummet har Jalen Ngonda opbygget en stærk fanbase, ikke mindst takket være sine dybt engagerende koncerter. I 2025 udråbte magasinet Rolling Stone ham til en \"leading soul revivalist of this decade”. 2026 ser også allerede ud til at blive et fantastisk år for Ngonda, der til sommer udsender den længe ventede opfølger til debuten. Doctrine Of Love er titlen på albummet, der udkommer få uger før hans optræden på Roskilde Festival, og der kommer uden tvivl til at være kærlighed i luften, når en af soulscenens største nye stemmer fortryller festivalpladsen til sommer.",
+      "country_code": [
+        "US"
+      ],
+      "scrape_url": "https://www.roskilde-festival.dk/program/musik/jalen-ngonda",
+      "other_data": {}
+    },
+    {
       "artist_name": "Jane Remover",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Lagune",
+      "start_ts": "2026-07-04T22:00:00+02:00",
+      "end_ts": "2026-07-04T23:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/2rLGlNI6htigNxx172qxLu"
       },
@@ -437,9 +501,9 @@
     },
     {
       "artist_name": "Jim Legxacy",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Lagune",
+      "start_ts": "2026-07-03T20:00:00+02:00",
+      "end_ts": "2026-07-03T21:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/7IrBqZo6diq3hV3GpUhrs2"
       },
@@ -453,9 +517,9 @@
     },
     {
       "artist_name": "Kettama",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Eos",
+      "start_ts": "2026-07-05T02:00:00+02:00",
+      "end_ts": "2026-07-05T03:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/3an9rnsXKPCAMlZgH4A0n4"
       },
@@ -469,9 +533,9 @@
     },
     {
       "artist_name": "KWN",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Eos",
+      "start_ts": "2026-07-02T21:00:00+02:00",
+      "end_ts": "2026-07-02T22:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/2KnhnL8zuqLhIhGk601fsb"
       },
@@ -485,9 +549,9 @@
     },
     {
       "artist_name": "Liniker",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Arena",
+      "start_ts": "2026-07-04T19:30:00+02:00",
+      "end_ts": "2026-07-04T20:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/2O6q06oNcmOIPg1qidSU3C"
       },
@@ -501,9 +565,9 @@
     },
     {
       "artist_name": "Lojay",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Eos",
+      "start_ts": "2026-07-04T14:00:00+02:00",
+      "end_ts": "2026-07-04T15:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/3ONGmday8YN8AkbsRk01iL"
       },
@@ -517,9 +581,9 @@
     },
     {
       "artist_name": "Los Mirlos",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Eos",
+      "start_ts": "2026-07-04T17:00:00+02:00",
+      "end_ts": "2026-07-04T18:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/1ga48mxYYI9RuUrWLa3voh"
       },
@@ -533,9 +597,9 @@
     },
     {
       "artist_name": "Los Thuthanaka",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Lagune",
+      "start_ts": "2026-07-03T22:00:00+02:00",
+      "end_ts": "2026-07-03T23:00:00+02:00",
       "social_links": {},
       "bio_short": "Et kosmisk forvandlingsrum af sci-fi og traditionelle rytmer fra Andesbjergene",
       "bio_long": "En sjælden gang støder man ind i musik, der synes at skabe sit helt eget univers, og som samtidig rusker grundigt op i lyttere, der ellers synes, de har hørt alt. En sådan begivenhed var det selvbetitlede debutalbum fra duoen Los Thuthanaka, der udkom i 2025 og slog selv garvede musikkritikere omkuld.\nThe Quietus forsøgte i deres anmeldelse af beskrive mødet således: “A trance record in the true sense, eternal time in the rhythms of cumbia, the steps of the Andean dance huayño. We’re left with a sense of slack jawed euphoria.” Pitchfork var ikke mindre begejstrede og kårede slet og ret albummet til årets bedste!\nBag duoen står søskendeparret Chuquimamani-Condori (der tidligere har udsendt musik under navnet Elysia Crampton) og Joshua Chuquimia Crampton. Sammen dykker de ned i deres rødder i Aymara-kulturen – en oprindelig befolkning i Andesbjergene – og sender de ældgamle og tranceskabende rytmer ind i et forvandlingsrum af vilde psykedeliske visioner, sci-fi inspiration og kosmiske guitarklange.\nDet er musik, som forbinder fortid, nutid og fremtid, men som samtidig nærmest eksisterer uden for tiden. Du kan forvente en bevidsthedsudvidende rejse ind i et dybt personligt musikalsk univers, når Los Thuthanaka bringer deres enestående musik til Roskilde Festival til sommer.",
@@ -548,9 +612,9 @@
     },
     {
       "artist_name": "Lykke Li",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Eos",
+      "start_ts": "2026-07-02T23:30:00+02:00",
+      "end_ts": "2026-07-03T00:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/6oBm8HB0yfrIc9IHbxs6in"
       },
@@ -563,10 +627,26 @@
       "other_data": {}
     },
     {
+      "artist_name": "Malk De Koijn",
+      "stage_name": "Orange Scene",
+      "start_ts": "2026-07-02T16:00:00+02:00",
+      "end_ts": "2026-07-02T17:00:00+02:00",
+      "social_links": {
+        "spotify": "https://open.spotify.com/artist/5WvYsVV3jtztF1kx86Y0yS"
+      },
+      "bio_short": "Danske hiphop-legender vender tilbage til Orange Scene med deres fabulerende univers",
+      "bio_long": "ADer gik et sus gennem Danmark, da hiphop-legenderne Malk De Koijn i 2024 igen fandt sammen i anledning af deres 30-års jubilæum. \nGennem årtier har Tue Track, Blæs Bukki og Geolo G opbygget en helt særlig position i dansk musik med udgivelser som Sneglzilla og Toback To The Fromtime. Og da EP’en Nummer 5 udkom sidste år, stod det klart, at gruppen stadig er i absolut topform. Her formår de stadig at nedsænke virkeligheden i et syrebad af surrealistiske sprogblomster, humoristiske glimt og frodige produktioner, der samler sig til uimodståelige hits. \nMalk De Koijns uforligneligt legesyge tilgang til sproget har efterladt udødelige spor i dansk hiphop, og i dag inspirerer de fortsat nye generationer til at skubbe til, hvad rap på dansk kan være. Det er ikke for ingenting, at deres fangruppe spænder bredt – fra de nye kultfavoritter Smøgmænd til selveste Kong Frederik. \nLive er Malk De Koijn stadig en oplevelse for sig. Med humor, overskud og et katalog fyldt med ikoniske tracks trækker de publikum ind i deres eget parallelunivers, Langestrand, hvor skæve fortællinger og tunge beats smelter sammen. \nDa gruppen sidst gæstede Roskilde Festival i 2012, blev koncerten hyldet som en af de største danske hiphop-optrædener nogensinde. Nu vender de tilbage til Orange Scene med både klassikere og nyt materiale, klar til at gøre det igen.",
+      "country_code": [
+        "DK"
+      ],
+      "scrape_url": "https://www.roskilde-festival.dk/program/musik/malk-de-koijn",
+      "other_data": {}
+    },
+    {
       "artist_name": "Marwan Moussa",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Lagune",
+      "start_ts": "2026-07-01T22:30:00+02:00",
+      "end_ts": "2026-07-01T23:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/2BBnFUgIaLHqoRYPfshoPb"
       },
@@ -579,10 +659,26 @@
       "other_data": {}
     },
     {
+      "artist_name": "MAS",
+      "stage_name": "Arena",
+      "start_ts": "2026-07-04T14:30:00+02:00",
+      "end_ts": "2026-07-04T15:30:00+02:00",
+      "social_links": {
+        "spotify": "https://open.spotify.com/artist/3Tg0bQKDqc4ONwmKywDq72"
+      },
+      "bio_short": "En af Danmarks mest originale og ambitiøse rappere vendere tilbage til Roskilde Festival",
+      "bio_long": "“Hvis der er retfærdighed til, rammer Mas dansk hiphops superliga, inden vi har set os om” skrev Soundvenue allerede i starten af 2026 efter at have været vidne til en af rapperens ambitiøse og medrivende koncerter. Det er svært at være uenige i det udsagn, og vi er derfor også særdeles begejstrede for, at Mas atter lægger vejen forbi Roskilde Festival, hvor han allerede i 2023 skabte en kæmpe fest.\n\nI den mellemliggende tid har Mas imponeret både lyttere og anmeldere med trilogien Når Man Taler Om Solen, Månen Er Min Ven og senest Jorden Kalder. En trilogi, der har cementeret ham som en original og lyrisk stemme i dansk hiphop og som en kunstner, der sætter ambitionsniveauet tårnhøjt, men som også formår at følge ambitionerne til dørs med både eftertænksomhed, nerve og et organisk musikalsk udtryk.\n\nDet er dyder, som Mas også medbringer til sine koncerter, hvor de konceptuelle ideer og store kunstneriske armbevægelser fra udgivelserne ledsages af et uhørt nærvær og en tæt publikumskontakt, samtidig med at Mas formår at demonstrere et eminent håndværk som en af Danmarks bedste rappere.\nMas er en kunstner, der favner kontrasterne med både plads til drømmende passager, skrøbelighed, hårdtslående bangers og feststemning. Det giver en stærk dynamik til koncerterne, der løftes af et forrygende live-band, som forener det organiske og det elektroniske. Det bliver stort at opleve MAS folde alle nuancerne fra sin trilogi ud på scenen på Roskilde Festival, hvor der er dækket op til en hiphop-koncert i topklasse.",
+      "country_code": [
+        "DK"
+      ],
+      "scrape_url": "https://www.roskilde-festival.dk/program/musik/mas",
+      "other_data": {}
+    },
+    {
       "artist_name": "Mille",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Arena",
+      "start_ts": "2026-07-03T13:00:00+02:00",
+      "end_ts": "2026-07-03T14:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/1WLr84Nec3Bb8xuxgQZGb9"
       },
@@ -596,9 +692,9 @@
     },
     {
       "artist_name": "Napalm Death",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Eos",
+      "start_ts": "2026-07-02T17:00:00+02:00",
+      "end_ts": "2026-07-02T18:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/3UqRgrDIQ208yNGiWKRMNt"
       },
@@ -612,9 +708,9 @@
     },
     {
       "artist_name": "Oklou",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Eos",
+      "start_ts": "2026-07-03T23:00:00+02:00",
+      "end_ts": "2026-07-04T00:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/6fFcUOFcbjeIuEomuUthkw"
       },
@@ -628,9 +724,9 @@
     },
     {
       "artist_name": "Pa Salieu",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Arena",
+      "start_ts": "2026-07-01T18:30:00+02:00",
+      "end_ts": "2026-07-01T19:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/290nCNEce1y6rfoJiO2rK7"
       },
@@ -643,10 +739,25 @@
       "other_data": {}
     },
     {
+      "artist_name": "PANDA BEAR & SONIC BOOM",
+      "stage_name": "Eos",
+      "start_ts": "2026-07-04T22:00:00+02:00",
+      "end_ts": "2026-07-04T23:00:00+02:00",
+      "social_links": {},
+      "bio_short": "Mesterduo inviterer på et trip af solvarm 60’er-pop og udsyrede lydeksperimenter",
+      "bio_long": "Begge har de været med til at definere alternativ rock og psykedeliske lydudforskninger i flere årtier. Og i 20 år har Panda Bear og Sonic Boom været musikalske partners in crime, der har fået det bedste frem i hinanden. Nu mødes de to visionære syrehoveder på Roskilde Festival, og der er lagt op til et vaskeægte sonisk trip.  \nAmerikanske Noah Benjamin Lennox gjorde sig i starten af årtusindet bemærket for sine kreative udfoldelser med bandet Animal Collective, som han var med til at stifte, og som fik stor succes på den alternative musikscene. Sideløbende har han udfoldet sig som solokunstner under navnet Panda Bear og udsendt en række stærkt roste album, der demonstrerer hans flair for at skabe frodige lydbilleder, hvor arven fra 60’erens psykedeliske pop, folk og rock forenes med elektroniske loops, sære samples og inspiration fra techno.  \nEt venskab på MySpace med det britiske psych-ikon Sonic Boom (aka Peter Kemper, kendt som medstifter af Spacemen 3) førte til en kreativ alliance, der bl.a. har udmøntet sig i, at Sonic Boom har produceret flere af Panda Bears udgivelser. I 2022 løftede de to musikere dog samarbejdet til nye højder med det fælles mesterværk Reset, der tog et dybt dyk ned i deres fælles kærlighed til 60’ernes popmusik og forvandlede denne kærlighed til nye kreationer gennem skæve lydeksperimenter og collager af samples.  \n“An intoxicating mind meld over a sample-heavy tribute to 1960s pop”, skrev Pitchfork i en begejstret anmeldelse af albummet, der i 2023 også blev genfortolket i en dub-version, remixet af legenden Adrian Sherwood. Sonic Boom og Panda Bear har siden også optrådt sammen på flere toneangivende internationale festivaler, ligesom samarbejdet fortsætter med deres fælles 7”-er udgivelse “Graveyard / Lucky charm”, der udkommer perfekt timet op til sommerens koncert på Roskilde Festival.",
+      "country_code": [
+        "US",
+        "UK"
+      ],
+      "scrape_url": "https://www.roskilde-festival.dk/program/musik/panda-bear-sonic-boom",
+      "other_data": {}
+    },
+    {
       "artist_name": "Pil",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Orange Scene",
+      "start_ts": "2026-07-01T17:30:00+02:00",
+      "end_ts": "2026-07-01T18:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/3vSX14E4YqHrx8nyXeOVen"
       },
@@ -660,9 +771,9 @@
     },
     {
       "artist_name": "Rizwan-Muazzam Qawwali",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Eos",
+      "start_ts": "2026-07-03T18:00:00+02:00",
+      "end_ts": "2026-07-03T19:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/0X08hM1G5NIOPS6zmovtPm"
       },
@@ -676,9 +787,9 @@
     },
     {
       "artist_name": "Rochelle Jordan",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Lagune",
+      "start_ts": "2026-07-05T00:00:00+02:00",
+      "end_ts": "2026-07-05T01:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/3MM3uKNdJbvefUael12dl3"
       },
@@ -693,9 +804,9 @@
     },
     {
       "artist_name": "Royel Otis",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Arena",
+      "start_ts": "2026-07-02T17:00:00+02:00",
+      "end_ts": "2026-07-02T18:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/5b5bt4mZQpJMoCRbiQ7diH"
       },
@@ -708,10 +819,26 @@
       "other_data": {}
     },
     {
+      "artist_name": "Sama’ Abdulhadi",
+      "stage_name": "Eos",
+      "start_ts": "2026-07-01T20:30:00+02:00",
+      "end_ts": "2026-07-01T21:30:00+02:00",
+      "social_links": {
+        "spotify": "https://open.spotify.com/artist/52qyXsgOeHZZxHRRxyO8xm"
+      },
+      "bio_short": "Rave og modstandskamp forenes hos dronningen af palæstinensisk techno",
+      "bio_long": "Hun er ikke bare en af den arabiske verdens førende DJs, men også et markant navn på den internationale techno-scene, og der er lagt op til hård dansefest, når palæstinensiske Sama’ Abdulhadi indtager Roskilde Festival til sommer. \nSelvom hun er blevet kendt som en pioner på den palæstinensiske elektroniske scene, startede hendes karriere i Libanon. Her begyndte hun at skabe musik, som både hentede inspiration fra Berlins techno-scene og rave-kulturen fra de mange klubber i Beirut, hun frekventerede. Hjemvendt til Ramallah i Palæstina blev hun i 2018 inviteret til en Boiler Room-session, og selvom hun på det tidspunkt var stort set ukendt i international sammenhæng, eksploderede videoen i popularitet og gav hende hurtigt tilnavnet \"queen of the Palestinian techno scene\". \nHun er dog ikke blot en dronning, men også en ambassadør, der bruger sin indflydelse til at understøtte mulighederne for at andre palæstinensere kan udtrykke sig kunstnerisk - blandt andet via hendes venue, Union, der fungerer som netværksskabende udviklingssted for DJs, producerer og andre kreative sjæle.  \nHendes erklærede mission om at sætte Palæstina på det internationale techno-kort er i den grad lykkedes, og hun har optrådt på nogle af verdens førende festivaler, som Coachella, Glastonbury og Fusion. Hun lægger ikke skjul på, at rave-kulturen for hende både er et frirum, hvor hun kan give sig hen, men også en modstandshandling rettet mod kræfter, der ønsker at bringe hende til tavshed som kvinde, araber og palæstinenser. Det er en energi hun bringer med sig til sine altid intense shows, hvor festen bliver en vital protest i sig selv.",
+      "country_code": [
+        "PS"
+      ],
+      "scrape_url": "https://www.roskilde-festival.dk/program/musik/sama-abdulhadi",
+      "other_data": {}
+    },
+    {
       "artist_name": "Sammy Virji",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Arena",
+      "start_ts": "2026-07-04T02:30:00+02:00",
+      "end_ts": "2026-07-04T03:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/1GuqTQbuixFHD6eBkFwVcb"
       },
@@ -725,9 +852,9 @@
     },
     {
       "artist_name": "Sierra Ferrell",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Arena",
+      "start_ts": "2026-07-03T17:30:00+02:00",
+      "end_ts": "2026-07-03T18:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/3oVcF3VdpMuvMvLLyHPT4t"
       },
@@ -741,9 +868,9 @@
     },
     {
       "artist_name": "Smerz",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Lagune",
+      "start_ts": "2026-07-03T18:00:00+02:00",
+      "end_ts": "2026-07-03T19:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/1f8PlfSHEW6fHnILSzm8dI"
       },
@@ -757,9 +884,9 @@
     },
     {
       "artist_name": "The Savage Rose",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Eos",
+      "start_ts": "2026-07-03T15:00:00+02:00",
+      "end_ts": "2026-07-03T16:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/6pB3VONh1Qw6G63r9WYFlI"
       },
@@ -773,9 +900,9 @@
     },
     {
       "artist_name": "Uncle Acid & The Deadbeats",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Lagune",
+      "start_ts": "2026-07-02T22:15:00+02:00",
+      "end_ts": "2026-07-02T23:15:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/16PcI6JjJuUfPlsX8Ffvfl"
       },
@@ -789,9 +916,9 @@
     },
     {
       "artist_name": "YOUNG MIKO",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Arena",
+      "start_ts": "2026-07-03T15:00:00+02:00",
+      "end_ts": "2026-07-03T16:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/3qsKSpcV3ncke3hw52JSMB"
       },
@@ -805,9 +932,9 @@
     },
     {
       "artist_name": "¥ØU$UK€ ¥UK1MAT$U",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Eos",
+      "start_ts": "2026-07-02T01:30:00+02:00",
+      "end_ts": "2026-07-02T02:30:00+02:00",
       "social_links": {},
       "bio_short": "Fra cementblander til klublegende – japansk stjerne-DJ vender livet og dansegulvet på hovedet",
       "bio_long": "Den japanske stjerne-DJ ¥ØU$UK€ ¥UK1MAT$U – eller bare Yousuke Yukimatsu – ved, at livet er skrøbeligt, og han nægter at spilde tiden på middelmådighed. Han var godt på vej til at etablere sig som respekteret DJ i hjembyen Osaka, mens han arbejdede i byggebranchen, da han i 2016 fik konstateret kræft i hjernen. Han overlevede operationen, sagde sit byggejob op og byttede cementblanderen ud med pladespillere. Som en fan skrev under hans legendariske Boiler Room-set fra 2024: ”He went from mixing concrete to mixing the nastiest beats together after getting cancer. Dude’s a living legend.”\nDet er svært at være uenig. I de seneste år har ¥ØU$UK€ ¥UK1MAT$U slået sit navn fast som en uomgængelig kraft i den globale klubkultur – en DJ, der kan få det mest støjende kaos til at lyde som ren forløsning. Pitchfork har kaldt ham en ”combination of shaman, warrior, and trickster”, og bag sit rituelle DJ-alter blander han alt fra acid house og industrielt techno-brag til støjeksplosioner med ekkoer af heavy metal, avantgarde og The Prodigy.\nHvis noget kendetegner ¥ØU$UK€ ¥UK1MAT$U, så er det hans kompromisløse fysikalitet og hans manglende evne til at beholde en trøje på særligt længe. Publikum følger gerne trop, og stemningen tipper hurtigt over i noget, der minder om kollektiv ekstase. ¥ØU$UK€ ¥UK1MAT$U elsker at tage chancer, som når han mikser Mariah Carey ind i et drum’n’bass-brag, lader Aerosmith glide ind i et støjklimaks eller afslutter et sæt med et stykke klassisk japansk ambient. Intet er for helligt, og alt bliver vendt, vredet og genfødt i hans soniske cementblander.\nAt hans magiske Boiler Room-session fra Tokyo i 2024 nu er den mest sete i platformens historie, siger alt om den superstjernestatus, han har opnået i DJ-kulturen. ¥ØU$UK€ ¥UK1MAT$U indtager Roskilde Festival til sommer, bliver det et bevidsthedsudvidende rave – brutalt, smukt og helt uden filter.",
@@ -819,9 +946,9 @@
     },
     {
       "artist_name": "Zar Paulo",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Arena",
+      "start_ts": "2026-07-05T00:45:00+02:00",
+      "end_ts": "2026-07-05T01:45:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/5Org3M2mFFEFd8A57h9Yv2"
       },
@@ -835,9 +962,9 @@
     },
     {
       "artist_name": "1111",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Gloria",
+      "start_ts": "2026-07-04T20:30:00+02:00",
+      "end_ts": "2026-07-04T21:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/7s5UemXTsq4giWtzr4fqiN"
       },
@@ -850,10 +977,26 @@
       "other_data": {}
     },
     {
+      "artist_name": "Abdullah Miniawy Trio",
+      "stage_name": "Gloria",
+      "start_ts": "2026-07-02T16:30:00+02:00",
+      "end_ts": "2026-07-02T17:30:00+02:00",
+      "social_links": {
+        "spotify": "https://open.spotify.com/artist/4vtk0GdkL06BZlviVp2H7J"
+      },
+      "bio_short": "Poetisk møde mellem egyptiske traditioner, jazz og eksperimenterende klange",
+      "bio_long": "Der venter en transcenderende musikalsk oplevelse, når den bemærkelsesværdige egyptiske poet og vokalist Abdullah Miniawy bringer sin trio til Roskilde Festival. Her sættes Miniawys rødder i arabisk poesi og egyptisk musik i dialog med jazzede improvisationer, hypnotisk minimalisme og elektroniske elementer i vidtfavnende kompositioner. \nAbdullah Miniawy høstede allerede i 2023 store roser for sin fusion af jazz, eksperimenterende musik og egyptiske traditioner med projektet Le Cri du Caire, som magasinet Songlines beskrev som “haunting and spiritually rich”. Materiale fra Le Cri du Caire foldes da også ud i nye soniske strukturer i Abdullah Miniawys trio med de to franske trombonespillere Jules Regard og Jules Boittin.  \nMusikken, de skaber sammen, veksler mellem kontemplation, dyb spiritualitet og det ekspressivt teatralske og henter inspiration i både egyptiske storbyers kakofoniske gadestøj, barokmusik, opera og temaer fra koptisk kristendom og sufi-mystik. Det hele løftes af Abdullah Miniawys unikke vokal, der forener spoken word-poesi, vokale improvisationer og traditionelle arabiske vokaltraditioner.  \nResultatet minder ikke om ret meget andet og er samtidig – helt i tråd med trioens intention - i sandhed en musik, der nedbryder grænser og skaber nye forbindelser mellem traditioner fra øst og vest. Trioen har høstet stor begejstring på en lang række internationale scener, og vi ser frem til at opleve deres poetiske nærvær og gribende musikalske udtryk på Roskilde Festival.",
+      "country_code": [
+        "EG"
+      ],
+      "scrape_url": "https://www.roskilde-festival.dk/program/musik/abdullah-miniawy-trio",
+      "other_data": {}
+    },
+    {
       "artist_name": "Adrian Quesada",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Eos",
+      "start_ts": "2026-07-02T13:00:00+02:00",
+      "end_ts": "2026-07-02T14:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/07YivsJVCrmhhjzBcBtMGv"
       },
@@ -867,9 +1010,9 @@
     },
     {
       "artist_name": "Albertslund Terror Korps",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Fauna",
+      "start_ts": "2026-07-04T21:00:00+02:00",
+      "end_ts": "2026-07-04T22:00:00+02:00",
       "social_links": {},
       "bio_short": "Et cinematisk rave af rå breakbeats, bhangra og dansktop fra legendarisk duo",
       "bio_long": "Albertslund Terror Korps er tilbage! Og med deres udknaldede og audiovisuelle mix af breakcore, bhangra, gabber og sære dansktop-fragmenter er billedkunstner Halfdan Pisket og musiker DJ HVAD klar til at nedkalde et hæsblæsende sansebombardement over Roskilde Festival. \nDanmark havde mildt sagt aldrig set noget lignende, da Albertslund Terror Korps for 20 år siden kom frem som del af det eksperimenterende elektroniske label Syg Nok Records. Deres visuelle og musikalske mash-ups af dansk idyl, indisk ikonografi og udknaldet sci-fi tilsat hektiske breakbeats og harsk elektronisk støj var uden sidestykke dengang - og den dag i dag er Albertslund Terror Korps stadig hård, men også utroligt underholdende kost.  \nHalfdan Pisket og HVAD lover et cinematisk rave, der spinder fortællinger fra den elektroakustiske diaspora, når de vrider, drejer og forvrænger de gængse forestillinger om hvad dansk kultur er. Og intet er helligt for de to kunstnere, der fra scenen inviterer publikum ind i en speeded feberdrøm udspruget af en fælles, fragmenteret bevidsthed.\nAlbertslund Terror Korps er notorisk kendte for at skabe overrumplende live-oplevelser. Det fik man også at føle på Roskilde Festival tilbage i 2008, hvor duoen gav en legendarisk koncert. Når de vender tilbage i år, kan man forvente en transformerende rejse, der dykker dybt ned i deres 20 årige katalog af lyd og billeder, og det kommer ikke til at gå stille for sig.",
@@ -881,9 +1024,9 @@
     },
     {
       "artist_name": "ANGÅENDE MIG",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Lagune",
+      "start_ts": "2026-07-01T20:30:00+02:00",
+      "end_ts": "2026-07-01T21:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/7bPVeep0ZjTQUyWx9m1xup"
       },
@@ -897,9 +1040,9 @@
     },
     {
       "artist_name": "Annie & the Caldwells",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Lagune",
+      "start_ts": "2026-07-01T18:30:00+02:00",
+      "end_ts": "2026-07-01T19:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/0BppdGjQTbu2POldX0l9Dn"
       },
@@ -913,9 +1056,9 @@
     },
     {
       "artist_name": "Ata Kak",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Gloria",
+      "start_ts": "2026-07-04T22:30:00+02:00",
+      "end_ts": "2026-07-04T23:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/172WdsNGJYNNXVNQ1tXfrB"
       },
@@ -929,9 +1072,9 @@
     },
     {
       "artist_name": "AySay",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Eos",
+      "start_ts": "2026-07-03T12:00:00+02:00",
+      "end_ts": "2026-07-03T13:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/5Py5TK2D6YiXZeivaPkRhE"
       },
@@ -945,9 +1088,9 @@
     },
     {
       "artist_name": "BLAWAN",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Lagune",
+      "start_ts": "2026-07-04T00:00:00+02:00",
+      "end_ts": "2026-07-04T01:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/64kN9EkSTHYhda2FupL0KI"
       },
@@ -961,9 +1104,9 @@
     },
     {
       "artist_name": "Bruno Berle",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Gloria",
+      "start_ts": "2026-07-04T18:30:00+02:00",
+      "end_ts": "2026-07-04T19:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/6wUEejDd6aQJtchKP5c7Q0"
       },
@@ -977,9 +1120,9 @@
     },
     {
       "artist_name": "Cat Clyde",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Fauna",
+      "start_ts": "2026-07-03T13:00:00+02:00",
+      "end_ts": "2026-07-03T14:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/7oRT0oC3vhUGQJCL6CYYzk"
       },
@@ -993,9 +1136,9 @@
     },
     {
       "artist_name": "Chezile",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Lagune",
+      "start_ts": "2026-07-03T14:00:00+02:00",
+      "end_ts": "2026-07-03T15:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/1EmdfupUQDpXOcb4Nj2mBH"
       },
@@ -1009,9 +1152,9 @@
     },
     {
       "artist_name": "Cortisa Star",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Gloria",
+      "start_ts": "2026-07-02T20:30:00+02:00",
+      "end_ts": "2026-07-02T21:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/7oM0bObDNv5Uv1TNyDoqEG"
       },
@@ -1025,9 +1168,9 @@
     },
     {
       "artist_name": "CRRDR",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Fauna",
+      "start_ts": "2026-07-05T01:15:00+02:00",
+      "end_ts": "2026-07-05T02:15:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/5K3Cj0EgqQKp4apSdW2D6I"
       },
@@ -1041,9 +1184,9 @@
     },
     {
       "artist_name": "CUIRASS",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Gloria",
+      "start_ts": "2026-07-04T16:30:00+02:00",
+      "end_ts": "2026-07-04T17:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/5BxSUn5HabHv9ep7UkfdZF"
       },
@@ -1057,9 +1200,9 @@
     },
     {
       "artist_name": "Dean Johnson",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Fauna",
+      "start_ts": "2026-07-02T13:00:00+02:00",
+      "end_ts": "2026-07-02T14:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/4EIdxKX5DkSd7DQhtmY5DN"
       },
@@ -1072,10 +1215,26 @@
       "other_data": {}
     },
     {
+      "artist_name": "Djrum",
+      "stage_name": "Gloria",
+      "start_ts": "2026-07-03T01:45:00+02:00",
+      "end_ts": "2026-07-03T02:45:00+02:00",
+      "social_links": {
+        "spotify": "https://open.spotify.com/artist/4HwlolvniI44ETSg5tajeZ"
+      },
+      "bio_short": "Hyldet elektronisk producer åbner nye rum mellem klubmusik og kosmiske klange",
+      "bio_long": "Londons elektroniske scene er kendt for konstant fornyelse og grænseløs genreblanding. Alligevel skiller Djrum sig ud. Med en baggrund som klassisk pianist og en kompromisløs tilgang til klubmusik skaber Djrum alias Felix Manuel et udtryk, der føles både dybt personligt og helt uden for kategori.\nHans tredje og seneste album, Under Tangled Silence fra 2025, står som et regulært mesterværk. Skabt efter en periode med både kreativ og personlig modgang fremstår det som et værk, hvor alt er bygget op på ny. Resultatet blev storhyldet, blandt andet af Pitchfork, der kaldte det “a balm, a daydream, a reliable portal to a lovelier place, and one of the most dazzling electronic albums in years.”\nDjrum (udtales ”drum!”) bevæger sig frit mellem dubstep, techno, jungle og ambient, men lige så naturligt mellem klaver, improvisation og fritflydende jazz. Hårde, komplekse rytmer kan ramme med fuld kraft, for så at åbne sig i svævende passager, der føles næsten vægtløse. Musikken arbejder konstant i spænd mellem det fysiske og det drømmende.\nLive er Djrum noget helt særligt. Med vinyl, egne instrumenter og improvisationer former han sets, der kan føles som én sammenhængende bevægelse gennem skiftende tilstande – fra meditativ fordybelse til intens rave og tilbage igen.",
+      "country_code": [
+        "UK"
+      ],
+      "scrape_url": "https://www.roskilde-festival.dk/program/musik/djrum",
+      "other_data": {}
+    },
+    {
       "artist_name": "Dying Wish",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Gloria",
+      "start_ts": "2026-07-01T23:30:00+02:00",
+      "end_ts": "2026-07-02T00:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/4igS2MSwOIf3F9YeL929IO"
       },
@@ -1089,9 +1248,9 @@
     },
     {
       "artist_name": "Ecca Vandal",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Lagune",
+      "start_ts": "2026-07-02T18:30:00+02:00",
+      "end_ts": "2026-07-02T19:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/0NhKCHTPG7Sz62S3zxV1Cf"
       },
@@ -1105,9 +1264,9 @@
     },
     {
       "artist_name": "EEE GEE",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Lagune",
+      "start_ts": "2026-07-04T14:30:00+02:00",
+      "end_ts": "2026-07-04T15:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/7wwdO3koJONTrS5TtFJ8RN"
       },
@@ -1121,9 +1280,9 @@
     },
     {
       "artist_name": "Ela Lung",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Platform",
+      "start_ts": "2026-07-04T17:00:00+02:00",
+      "end_ts": "2026-07-04T18:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/5Ug8EsHJimkNNgb8TyrKch"
       },
@@ -1137,9 +1296,9 @@
     },
     {
       "artist_name": "Folk Bitch Trio",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Fauna",
+      "start_ts": "2026-07-03T15:00:00+02:00",
+      "end_ts": "2026-07-03T16:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/26jdbJyBkpr6LivDYvKp2r"
       },
@@ -1153,9 +1312,9 @@
     },
     {
       "artist_name": "Frost Children",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Eos",
+      "start_ts": "2026-07-04T19:45:00+02:00",
+      "end_ts": "2026-07-04T20:45:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/6R1kfr0GIWnwxY4zW11Vag"
       },
@@ -1168,10 +1327,26 @@
       "other_data": {}
     },
     {
+      "artist_name": "Getdown Services",
+      "stage_name": "Lagune",
+      "start_ts": "2026-07-03T16:00:00+02:00",
+      "end_ts": "2026-07-03T17:00:00+02:00",
+      "social_links": {
+        "spotify": "https://open.spotify.com/artist/4OTD2AbOu5iBqSWk3NfwG5"
+      },
+      "bio_short": "En rebelsk fest af punkenergi, dansable grooves og beskidt britisk humor",
+      "bio_long": "De kalder sig selv for “Britain’s Best Band”, og selvom det som så meget andet i Bristol-duoens univers skal tages med en sund portion humor og sarkasme, er der ingen tvivl om, at Getdown Services er et forfriskende indspark på den britiske musikscene. \nDe to barndomsvenner Josh Law og Ben Sadler begyndte at udveksle musikalske ideer under Covid-19, og deres debutalbum Crisps, som udkom i 2023 på Breakfast Records, blev da også undfanget i et trøstesløst England ramt af både nedlukning og Brexit-stemning. Getdown Services har dog en evne til at skabe sange, der med rå humor hudfletter et moderne England, samtidig med at de får publikum til både at smile og danse. \nStemningen er lige så rowdy som duoens fremtoning er uprætentiøs, når de sender næsten stream-of-consciousness agtige tekster i synet på publikum over en bund af punkede riffs, glamrockede melodier og tunge elektro-grooves, der har fået kritikere til at drage sammenligninger med Daft Punk og Justice. \nBåde debutalbummet og en efterfølgende perlerække af EP’er og singler har skabt en solid hype om duoen, men det er især deres uimodståelige koncerter, der har skaffet dem ry som et af de mest spændende nye engelske navne. Som musiksiden No Taste skrev efter en nylig koncert med duoen: “Anti-establishment to the core, Getdown Services don’t just play gigs; they lead a sweaty, grinning revolt against the ordinary.” En opskrift, der uden tvivl kommer til at skabe vild energi, når Getdown Services gæster Roskilde Festival til sommer.",
+      "country_code": [
+        "UK"
+      ],
+      "scrape_url": "https://www.roskilde-festival.dk/program/musik/getdown-services",
+      "other_data": {}
+    },
+    {
       "artist_name": "Gwenifer Raymond",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Gloria",
+      "start_ts": "2026-07-03T14:30:00+02:00",
+      "end_ts": "2026-07-03T15:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/2scavaz2jGMWRFULHoe5je"
       },
@@ -1184,10 +1359,42 @@
       "other_data": {}
     },
     {
+      "artist_name": "HEINALI & ANDRIANA-YAROSLAVA SAIENKO",
+      "stage_name": "Gloria",
+      "start_ts": "2026-07-04T14:30:00+02:00",
+      "end_ts": "2026-07-04T15:30:00+02:00",
+      "social_links": {
+        "spotify": "https://open.spotify.com/artist/5v5c1zBRKBwkDh4sQEHcMx"
+      },
+      "bio_short": "Overjordisk mix af ukrainske folkesange, modularsynths og sakrale middelaldertoner",
+      "bio_long": "Med et album rodfæstet i musik af den tyske middelaldernonne, mystiker og komponist Hildegard af Bingen skabte de en af 2025’s smukkeste udgivelser. Og den ukrainske duo Heinali & Andriana-Yaroslava Saienko har siden fortryllet publikummer på markante festivaler som Rewire, Le Guess Who og Unsound med et i sandhed originalt lydbillede, hvor de middelalderlige toner smelter sammen med modularsynths og traditionelle ukrainske sangteknikker.  \nNu har du på Roskilde Festival chancen for at træde ind i det unikke musikalske univers, når duoen for første gang i Danmark præsenterer deres projekt Гільдеґарда (Hildegard). Projektet skaber vedkommende musikalske forbindelser - ikke kun mellem moderne elektronisk musik og kompositioner skabt i det 12. århundrede, men også mellem sakrale musikalske traditioner fra Vesteuropa og Ukraine.  \nSamtidig er Гільдеґарда (Hildegard) en dybt bevægende musikalsk bøn skabt i skyggen af krigens rædsel. Produceren Heinali har beskrevet hvordan chokerfaringen af et russisk missil, der ramte ned tæt på hans studie i Kyiv, fik ham til at søge ind i det spirituelle rum fra Hildegard af Bingens musik. Og med Andriana-Yaroslava Saienkos vokal skabes en dyb forankring i ukrainsk kultur, hvor gamle folkesange og vuggeviser flettes ind og skaber et skrøbeligt modsvar til voldens sprog. Musikkens rødder er gamle, men den taler med akut nødvendighed ind i samtiden.  \n“A call to wakefulness” skrev The Quietus i en superlativ anmeldelse af albummet, der også landede på adskillige lister over årets bedste udgivelser. Når duoen optræder live skaber de, hvad de kalder strukturerede improvisationer, hvor der opstår nye forbindelser mellem albummets elementer. Det skaber et sjældent fysisk nærvær i en musikalsk oplevelse af en anden verden.",
+      "country_code": [
+        "UA"
+      ],
+      "scrape_url": "https://www.roskilde-festival.dk/program/musik/heinali-andriana-yaroslava-saienko",
+      "other_data": {}
+    },
+    {
+      "artist_name": "Hemlocke Springs",
+      "stage_name": "Lagune",
+      "start_ts": "2026-07-03T12:00:00+02:00",
+      "end_ts": "2026-07-03T13:00:00+02:00",
+      "social_links": {
+        "spotify": "https://open.spotify.com/artist/5RaTuqY7SJHvh6MNzMagut"
+      },
+      "bio_short": "Et spraglet forvandlingsrum af alternativ popmagi",
+      "bio_long": "Med sit forrygende debutalbum the apple tree under the sea skød Hemlocke Springs 2026 i gang med en samling sange, der tilføjede en tiltrængt eventyrlyst til tidens popmusik. “A DayGlo DIY triumph in an era of risk-averse pop” skrev The Guardian i en begejstret anmeldelse af albummet, som da også er blevet rost til skyerne i flere toneangivende medier. \nSelv har den amerikanske sangskriver Isimeme “Naomi” Udu, der gemmer sig under navnet Hemlocke Springs, beskrevet albummet som en musikalsk feberdrøm af et konceptalbum om at udforske sin egen plads i verden - og det i sandhed en feberdrøm, der udfolder sig som en farverig, synth-boblende og kalejdoskopisk rejse gennem adskillige årtiers musik, men altid med stærke og relaterbare sange som et bankende hjerte i musikkens forvandlingsrum.  \nDebutalbummet kom ikke ud af det blå. Allerede i 2021 begyndte Hemlocke Springs at introducere verden til sit alternative popunivers ved at uploade en række underfundige og hjemmeproducerede sange til Soundcloud. I 2022 blev hun et viralt fænomen med sangen “Girlfriend” og allerede i 2023 tog NME hende med på deres liste over “essential emerging artists”. En række af tidens store stjerner meldte sig hurtigt som fans. Doja Cat inviterede hende med som support på The Scarlet Tour i 2024, og Chappell Roan har været en stærk fortaler for Hemlocke Springs’ fabulerende popmagi.  \nPå the apple tree under the sea har Hemlocke Springs formået at holde fast i sit skæve og DIY-orienterede udtryk, samtidig med at hun i tæt samarbejde med produceren BURNS (Lady Gaga, Britney Spears, Charli xcx) virkelig formår at udfolde sin musikalske idérigdom i det store og nærmest filmiske format, som den fortjener. Live har hun ry for at levere fantastiske shows, der balancerer mellem stort popdrama, quirky charme og en til tider næsten punket energi, så der er noget at se frem til, når hun gæster Roskilde Festival til sommer.",
+      "country_code": [
+        "US"
+      ],
+      "scrape_url": "https://www.roskilde-festival.dk/program/musik/hemlocke-springs",
+      "other_data": {}
+    },
+    {
       "artist_name": "Honningbarna",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Lagune",
+      "start_ts": "2026-07-03T02:15:00+02:00",
+      "end_ts": "2026-07-03T03:15:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/6G5StsdpEhbhdrmJG0WMMx"
       },
@@ -1201,9 +1408,9 @@
     },
     {
       "artist_name": "Hypnosis Therapy",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Gloria",
+      "start_ts": "2026-07-01T19:30:00+02:00",
+      "end_ts": "2026-07-01T20:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/6JwAbXBmKAP4lIett8KUiP"
       },
@@ -1217,9 +1424,9 @@
     },
     {
       "artist_name": "Iglooghost",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Fauna",
+      "start_ts": "2026-07-04T01:00:00+02:00",
+      "end_ts": "2026-07-04T02:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/7LCDnUQYE07fnKbo46SVLB"
       },
@@ -1233,9 +1440,9 @@
     },
     {
       "artist_name": "Indus",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Gloria",
+      "start_ts": "2026-07-01T21:30:00+02:00",
+      "end_ts": "2026-07-01T22:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/3NaTDSUj7DxcuG1oJPuQ63"
       },
@@ -1249,9 +1456,9 @@
     },
     {
       "artist_name": "Jorjiana",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Fauna",
+      "start_ts": "2026-07-04T16:30:00+02:00",
+      "end_ts": "2026-07-04T17:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/3tIDgNCk7FQmTHl7hEj1rF"
       },
@@ -1265,9 +1472,9 @@
     },
     {
       "artist_name": "Joshua Idehen",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Gloria",
+      "start_ts": "2026-07-01T17:30:00+02:00",
+      "end_ts": "2026-07-01T18:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/3PubLnxnO5N2Avr3UvG1Vc"
       },
@@ -1281,9 +1488,9 @@
     },
     {
       "artist_name": "Khana Bierbood",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Fauna",
+      "start_ts": "2026-07-02T21:00:00+02:00",
+      "end_ts": "2026-07-02T22:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/2c8aJtxb4DHH8rOBfxwpr7"
       },
@@ -1297,9 +1504,9 @@
     },
     {
       "artist_name": "Kin’Gongolo Kiniata",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Fauna",
+      "start_ts": "2026-07-03T23:00:00+02:00",
+      "end_ts": "2026-07-04T00:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/7zfl0DQa6Ds6AsB1OQBM54"
       },
@@ -1313,9 +1520,9 @@
     },
     {
       "artist_name": "Krøyer",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Gloria",
+      "start_ts": "2026-07-02T22:15:00+02:00",
+      "end_ts": "2026-07-02T23:15:00+02:00",
       "social_links": {},
       "bio_short": "Stemmen fra Vulvatorious går solo med personlige landskaber og industrielle klange",
       "bio_long": "På den alternative københavnske scene har Ditte Krøyer i de seneste år været en central skikkelse. Ikke mindst takket være hendes rolle som frontfigur i det punkede og feministiske black metal-band Vulvatorious, som hun også har imponeret på Roskilde Festival med i 2024.\nHar man været vidne til Vulvatorious’ kraftudladninger på scenen, vil man også vide, at Krøyer er den fødte frontfigur, der hver gang leverer en ekstremt fysisk og nærværende optræden med rå vokal, flammende vrede og en nærmest elektrisk energi. \nDer er derfor også høje forventninger, når hun til foråret udsender sit første soloalbum og følger op med koncert på Roskilde Festival til sommer. Med soloprojektet udforsker hun en mere elektronisk del af sit virke uden at gå på kompromis med de brutale vokaludladninger og mørke stemninger, som man kender hende for.\nKrøyer trækker i sit udtryk på både metal, industrial og ulmende elektroniske collager i en udforskning af hjemstavnen Nakskov. Et område præget af mennesketomme landskaber på en tærskel mellem landbrug og sukkerindustri. Det er et personligt landskab, som Krøyer også har udforsket i sit virke som visuel kunstner, og som nu bringes til scenen på Roskilde Festival med en intens og helt særlig performance.",
@@ -1327,9 +1534,9 @@
     },
     {
       "artist_name": "Lamisi",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Fauna",
+      "start_ts": "2026-07-03T21:00:00+02:00",
+      "end_ts": "2026-07-03T22:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/798tI1G2jVOPuvernIU8iQ"
       },
@@ -1342,10 +1549,25 @@
       "other_data": {}
     },
     {
+      "artist_name": "LECHUGA ZAFIRO & VERRACO",
+      "stage_name": "Gloria",
+      "start_ts": "2026-07-04T02:00:00+02:00",
+      "end_ts": "2026-07-04T03:00:00+02:00",
+      "social_links": {},
+      "bio_short": "Visionær fejring af latinamerikansk klubmusik mellem det hårdtslående og sensuelle",
+      "bio_long": "Gør dig klar til at få udvidet din bevidsthed om hvad elektronisk klubmusik fra Latinamerika kan være, når de to fremsynede musikere og DJ’s Lechuga Zafiro og Verraco bringer deres fælles projekt Hyperverbena til Roskilde Festival. \nHyperverbena udfolder sig som et hybridprojekt, der forener DJ-kultur, elektronisk koncert og suggestive visuals, og som samtidig udgør en dialogisk platform for to kunstnere med rødder i henholdsvis Uruguay og Colombia og med en fælles interesse i at udforske dansegulvet som et forum for at udforske og udvide forestillinger om identitet. Duoen dekonstruerer klicheer om latinamerikansk klubkultur og omfavner begrebet “sudaca”, der normalt bruges som et nedsættende begreb om latinamerikansk kultur, men som i duoens hænder bliver en fejring af en vital, kompleks og uforudsigelig sjæl. \nUforudsigeligheden og mangfoldigheden finder man også i duoens koncerter, der byder på et overflødighedshorn af fængslende rytmer fra genrer som dembow og cumbia forenet med en evigt eksperimenterende musikalsk tilgang og en æstetik, der fremmaner kontrasterne mellem det aggressive og sensuelle. \nHyperverbena havde verdenspremiere på festivalen Berlin Atonal i 2025. Her blev koncerten fremhævet som en af festivalens mest episke dansefester af magasinet Metal, der hyldede showet som et “moment of outright euphoria”. Med deres arsenal af komplekse elektroniske beats, suveræne DJ-skills og vidtfavnende musikalske horisont er Lechuga Zafiro og Verraco nu klar til at bringe euforien til Roskilde Festival med en svedig dansefest.",
+      "country_code": [
+        "UY",
+        "CO"
+      ],
+      "scrape_url": "https://www.roskilde-festival.dk/program/musik/lechuga-zafiro-verraco",
+      "other_data": {}
+    },
+    {
       "artist_name": "Lord Snow",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Gloria",
+      "start_ts": "2026-07-05T00:30:00+02:00",
+      "end_ts": "2026-07-05T01:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/1ewqGyCnudA1zNv0v0EKxK"
       },
@@ -1359,9 +1581,9 @@
     },
     {
       "artist_name": "Luisa Almaguer",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Gloria",
+      "start_ts": "2026-07-03T18:30:00+02:00",
+      "end_ts": "2026-07-03T19:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/2EIoOPYbB27xL2XuvKmNEq"
       },
@@ -1375,9 +1597,9 @@
     },
     {
       "artist_name": "Madra Salach",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Gloria",
+      "start_ts": "2026-07-04T12:30:00+02:00",
+      "end_ts": "2026-07-04T13:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/4ndHOxgaVPMt9xqdNzldgp"
       },
@@ -1391,9 +1613,9 @@
     },
     {
       "artist_name": "Mark William Lewis",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Gloria",
+      "start_ts": "2026-07-03T22:30:00+02:00",
+      "end_ts": "2026-07-03T23:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/2r5elgyPQ19vDG3xSQn39k"
       },
@@ -1407,9 +1629,9 @@
     },
     {
       "artist_name": "Maruja",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Fauna",
+      "start_ts": "2026-07-03T17:00:00+02:00",
+      "end_ts": "2026-07-03T18:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/71ISXR7gtIq5E2AdI3jGf0"
       },
@@ -1423,9 +1645,9 @@
     },
     {
       "artist_name": "Milkweed",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Gloria",
+      "start_ts": "2026-07-03T16:30:00+02:00",
+      "end_ts": "2026-07-03T17:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/2n8wLKXfDnrSoZ9hKffIVW"
       },
@@ -1439,9 +1661,9 @@
     },
     {
       "artist_name": "Naïka",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Lagune",
+      "start_ts": "2026-07-02T20:15:00+02:00",
+      "end_ts": "2026-07-02T21:15:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/4tk2WUKBOS9nKZj7bPQIXT"
       },
@@ -1456,9 +1678,9 @@
     },
     {
       "artist_name": "Nick León",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Fauna",
+      "start_ts": "2026-07-02T23:00:00+02:00",
+      "end_ts": "2026-07-03T00:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/3qOGTt4eTeEkCn3efhAGu2"
       },
@@ -1472,9 +1694,9 @@
     },
     {
       "artist_name": "No Joy",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Gloria",
+      "start_ts": "2026-07-03T20:30:00+02:00",
+      "end_ts": "2026-07-03T21:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/5N7DAaXV1EVXS8h2wyYrx2"
       },
@@ -1488,9 +1710,9 @@
     },
     {
       "artist_name": "Nourished By Time",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Lagune",
+      "start_ts": "2026-07-04T17:00:00+02:00",
+      "end_ts": "2026-07-04T18:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/7zNkqI6qRr0OJ4XO1Pw29g"
       },
@@ -1503,10 +1725,42 @@
       "other_data": {}
     },
     {
+      "artist_name": "PILI PILI GIRLS",
+      "stage_name": "Platform",
+      "start_ts": "2026-07-02T00:45:00+02:00",
+      "end_ts": "2026-07-02T01:45:00+02:00",
+      "social_links": {
+        "spotify": "https://open.spotify.com/artist/5RaTuqY7SJHvh6MNzMagut"
+      },
+      "bio_short": "Intens danseenergi og gaderave-kultur fra singeli-supergruppe",
+      "bio_long": "De blev en sensation på den afrikanske Nyege Nyege Festivals 10-års jubilæum sidste år. Nu er den nye supergruppe Pili Pili Girls klar til at give Roskilde Festival en lektion ud i sveddryppende og twerkende rave-kultur fra Tanzanias fremadstormende singeli-scene. Koncerten på Roskilde Festival bliver deres første internationale festivalkoncert, og de fire kvinder i Pili Pili Girls har tænkt sig at sende publikum i rendyrket danseekstase. \nDet er ikke første gang, at Roskilde Festival har fornøjelsen af at præsentere singeli-kulturens vilde danseenergi. Og var du til Sisso & Maikos koncert i 2023, har du allerede mærket på egen krop, hvor vild en oplevelse det kan være, når den ukontrollerede stemning fra Dar es Salaams gaderaves slippes løs på en koncertscene.  \nSingelien har sit epicenter i Tanzanias hovedstad, hvor den blev født i de vildtvoksende arbejderkvarterer Tandale og Manzese, men den højhastige og punkede elektroniske musik har også fået et solidt tag i danseglade mennesker over hele verden, ikke mindst takket være netop det fremsynede østafrikanske label Nyege Nyege og deres festival af samme navn.  \nDet er således også naturligt, at Nyege Nyege har været med til at præsentere Pili Pili Girls, der består af fire af singeli-scenens mest ikoniske performere. Med deres unikke gruppeenergi formår de i sjælden grad at sætte gang i publikum med spontane koreografier og mosh pits ledsaget af de hyperenergiske singeli-rytmer. Deres debutalbum udkommer i slutninge af 2026, og vi har kæmpe optur over, at Roskilde Festival kan lægge hus til deres første europæiske show.",
+      "country_code": [
+        "TZ"
+      ],
+      "scrape_url": "https://www.roskilde-festival.dk/program/musik/pili-pili-girls",
+      "other_data": {}
+    },
+    {
+      "artist_name": "POISON RUÏN",
+      "stage_name": "Gloria",
+      "start_ts": "2026-07-04T00:30:00+02:00",
+      "end_ts": "2026-07-04T01:30:00+02:00",
+      "social_links": {
+        "spotify": "https://open.spotify.com/artist/0WHVA5E3ZEY5mxGkMYqPuB"
+      },
+      "bio_short": "Et grumt soundtrack af punk og metal til en mørk tidsalder",
+      "bio_long": "Philadelphia-bandet Poison Ruïn har siden starten i 2020 indtaget en særlig plads på den moderne punk- og metalscene. Og med deres nyeste album, Hymns From The Hills, der udkom i foråret, har de for alvor samlet trådene i deres unikke udtryk, hvor tematikker fra den mørke middelalder ramler ind i beskidt anarcho-punk. \nI Poison Ruïns hænder er de middelalderlige stemninger og temaer ikke en flugt fra virkeligheden - tværtimod tjener de som et grumt spejl for det moderne samfund, hvor jævne mennesker presses ned i sølet af magtfulde herskere. Vi befinder os midt i en mørk middelalder, og Poison Ruïn leverer et pestbefængt soundtrack, hvor klassisk crust punk blandes med elementer af traditionel heavy metal, postpunk, black metal og middelalderlige dungeon synth-passager. \nPunkens anarkistiske ånd møder mørke og gotiske atmosfærer, samtidig med at bandets kolde og klamme lo-fi lyd, har fået anmeldere til at drage sammenligninger til æstetikken fra norske black metal-bands som Darkthrone og Immortal.  \nMed Hymns From The Hills har bandet formået at tilføje flere nuancer til deres lyd uden at gå på kompromis med den grumme grundnerve. Albummet har høstet fremragende anmeldelser fra bl.a. Pitchfork, der rammende skrev: “The Philadelphia punks sound like they were swept off to the Middle Ages in a mosh pit and immediately started a revolution.” Nu kommer revolutionen til Roskilde Festival, og det bliver mørkt og beskidt.",
+      "country_code": [
+        "US"
+      ],
+      "scrape_url": "https://www.roskilde-festival.dk/program/musik/poison-ruin",
+      "other_data": {}
+    },
+    {
       "artist_name": "Primitive Man",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Lagune",
+      "start_ts": "2026-07-02T00:30:00+02:00",
+      "end_ts": "2026-07-02T01:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/3XmsLcTDR20TF8CGBThNEx"
       },
@@ -1520,9 +1774,9 @@
     },
     {
       "artist_name": "Sara Parkman",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Fauna",
+      "start_ts": "2026-07-04T14:30:00+02:00",
+      "end_ts": "2026-07-04T15:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/3QKspYZWuPR8sJ6WW1zAdw"
       },
@@ -1536,9 +1790,9 @@
     },
     {
       "artist_name": "Sherelle",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Fauna",
+      "start_ts": "2026-07-02T00:00:00+02:00",
+      "end_ts": "2026-07-02T01:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/2TFDQkQ7LahhuwL9p7R6MO"
       },
@@ -1552,9 +1806,9 @@
     },
     {
       "artist_name": "Shovel Dance Collective",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Platform",
+      "start_ts": "2026-07-02T19:00:00+02:00",
+      "end_ts": "2026-07-02T20:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/1xyaWjnqi42AlEzaXcr7IY"
       },
@@ -1568,9 +1822,9 @@
     },
     {
       "artist_name": "ŠIROM",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Fauna",
+      "start_ts": "2026-07-02T15:00:00+02:00",
+      "end_ts": "2026-07-02T16:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/3EkCxQ87nOSWlHyV6Xhx4c"
       },
@@ -1584,9 +1838,9 @@
     },
     {
       "artist_name": "SMAG PÅ DIG SELV",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Eos",
+      "start_ts": "2026-07-01T23:30:00+02:00",
+      "end_ts": "2026-07-02T00:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/23pTWRPhfqdtCB8N1FGIeC"
       },
@@ -1599,10 +1853,26 @@
       "other_data": {}
     },
     {
+      "artist_name": "Smertegrænsens Toldere",
+      "stage_name": "Fauna",
+      "start_ts": "2026-07-01T19:30:00+02:00",
+      "end_ts": "2026-07-01T20:30:00+02:00",
+      "social_links": {
+        "spotify": "   https://open.spotify.com/artist/37C6CAFyebn17QjG3MjEXC"
+      },
+      "bio_short": "All killer, no filler fra kompromisløse danske hardcore-helte",
+      "bio_long": "Der vanker hård og kontant dansk hardcore med eksplosiv live-energi og nådesløs intensitet, når Smertegrænsens Toldere indtager Roskilde Festival til sommer.  \nIgennem et årti har det aarhusianske band opbygget et ry som et af de vildeste live-acts på den danske musikscene, og samtidig har de cementeret sig som en institution, der har gødet jorden for den frodige danske hardcore-scene, vi har oplevet i senere år. Ikke mindst gennem deres tilbagevendende koncertfænomen Toldermania, der nærmest er blevet legendarisk, og som vel er det tætteste man i Danmark kommer en juleaften for hardcore/punk-miljøet. \nI eget navn har Smertegrænsens Toldere udsendt en lang række rå og kontante udgivelser som Mere Benzin fra 2024. Og benzin kommer der i den grad på hardcore-bålet, når bandet indtager scenen og altid leverer hardcore skrællet ind til benet – uden fyld og overflødige gentagelser, men altid med energi og tyngde.  \n“Bidsk, fedt og groovy som fanden” skrev metalsiden Devilution i en anmeldelse af en nylig koncert med Smertegrænsens Toldere, der også er klar til at vise tænder og uddele hårde musikalske lussinger på dette års Roskilde Festival. Og i en tid, hvor dansk hardcore er i en fantastisk udvikling, er det en sand fornøjelse for os endelig at kunne opleve de aarhusianske hardcore-helte på festivalen.",
+      "country_code": [
+        "DK"
+      ],
+      "scrape_url": "https://www.roskilde-festival.dk/program/musik/smertegraensens-toldere",
+      "other_data": {}
+    },
+    {
       "artist_name": "Snuggle",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Lagune",
+      "start_ts": "2026-07-04T12:00:00+02:00",
+      "end_ts": "2026-07-04T13:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/3hD5jCWM1Kzj6BqhnwICTa"
       },
@@ -1615,10 +1885,26 @@
       "other_data": {}
     },
     {
+      "artist_name": "SOLI CITY x VERTIGO",
+      "stage_name": "Gloria",
+      "start_ts": "2026-07-02T13:00:00+02:00",
+      "end_ts": "2026-07-02T14:00:00+02:00",
+      "social_links": {
+        "spotify": "https://open.spotify.com/artist/2c2FzW2YwLnLlAIHoQ5FM0"
+      },
+      "bio_short": "Et enestående møde mellem klassiske strygere, elektroniske lydflader og overdådige visuals",
+      "bio_long": "Der venter en både overdådig og intens totaloplevelse, når det musikalske projekt Soli City forenes med kunstnerkollektivet Vertigos sans for at skabe audiovisuelle sanserum til et helt særligt projekt på dette års Roskilde Festival.  \nMusik, lyskunst og scenografi smelter sammen til et samlet værk, som publikum inviteres til at træde ind i med alle sanser åbne, og man kan forvente et omsluttende rum af konstant foranderlig karakter. Et rum, hvor det bløde og drømmeagtige møder skarpt aftegnede strukturer, og hvor kropslig varme og teknologi forenes. \nProjektet Soli City er grundlagt af kunstner og komponist Harald Bjørn, der har gjort sig bemærket via en række værker, der ofte udforsker kontaktflader mellem klassisk kompositionsmusik, elektroniske lydflader og en digitaliseret virkelighed. Musikken kan på én gang fremstå radikal, poetisk og undersøgende og bevæger sig gerne ind i opløsninger af grænserne mellem komposition, scenografi og lys.  \nSoli Citys kunstneriske visioner er således et fantastisk match til Vertigos ambitiøse take på at skabe audiovisuelle oplevelser. En ambition, der har gjort det København-baserede kollektiv til førende i deres felt med samarbejder, der tæller så forskellige navne som Hotel Pro Forma, DR Symfoniorkestret og Den Sorte Skole. Nok så vigtigt har Vertigo de sidste 10 år været en fast visuel medskaber på Roskilde Festivals Gloria-scene, som da netop også danner rammerne for dette unikke møde. Et møde, der får en yderlig klanglig dimension gennem medvirken fra strygerkvartetten Akela. Glæd dig til en i sandhed spektakulær oplevelse.",
+      "country_code": [
+        "DK"
+      ],
+      "scrape_url": "https://www.roskilde-festival.dk/program/musik/soli-city-x-vertigo",
+      "other_data": {}
+    },
+    {
       "artist_name": "Sorry",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Fauna",
+      "start_ts": "2026-07-04T23:15:00+02:00",
+      "end_ts": "2026-07-05T00:15:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/5eUda4BaWhUQWWJiP1ml5v"
       },
@@ -1632,9 +1918,9 @@
     },
     {
       "artist_name": "SUSOBRINO",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Platform",
+      "start_ts": "2026-07-04T19:45:00+02:00",
+      "end_ts": "2026-07-04T20:45:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/3qsKSpcV3ncke3hw52JSMB"
       },
@@ -1647,10 +1933,42 @@
       "other_data": {}
     },
     {
+      "artist_name": "Saad Tiouly",
+      "stage_name": "Fauna",
+      "start_ts": "2026-07-03T19:00:00+02:00",
+      "end_ts": "2026-07-03T20:00:00+02:00",
+      "social_links": {
+        "spotify": "https://open.spotify.com/artist/6u7nvgtDtB0CG3vra0mBfB"
+      },
+      "bio_short": "Tranceskabende ritualer og psykedelisk nerve fra ung gnawa-fornyer",
+      "bio_long": "Den marokkanske gnawa har dybe historiske rødder og åbenbarer en rituel og tranceskabende magi, som bliver ved med at fascinere moderne lyttere. Også yngre marokkanske musikere dykker ned i stilen og udvikler den, og Roskilde Festival byder i år på et lysende eksempel, når Saad Tiouly indtager scenen med sit band.  \nSaad Tioulys musik skaber en dyb forbindelse til gnawaens traditioner gennem de messende vokaler, de frenetiske rytmer fra de kastagnet-lignende qraqebs og ikke mindst via guembriens hypnotiske klang. Det traditionelle strengeinstrument er uløseligt forbundet med lyden af gnawa, og i Saad Tioulys hænder klinger det med en vital energi. Han har endda bygget sit instrument selv fra bunden – et vidnesbyrd om hans tætte kontakt til gnawaen som både mytisk ritual og håndværk.  \nHan er da også vokset op i Casablancas gamle medina, hvor han har suget traditionerne til sig. Men han er samtidig en moderne musiker, der ikke er bange for at inkludere elementer af elektronisk musik for at folde gnawaens tranceskabende lydlandskaber ud, ligesom hans personlige tekster forener gnawaens poetiske lag med nutidige temaer, der taler til et yngre publikum.  \nNår han spiller med sit band er det svært ikke at blive revet med af musikken, der forener gnawaens spirituelle nerve med en nærmest psykedelisk energi og klang, og Saad Tiouly formår i sandhed at åbne gnawaens magi for nye lyttere med glødende begejstring, smittende vokaler og energisk dans på scenen. Du er inviteret til at danse med, når Saad Tiouly bringer sit personlige gnawa-udtryk til Roskilde Festival.",
+      "country_code": [
+        "MA"
+      ],
+      "scrape_url": "https://www.roskilde-festival.dk/program/musik/saad-tiouly",
+      "other_data": {}
+    },
+    {
+      "artist_name": "TARRAK",
+      "stage_name": "Lagune",
+      "start_ts": "2026-07-02T14:00:00+02:00",
+      "end_ts": "2026-07-02T15:00:00+02:00",
+      "social_links": {
+        "spotify": "https://open.spotify.com/artist/3FTKo3aheAF0aAxbJWyiP8"
+      },
+      "bio_short": "Med unikt show, nye numre og masser af gæster hylder rap-ikonet den grønlandske kultur",
+      "bio_long": "Tarrak er ikke blot et af de førende navne på Grønlands rap-scene. Han er også blevet en vaskeægte generationsstemme, der forbinder det dybt personlige og det politiske i gribende tekster.\nMed en vibrerende lyrisk nerve leverer Tarrak skarpe portrætter af et moderne grønlandsk samfund, samtidig med at han kompromisløst hudfletter kolonialistisk tænkning og søger dybt i den grønlandske kulturs rødder. Der er noget fundamentalt på spil, når han indtager scenen – det fik Roskilde Festival allerede at mærke i 2023, hvor han leverede en fantastisk koncert.\n\nTarrak brød igennem med debutalbummet FxGxS (2016), hvor især sangen “Tupilak” blev et stort viralt hit. I 2019 udkom albummet Josef Tarrak, hvor rapperen afsøgte sjælens afkroge i et dybt personligt og selvbiografisk projekt, der siden også har dannet grobund for et teaterstykke af samme navn. Siden har han både samarbejdet med Suspekt og medvirket i dokumentarfilmen Kampen om Grønland (2020), og med sit kunstneriske vovemod og personlige lyrik har han høstet flere priser.\n\nNår Tarrak vender tilbage til det Roskilde Festival, bliver det med et stort anlagt og unikt show, der både præsenterer en lang række gæster fra hele Tarraks karriere og udfolder en vision om grønlandsk kultur set gennem grønlandske øjne. Her kan man se frem til at opleve stærke grønlandske stemmer som Peter Lyberth, Nina Sikkersoq Kristoffersen, Aka Niviana med flere, mens visuals fra Inuuteq Storch vil understøtte den bærende fortælling. Samtidig vil koncerten byde på helt nye numre, som Tarrak ikke har optrådt med live før, så det bliver på alle måder et særligt møde med den ikoniske rapper.",
+      "country_code": [
+        "GL"
+      ],
+      "scrape_url": "https://www.roskilde-festival.dk/program/musik/tarrak",
+      "other_data": {}
+    },
+    {
       "artist_name": "The Callous Daoboys",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Fauna",
+      "start_ts": "2026-07-04T18:15:00+02:00",
+      "end_ts": "2026-07-04T19:15:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/4ZWRLOs7c4drt9mKGc0Ds0"
       },
@@ -1664,9 +1982,9 @@
     },
     {
       "artist_name": "The New Eves",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Gloria",
+      "start_ts": "2026-07-02T18:30:00+02:00",
+      "end_ts": "2026-07-02T19:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/1uxnfBJssIJmSQUiuOB77l"
       },
@@ -1680,9 +1998,9 @@
     },
     {
       "artist_name": "The Sophs",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Fauna",
+      "start_ts": "2026-07-01T21:00:00+02:00",
+      "end_ts": "2026-07-01T22:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/2zX0ROHqU3TEfFtKBtqOAE"
       },
@@ -1696,9 +2014,9 @@
     },
     {
       "artist_name": "The Zawose Queens",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Gloria",
+      "start_ts": "2026-07-03T00:00:00+02:00",
+      "end_ts": "2026-07-03T01:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/5e8d20rB9aHyqFJLHlu4QI"
       },
@@ -1711,27 +2029,10 @@
       "other_data": {}
     },
     {
-      "artist_name": "Titanic",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
-      "social_links": {
-        "spotify": "https://open.spotify.com/artist/0R4GqPzobzIMpRgEKJ4c5i"
-      },
-      "bio_short": "Himmelstræbende avant-pop og jazzede improvisationer fra mesterlig duo",
-      "bio_long": "”En gentænkning af popmusik, der dyrker en vedvarende uro, udfordrende men fængende,” skrev The Guardian i en superlativ anmeldelse af duoen Titanics seneste mesterværk, Hagen.\nBag navnet Titanic finder vi den guatemalanske cellist Mabe Fratti og den venezuelanske guitarist Héctor Tosta, der med base i Mexico City har skabt et af de mest fascinerende duo-projekter på den eksperimenterende latinamerikanske scene. En duo, der både er et destillat af de to musikeres evigt udforskende og nysgerrige sind, og som samtidig byder på både storslåede filmiske stemninger og en særegen popmusikalsk elegance. \nMabe Fratti har allerede imponeret på Roskilde Festival, som hun gæstede i 2024 med sit soloprojekt. Hendes musikalske hybrider mellem jazzet improvisation, klassisk kammermusik og drømmende sangskrivning har høstet talrige kritikerroser, og hun har også markeret sig som en kunstner med en stor åbenhed for nye samarbejder – bl.a. var hun at finde på danske Efterklangs seneste album. \nI 2023 søsatte hun duoen Titanic med Héctor Tosta. Samarbejdet resulterede i det fremragende debutalbum, Vidrio, som altså i 2025 blev fulgt op af Hagen. Et album, som for alvor viser duoens vidtfavnende ambitioner i krydsfeltet mellem jazzens improviserede og rå nerve, ambiente atmosfærer og himmelstræbende avant-pop båret af Mabe Frattis Kate Bush-inspirerede vokal. Stor skønhed og vibrerende energi flyder sammen i et rigt musikalsk univers, som vi glæder os til at opleve live til sommer.",
-      "country_code": [
-        "GT",
-        "VE"
-      ],
-      "scrape_url": "https://www.roskilde-festival.dk/program/musik/titanic",
-      "other_data": {}
-    },
-    {
       "artist_name": "Tonser",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Lagune",
+      "start_ts": "2026-07-04T02:15:00+02:00",
+      "end_ts": "2026-07-04T03:15:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/4XQCRgJvDzVmu6xjcv5dfm"
       },
@@ -1745,9 +2046,9 @@
     },
     {
       "artist_name": "Truck Violence",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Fauna",
+      "start_ts": "2026-07-02T19:30:00+02:00",
+      "end_ts": "2026-07-02T20:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/37hhPwqpgSJ3sVixiThL0l"
       },
@@ -1761,9 +2062,9 @@
     },
     {
       "artist_name": "Tuvaband",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Fauna",
+      "start_ts": "2026-07-01T17:45:00+02:00",
+      "end_ts": "2026-07-01T18:45:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/1PELQpIrHccFmlReFjINVT"
       },
@@ -1777,9 +2078,9 @@
     },
     {
       "artist_name": "Uld",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Lagune",
+      "start_ts": "2026-07-02T12:00:00+02:00",
+      "end_ts": "2026-07-02T13:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/5P7qPM9Znluf9Hqgi5WIg9"
       },
@@ -1793,9 +2094,9 @@
     },
     {
       "artist_name": "Vanessa Amara",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Gloria",
+      "start_ts": "2026-07-03T12:30:00+02:00",
+      "end_ts": "2026-07-03T13:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/4SA1HXklaVW0YDH7RjxKS9"
       },
@@ -1809,9 +2110,9 @@
     },
     {
       "artist_name": "Vgtbl.pl",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Fauna",
+      "start_ts": "2026-07-03T01:00:00+02:00",
+      "end_ts": "2026-07-03T02:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/2kMcRNBgbx6szpteePrGew"
       },
@@ -1825,9 +2126,9 @@
     },
     {
       "artist_name": "Vilde Tuv",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Platform",
+      "start_ts": "2026-07-02T12:00:00+02:00",
+      "end_ts": "2026-07-02T13:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/29qqFSoXdHRDxmlvkKielH"
       },
@@ -1841,9 +2142,9 @@
     },
     {
       "artist_name": "Wicky",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Eos",
+      "start_ts": "2026-07-02T19:00:00+02:00",
+      "end_ts": "2026-07-02T20:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/79ky6ZBdwtfcMNf2LqRzvP"
       },
@@ -1857,9 +2158,9 @@
     },
     {
       "artist_name": "Yerai Cortés",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Fauna",
+      "start_ts": "2026-07-02T17:00:00+02:00",
+      "end_ts": "2026-07-02T18:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/4lozfkWdqPL69SUoFK6GFi"
       },
@@ -1873,9 +2174,9 @@
     },
     {
       "artist_name": "100%Wet",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Lagune",
+      "start_ts": "2026-06-29T18:15:00+02:00",
+      "end_ts": "2026-06-29T19:15:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/00NfekFQ6GejpGDubQhgN2"
       },
@@ -1889,9 +2190,9 @@
     },
     {
       "artist_name": "A Good Year",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Lagune",
+      "start_ts": "2026-06-29T21:15:00+02:00",
+      "end_ts": "2026-06-29T22:15:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/30F8R1qAerw8VvYtRGGg0j"
       },
@@ -1905,9 +2206,9 @@
     },
     {
       "artist_name": "ALAWARI",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Eos",
+      "start_ts": "2026-06-30T15:45:00+02:00",
+      "end_ts": "2026-06-30T16:45:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/2T7obrMZPUhgYcC5RUWEHn"
       },
@@ -1921,9 +2222,9 @@
     },
     {
       "artist_name": "Alice Ai",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Eos",
+      "start_ts": "2026-06-29T22:15:00+02:00",
+      "end_ts": "2026-06-29T23:15:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/3Pst9XlmCk0NKGGy3kVvvP"
       },
@@ -1937,9 +2238,9 @@
     },
     {
       "artist_name": "Ana Juél",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Eos",
+      "start_ts": "2026-06-28T17:30:00+02:00",
+      "end_ts": "2026-06-28T18:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/1iHkVAKq12mQH5fZHmKPaU"
       },
@@ -1953,9 +2254,9 @@
     },
     {
       "artist_name": "Augusta Schackinger",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Eos",
+      "start_ts": "2026-06-30T14:15:00+02:00",
+      "end_ts": "2026-06-30T15:15:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/0A1gtg9Bzgv4Tlpn0D9IVm"
       },
@@ -1969,9 +2270,9 @@
     },
     {
       "artist_name": "Berg",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Eos",
+      "start_ts": "2026-06-30T19:00:00+02:00",
+      "end_ts": "2026-06-30T20:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/4DZ5VR6bUEFtiXoi6IsfcD"
       },
@@ -1985,9 +2286,9 @@
     },
     {
       "artist_name": "Carlina de Place",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Eos",
+      "start_ts": "2026-06-28T15:45:00+02:00",
+      "end_ts": "2026-06-28T16:45:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/3sH7pDSVIcvaR7AVOFeCiv"
       },
@@ -2001,9 +2302,9 @@
     },
     {
       "artist_name": "Club Live",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Lagune",
+      "start_ts": "2026-06-28T23:00:00+02:00",
+      "end_ts": "2026-06-29T00:00:00+02:00",
       "social_links": {},
       "bio_short": "Et særligt sammensat line-up af DJ’s, musikere og dansere skaber magisk improvisation",
       "bio_long": "Det bedste fra DJ-kulturen smelter sammen med koncertens uforudsigelige live-magi, når Club Live præsenterer deres nyskabende format på Roskilde Festival. \nBag navnet Club Live finder vi den kreative kerne af Maria Paulina (kurator, eventmanager), Mikael Hegelund (musiker, producer) og John Vincent (DJ, producer), som sammen har skabt en helt ny måde at tænke klubkultur, bandenergi og performance sammen på. Med DJ’en i rollen som bandleder skabes en levende, organisk og nærmest jazzet interaktion med et til lejligheden udvalgt ensemble. \nIntet er planlagt på forhånd. Fragmenter af velkendte numre adskilles på stedet, beats forlænges, vokaler isoleres, baslinjer omformes. Og i dette improviserede rum springer nogle af Danmarks skarpeste musikere og dansere ind; ikke med forberedte rutiner, men med instinkt. De lytter. De bevæger sig. De svarer igen. \nDet improviserede format gør hver koncert med Club Live til en unik oplevelse, hvor også publikum inddrages i feedback-loopet med performere og DJ og påvirker flowet med deres kollektive energi. Vi tør derfor godt love, at der venter en helt særlig oplevelse, når Club Live indtager Roskilde Festival med et til lejligheden sammensat line-up",
@@ -2015,9 +2316,9 @@
     },
     {
       "artist_name": "Demersal",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Eos",
+      "start_ts": "2026-06-29T19:00:00+02:00",
+      "end_ts": "2026-06-29T20:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/5DmRQdOgPcBSbIYJswKwXj"
       },
@@ -2031,9 +2332,9 @@
     },
     {
       "artist_name": "Diket",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Lagune",
+      "start_ts": "2026-06-30T13:30:00+02:00",
+      "end_ts": "2026-06-30T14:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/31IA4hknl229POTnnzdrLv"
       },
@@ -2048,9 +2349,9 @@
     },
     {
       "artist_name": "Dork",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Lagune",
+      "start_ts": "2026-06-29T13:30:00+02:00",
+      "end_ts": "2026-06-29T14:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/3jE90CFpLX1fYiDPHqDZul"
       },
@@ -2064,9 +2365,9 @@
     },
     {
       "artist_name": "Døtre",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Lagune",
+      "start_ts": "2026-06-29T15:00:00+02:00",
+      "end_ts": "2026-06-29T16:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/618jBcmy4g47BAwwzmSRKJ"
       },
@@ -2080,9 +2381,9 @@
     },
     {
       "artist_name": "Eros For You",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Eos",
+      "start_ts": "2026-06-30T20:30:00+02:00",
+      "end_ts": "2026-06-30T21:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/6hFvN0YDYv2sbSn7aY9AOa"
       },
@@ -2096,9 +2397,9 @@
     },
     {
       "artist_name": "Fauna",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Lagune",
+      "start_ts": "2026-06-30T18:15:00+02:00",
+      "end_ts": "2026-06-30T19:15:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/58BwrwQwopuQc4yX4w9cL0"
       },
@@ -2112,9 +2413,9 @@
     },
     {
       "artist_name": "GB",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Lagune",
+      "start_ts": "2026-06-29T19:45:00+02:00",
+      "end_ts": "2026-06-29T20:45:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/4YMJGenzGCHYz30PRdTJP8"
       },
@@ -2128,9 +2429,9 @@
     },
     {
       "artist_name": "Glayden",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Eos",
+      "start_ts": "2026-06-30T23:45:00+02:00",
+      "end_ts": "2026-07-01T00:45:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/5GsNEQd9Q8J3Yi721r1Tsj"
       },
@@ -2144,9 +2445,9 @@
     },
     {
       "artist_name": "Grande Mahogany",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Eos",
+      "start_ts": "2026-06-28T19:00:00+02:00",
+      "end_ts": "2026-06-28T20:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/5Ap6WM27z0Xie0W8Wfs68Q"
       },
@@ -2161,9 +2462,9 @@
     },
     {
       "artist_name": "Ida Duelund",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Lagune",
+      "start_ts": "2026-06-29T16:30:00+02:00",
+      "end_ts": "2026-06-29T17:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/5pkhdQL8Whhq9giGj3mPId"
       },
@@ -2177,9 +2478,9 @@
     },
     {
       "artist_name": "Karoline Mousing",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Eos",
+      "start_ts": "2026-06-29T15:45:00+02:00",
+      "end_ts": "2026-06-29T16:45:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/0BqpiQJEK4jycSLmjLN6z0"
       },
@@ -2193,9 +2494,9 @@
     },
     {
       "artist_name": "Kayak",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Eos",
+      "start_ts": "2026-06-29T14:15:00+02:00",
+      "end_ts": "2026-06-29T15:15:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/52CkRpzc0v3TRxHC5maRCz"
       },
@@ -2209,9 +2510,9 @@
     },
     {
       "artist_name": "Kōya​",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Eos",
+      "start_ts": "2026-06-28T20:30:00+02:00",
+      "end_ts": "2026-06-28T21:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/68zgLA2Qfl52AKuGQQgO4K"
       },
@@ -2225,9 +2526,9 @@
     },
     {
       "artist_name": "Mami Umami",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Lagune",
+      "start_ts": "2026-06-30T21:15:00+02:00",
+      "end_ts": "2026-06-30T22:15:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/1gXudtIPsBxon00193AQb9"
       },
@@ -2241,9 +2542,9 @@
     },
     {
       "artist_name": "Masiv",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Eos",
+      "start_ts": "2026-06-29T23:45:00+02:00",
+      "end_ts": "2026-06-30T00:45:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/65f4aEVM0VBaWO3uxlx5hm"
       },
@@ -2257,9 +2558,9 @@
     },
     {
       "artist_name": "Miaw",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Eos",
+      "start_ts": "2026-06-28T23:45:00+02:00",
+      "end_ts": "2026-06-29T00:45:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/5KW0bWRTHpvoJbpgCCbSt8"
       },
@@ -2274,9 +2575,9 @@
     },
     {
       "artist_name": "Michael Williams",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Eos",
+      "start_ts": "2026-06-29T20:30:00+02:00",
+      "end_ts": "2026-06-29T21:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/4pA9UUTKYrz88wP5NzYyVE"
       },
@@ -2290,9 +2591,9 @@
     },
     {
       "artist_name": "Morild",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Lagune",
+      "start_ts": "2026-06-29T23:00:00+02:00",
+      "end_ts": "2026-06-30T00:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/14wu8ArrLgkbpWn5Gfx5Xx"
       },
@@ -2306,9 +2607,9 @@
     },
     {
       "artist_name": "Muskila + Simona Abdallah",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Lagune",
+      "start_ts": "2026-06-30T23:00:00+02:00",
+      "end_ts": "2026-07-01T00:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/1iBiS6r5HvyEALDYfkWAQm"
       },
@@ -2323,9 +2624,9 @@
     },
     {
       "artist_name": "Oskar Witt",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Lagune",
+      "start_ts": "2026-06-28T18:15:00+02:00",
+      "end_ts": "2026-06-28T19:15:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/7pgsrrUoGrlw9qNtJsk4c4"
       },
@@ -2339,9 +2640,9 @@
     },
     {
       "artist_name": "Ozzy",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Eos",
+      "start_ts": "2026-06-28T14:15:00+02:00",
+      "end_ts": "2026-06-28T15:15:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/1RJznM4DOSV69NWbkq3RA9"
       },
@@ -2355,9 +2656,9 @@
     },
     {
       "artist_name": "Pistol Pistol Pistol",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Lagune",
+      "start_ts": "2026-06-30T16:30:00+02:00",
+      "end_ts": "2026-06-30T17:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/2YiT18cOkXpHfMvV4Z1Ii7"
       },
@@ -2371,9 +2672,9 @@
     },
     {
       "artist_name": "Ponny",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Lagune",
+      "start_ts": "2026-06-28T15:00:00+02:00",
+      "end_ts": "2026-06-28T16:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/2WxeAL2aYX05QOFUS8JpoV"
       },
@@ -2387,9 +2688,9 @@
     },
     {
       "artist_name": "Portal Pets",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Lagune",
+      "start_ts": "2026-06-28T16:30:00+02:00",
+      "end_ts": "2026-06-28T17:30:00+02:00",
       "social_links": {},
       "bio_short": "Gotiske stemninger, skæv folk og grunge-æstetik mødes hos ny københavnsk trio",
       "bio_long": "Deres musik har fået betegnelser som “vampire rock” og “emo grunge” hæftet på sig, og selvom der endnu er tale om et ganske nyt band, som udsendte deres første single i 2025, er der allerede en solid hype om Portal Pets i alternative musikkredse. \nDet er heller ikke så underligt, for bandets tre medlemmer Xenia Xamanek, Emil Palme og Oliver Laumann er hver især markante navne på Københavns alternative musikscene. Navne, der har markeret sig stærkt hver især samt udfoldet sig i samarbejder med kunstnere som ML Buch, Ydegirl og Clarissa Connelly.  \nMan gefinder i Portal Pets den eksperimenterende og nysgerrige musikalske nerve, som man er vant til fra musikernes øvrige projekter. Denne kanaliseres over i et fængslende udtryk, der blander elementer af grunge, folk og metal med plads til både lyrisk sensibilitet og vilde soniske udskejelser. En gotisk atmosfære binder de forskelligartede udtryk sammen og åbner op for et musikalsk univers med plads til både skønhed, sorg og magi.  \nPortal Pets er nu klar med deres debutalbum, som udfolder bandets vision på imponerende vis. De tre garvede musikere formår også live at skabe et helt eget lydunivers, der balancerer mellem skrøbelighed og støj. Og det bliver fantastisk at opleve albummets sange, når de gæster Roskilde Festival til sommer.",
@@ -2401,9 +2702,9 @@
     },
     {
       "artist_name": "Pumpegris",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Lagune",
+      "start_ts": "2026-06-30T15:00:00+02:00",
+      "end_ts": "2026-06-30T16:00:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/6ffouJYBfWqrHFC05DK9MZ"
       },
@@ -2417,9 +2718,9 @@
     },
     {
       "artist_name": "Sa_G",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Eos",
+      "start_ts": "2026-06-29T17:30:00+02:00",
+      "end_ts": "2026-06-29T18:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/5ys6SWXPFzxaULLoEmaO7L"
       },
@@ -2433,9 +2734,9 @@
     },
     {
       "artist_name": "Salver",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Lagune",
+      "start_ts": "2026-06-30T19:45:00+02:00",
+      "end_ts": "2026-06-30T20:45:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/2ZGDZvvjqxc7YKdQXHnqgU"
       },
@@ -2449,9 +2750,9 @@
     },
     {
       "artist_name": "SCAM",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Lagune",
+      "start_ts": "2026-06-28T21:15:00+02:00",
+      "end_ts": "2026-06-28T22:15:00+02:00",
       "social_links": {},
       "bio_short": "Første europæiske show fra vild islandsk elektropop-duo",
       "bio_long": "De har endnu ikke udsendt noget musik, og de har hidtil kun spillet én eneste koncert. Den koncert, som fandt sted på Iceland Airwaves i Reykjavik, gjorde dem til gengæld nærmest øjeblikkeligt til et kultnavn, og på Roskilde Festival er vi begejstrede for at kunne præsentere deres første europæiske koncert.  \nDe to musikere bag projektet, Herdís Stefánsdóttir og Salka Valsdóttir, er ikke ubeskrevne navne. Stefánsdóttir har klassisk baggrund og er en anerkendt filmkomponist, mens Valsdóttir kendes fra bl.a. hiphop-kollektivet Daughters of Reykjavík. \nDet umage par mødtes til en koncert og bondede over en lyst til at skabe et maksimalistisk udtryk, der på én gang skulle fremstå feminint og brutalt, farverigt og råt. Det må man sige er lykkedes med duoens intense electro-pop, der foretager afstikkere til alt fra hardcore techno og gabber til metal og rendyrket popekstase.  \nDet er underholdende, uforudsigeligt og helt igennem uimodståeligt. Og samtidig lyder deres genreforvridende musikalske kollisioner ikke som noget andet. Scam arbejder på et debutalbum, og de første singler fra dette forventes at udkomme i foråret. Forvent en koncert langt ud over det sædvanlige, når kult-duoen indtager Roskilde Festival.",
@@ -2463,9 +2764,9 @@
     },
     {
       "artist_name": "Smøgmænd",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Eos",
+      "start_ts": "2026-06-28T22:15:00+02:00",
+      "end_ts": "2026-06-28T23:15:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/2PKZDTNUlvKmC8LfisVfXg"
       },
@@ -2479,9 +2780,9 @@
     },
     {
       "artist_name": "Spawner",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Lagune",
+      "start_ts": "2026-06-28T19:45:00+02:00",
+      "end_ts": "2026-06-28T20:45:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/7hZffu4iOY88iCnkRKDcrK"
       },
@@ -2495,9 +2796,9 @@
     },
     {
       "artist_name": "Will",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Eos",
+      "start_ts": "2026-06-30T17:30:00+02:00",
+      "end_ts": "2026-06-30T18:30:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/6CVpx38ZMlFNcepKyWTcfB "
       },
@@ -2511,9 +2812,9 @@
     },
     {
       "artist_name": "Zuloo",
-      "stage_name": "TBA",
-      "start_ts": null,
-      "end_ts": null,
+      "stage_name": "Eos",
+      "start_ts": "2026-06-30T22:15:00+02:00",
+      "end_ts": "2026-06-30T23:15:00+02:00",
       "social_links": {
         "spotify": "https://open.spotify.com/artist/5Eb9Tyd8uGdju7tI8FPQXr"
       },
